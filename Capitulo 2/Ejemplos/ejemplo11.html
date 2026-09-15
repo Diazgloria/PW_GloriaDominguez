@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<!--tabla2.html-->
+<!--Tabla de html5 compleja-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Tablas</title>
+    </head>
+
+    <body>
+        <h1>Ejemplo de tabla: combinado de filas y columnas</h1>
+
+        <table border = "1">
+            <caption>Una tabla de muestra compleja</caption>
+
+            <thead>
+                <!--los elemntos rowspan y colspan combinan el numero-->
+                <!--especificando las celdad en sentido vertical u horizonatal-->
+                <tr>
+                    <!--combina dos filas-->
+                    <th rowspan="2">
+                        <img src = "../Ejemplos/Imagenes/camello.png" width="205"
+                        height="167" alt = "imagen de un camello con una joroba">
+                    </th>
+
+                    <!--combina cuatro columnas-->
+                    <th colspan="4">
+                        <strong>Comparacion de camellos</strong><br>
+                        Fecha aproximada: 10/2011
+                    </th>
+                </tr>
+                <tr>
+                    <th># jorobas</th>
+                    <th>Region indicutena</th>
+                    <th>Escupe</th>
+                    <th>Produce lana</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Camellos (bactrianos)</th>
+                    <td>2</td>
+                    <td>Africa/Asia</td>
+                    <td>Si</td>
+                    <td>Si</td>
+                </tr>
+                <tr>
+                    <th>Llamas</th>
+                    <th>1</th>
+                    <th>Montañas de los andes</th>
+                    <th>Si</th>
+                    <th>Si</th>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

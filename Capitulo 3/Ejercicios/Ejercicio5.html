@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 3.5 Capitulo 3 HTML5 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>3.5 Elementos de HTML5</title>
+    </head>
+
+    <body>
+        <h1>Ejercicio 3.5: Elementos de HTML5</h1>
+
+        <!-- a) Elemento meter con texto a su izquierda y a su derecha -->
+        <h2>a) Elemento meter</h2>
+        <p>
+            Calificación promedio: 
+            <meter min="1" max="10" value="7">7 de 10</meter> 
+            7 de 10
+        </p>
+
+        <!-- b) Elemento details y summary -->
+        <h2>b) Elemento details</h2>
+        <details>
+            <summary>Resultados de la encuesta</summary>
+            <p>Se realizó una encuesta a los estudiantes para evaluar la calidad de la comida en la cafetería del campus, obteniendo una puntuación promedio de 7 sobre 10.</p>
+        </details>
+
+        <!-- c) Elemento input text con autofocus y label -->
+        <h2>c) Campo de texto con autofocus</h2>
+        <p>
+            <label for="nombre">Primer nombre:</label>
+            <input type="text" id="nombre" name="nombre" autofocus>
+        </p>
+
+        <!-- d) Modificación sin label, usando placeholder -->
+        <h2>d) Campo de texto con placeholder (sin label)</h2>
+        <p>
+            <input type="text" name="primerNombre" placeholder="Escriba su primer nombre">
+        </p>
+
+        <!-- e) Elemento datalist para cinco estados -->
+        <h2>e) Autocompletar con datalist</h2>
+        <p>
+            <label for="estado">Seleccione un estado:</label>
+            <input type="text" id="estado" name="estado" list="estados">
+            <datalist id="estados">
+                <option value="Veracruz"></option>
+                <option value="Oaxaca"></option>
+                <option value="Puebla"></option>
+                <option value="Jalisco"></option>
+                <option value="Yucatán"></option>
+            </datalist>
+        </p>
+
+        <!-- f) Elemento input range (del 1 al 100) -->
+        <h2>f) Control deslizante (range)</h2>
+        <p>
+            <label for="rango">Seleccione un número (1 al 100):</label>
+            <input type="range" id="rango" name="rango" min="1" max="100">
+        </p>
+
+        <!-- g) Deshabilitar autocomplete en formulario (solo etiqueta de apertura) -->
+        <h2>g) Etiqueta de apertura de formulario sin autocomplete</h2>
+        <form action="#" method="post" autocomplete="off">
+
+        <!-- h) Elemento mark para resaltar el segundo enunciado -->
+        <h2>h) Resaltar texto con mark</h2>
+        <p>
+            Se pidió a los estudiantes que clasificaran los alimentos en la cafetería en una escala del 1 al 10. <mark>El resultado promedio fue 7.</mark>
+        </p>
+
+        <hr>
+        <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+
+    </body>
+</html>

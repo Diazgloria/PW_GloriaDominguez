@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 3.11 Disposición de las páginas en HTML5 (Agregar elemento details con tabla) -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>3.11 Elemento details y tabla HTML5</title>
+    </head>
+
+    <body>
+        
+        <header>
+            <h1>Capítulo 3: HTML5 Parte 2</h1>
+        </header>
+
+     
+        <nav>
+            <p><a href="#seccion321">Ir a la Sección 3.2.1</a></p>
+        </nav>
+
+        <main>
+            <article>
+                <header>
+                    <h2 id="seccion321">3.2.1 Tipo input color</h2>
+                </header>
+
+                <section>
+                    <p>
+                        El tipo input color permite al usuario seleccionar un color. Al momento de escribir
+                        este libro, algunos navegadores despliegan el tipo input color como un campo de texto en donde el usuario
+                        puede introducir un código hexadecimal o el nombre de un color. 
+                        Hay dos navegadores, Chrome y Opera, que
+                        muestran un selector de color similar al cuadro de diálogo de colores de Microsoft Windows.
+                    </p>
+                
+                    <figure>
+                        <img src="../Ejercicios/Imagenes/inputColor.png" alt="Paleta de colores input color" width="300">
+                        <figcaption>Figura 3.2 | Un diálogo para seleccionar colores</figcaption>
+                    </figure>
+
+                    <details>
+                        <summary>Figura 3.5 | Tipos de input con validación automática.</summary>
+                        <br>
+                        <table border="1">
+                            <thead>
+                                <tr>
+                                    <th>tipo de input</th>
+                                    <th>Formato</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>color</td>
+                                    <td>Código hexadecimal</td>
+                                </tr>
+                                <tr>
+                                    <td>date</td>
+                                    <td>aaaa-mm-dd</td>
+                                </tr>
+                                <tr>
+                                    <td>datetime</td>
+                                    <td>aaaa-mm-dd</td>
+                                </tr>
+                                <tr>
+                                    <td>datetime-local</td>
+                                    <td>aaaa-mm-ddThh:mm</td>
+                                </tr>
+                                <tr>
+                                    <td>month</td>
+                                    <td>aaaa-mm</td>
+                                </tr>
+                                <tr>
+                                    <td>number</td>
+                                    <td>Cualquier valor numérico</td>
+                                </tr>
+                                <tr>
+                                    <td>email</td>
+                                    <td>nombre@dominio.com</td>
+                                </tr>
+                                <tr>
+                                    <td>url</td>
+                                    <td>http://www.nombredominio.com</td>
+                                </tr>
+                                <tr>
+                                    <td>time</td>
+                                    <td>hh:mm</td>
+                                </tr>
+                                <tr>
+                                    <td>week</td>
+                                    <td>aaaa-Wnn</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </details>
+                </section>
+
+                <footer>
+                    <p><small>Fuente: Deitel &amp; Deitel - HTML5 para Desarrolladores</small></p>
+                </footer>
+            </article>
+        </main>
+
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+
+    </body>
+</html>

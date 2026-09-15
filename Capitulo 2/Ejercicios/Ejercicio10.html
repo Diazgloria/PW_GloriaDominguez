@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Retroalimentación de Visita a Campus</title>
+    </head>
+    <body>
+
+        <h1>Retroalimentación sobre su visita al campus</h1>
+
+        <form action="http://www.deitel.com" method="post">
+
+            <!-- datos personales -->
+            <p>
+                Nombre:<br>
+                <input type="text" name="nombre">
+            </p>
+
+            <p>
+                Correo electrónico:<br>
+                <input type="email" name="correo">
+            </p>
+
+            <!-- casillas de verificación -->
+            <p>¿Qué fue lo que más le gustó del campus?</p>
+            <input type="checkbox" name="gustos" value="campus"> Campus<br>
+            <input type="checkbox" name="gustos" value="estudiantes"> Estudiantes<br>
+            <input type="checkbox" name="gustos" value="ubicacion"> Ubicación<br>
+            <input type="checkbox" name="gustos" value="ambiente"> Ambiente<br>
+            <input type="checkbox" name="gustos" value="dormitorios"> Dormitorios<br>
+            <input type="checkbox" name="gustos" value="deportes"> Deportes<br>
+
+            <!-- botones de opción -->
+            <p>¿Cómo supo sobre la universidad?</p>
+            <input type="radio" name="origen" value="amigos"> Amigos<br>
+            <input type="radio" name="origen" value="television"> Televisión<br>
+            <input type="radio" name="origen" value="internet"> Internet<br>
+            <input type="radio" name="origen" value="otro"> Otro<br>
+
+            <!-- Área de texto para comentarios -->
+            <p>
+                Comentarios adicionales:<br>
+                <textarea name="comentarios" rows="5" cols="40"></textarea>
+            </p>
+
+            <!-- Botones de envío y restablecer -->
+            <p>
+                <input type="submit" value="Enviar">
+                <input type="reset" value="Borrar">
+            </p>
+
+        </form>
+
+    </body>
+</html>

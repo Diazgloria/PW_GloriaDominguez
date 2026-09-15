@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<!--tabla1.html-->
+<!--creacion de una tabla basica-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Una tabla de HTML simple</title>
+    </head>
+
+    <body>
+        <!--la etiqueta <table> abre una tabla-->
+        <table border = "1">
+
+            <!--la etiqueta <caption> sintetiza el contenido de 
+            la tabla (esto ayuda a las personas con discapcidad visual)-->
+            <caption><strong>Tabla de frutas (1ra columna) y 
+                sus precios (2da clumna)</strong></caption>
+            
+            <!--la seccion <thead> aparece primero en la tabla
+            da formato al rea del encabezado de la tabla-->
+            <thead>
+                <tr><!--<tr>inserta una fila en la tabla-->
+                    <th>Fruta</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+
+            <!--la seccion <tfoot> aparece en el ultimo en la tabla-->
+            <!--da formato al pie de la tabla-->
+            <tfoot>
+                <tr>
+                    <th>Total</th>
+                    <th>$3.75</th>
+                </tr>
+            </tfoot>
+
+            <!--todo el contenido de la tabla esta encerrado-->
+            <!--dentro del elemento <tbody>-->
+            <tbody>
+                <tr>
+                    <td>Manzana</td><!--inserta una celda de datos-->
+                    <td>$0.25</td>
+                </tr>
+                <tr>
+                    <td>Naranja</td>
+                    <td>$0.50</td>
+                </tr>
+                <tr>
+                    <td>Platano</td>
+                    <td>$1.00</td>
+                </tr>
+                <tr>
+                    <td>Pistache</td>
+                    <td>$2.00</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
