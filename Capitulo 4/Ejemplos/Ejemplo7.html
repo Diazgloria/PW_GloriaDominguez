@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<!--figura 4.11 fondo.html
+agregar imagenes de fondo y sangria-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Imagenes de fondo</title>
+        <style type="text/css">
+            body    {background-image: url(../Imagenes/logo.png);
+                    background-position: bottom right;
+                    background-repeat: no-repeat;
+                    background-attachment: fixed;/*fija la imagen en la posicion especificada y se ajusta a la ventana del navegador*/
+                    background-color: lightgrey;}
+            p       {font-size:  18 pt;
+                    color: darkblue;
+                    text-indent: 1em;
+                    font-family: arial, sans-serif;}
+            .dark   {font-weight: bold;}
+        </style>
+    </head>
+    <body>
+        <p>
+            Este ejmplo usa los estilos background-image,
+            background-position y background-attachment
+            para solocar el logotipo de <span class="dark">Deitel 
+            & associates, Inc.</span> en la esquina inferior
+            derecha a la pagina. observe que el logo 
+            permanece en la posicion correcta cuando ajustamos
+            el tamaño de la ventana del navegador. El color de 
+            background-color llena los espacios donde no hay imagen.
+        </p>
+
+        <footer>
+            <hr>
+            <p><a href="lista_ejemplos.html">Regresar a la lista de ejemplos</a></p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,31 @@
+/* Estilos para el contenedor del botón */
+.boton-navegacion {
+    display: inline-block;
+    border: 2px solid #2980b9;
+    background-color: #3498db;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Estilos para el vínculo dentro del div */
+.boton-navegacion a {
+    color: #ffffff;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+}
+
+/* Cambio de estilo al pasar el ratón (hover) sobre el botón */
+.boton-navegacion:hover {
+    background-color: #2c3e50;
+    border-color: #1a252f;
+}
+
+/* Cambio de color de texto al pasar el ratón sobre el vínculo */
+.boton-navegacion:hover a {
+    color: #f1c40f;
+}

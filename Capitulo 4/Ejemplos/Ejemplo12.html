@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<!--figura 4.17 desplegable.html
+menu desplegable de CSS-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Menu desplegable</title>
+        <style type="text/css">
+            body    {font-family: arial, sans-serif;}
+            nav     {font-weight: bold;
+                    color: white;
+                    border: 2px solid royalblue;
+                    text-align: center;
+                    width: 10em;
+                    background-color: royalblue;}
+            nav ul  {display: none;
+                    list-style: none;
+                    margin: 0;
+                    padding: 0;}
+            nav:hover ul {display: block;}
+            nav ul li {border-top: 2px solid royalblue;
+                    background-color: white;
+                    width: 10em;
+                    color: black;}
+            nav ul li:hover {background-color: powderblue;}
+            a       {text-decoration: none;}
+        </style>
+    </head>
+    <body>
+        <nav>Mensaje
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Noticias</a></li>
+                <li><a href="#">Articulos</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+
+        <footer>
+            <hr>
+            <p><a href="lista_ejemplos.html">Regresar a la lista de ejemplos</a></p>
+        </footer>
+    </body>
+</html>

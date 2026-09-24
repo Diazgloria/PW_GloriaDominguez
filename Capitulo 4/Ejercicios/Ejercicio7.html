@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Plantilla de Diseño con Float</title>
+        <style type="text/css">
+            header {
+                background-color: #2c3e50;
+                color: white;
+                padding: 15px;
+                text-align: center;
+                border: 2px solid #1a252f;
+                margin-bottom: 15px;
+            }
+
+    
+            .columna {
+                float: left;
+                width: 45%; 
+                padding: 15px;
+                box-sizing: border-box;
+            }
+
+            .columna-izquierda {
+                background-color: #e8f4f8;
+                border: 2px dashed #2980b9;
+                margin-right: 5%; 
+            }
+
+            .columna-derecha {
+                background-color: #fef9e7;
+                border: 2px dashed #f39c12;
+            }
+
+            .contenedor::after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+        </style>
+    </head>
+    <body>
+
+        <header>
+            <h1>Encabezado Principal de la Página</h1>
+        </header>
+
+        <div class="contenedor">
+            <p class="columna columna-izquierda">
+                <strong>Columna 1:</strong> Este es el primer párrafo alineado a la izquierda mediante la propiedad <code>float: left;</code>. Cuenta con un fondo azul claro y un borde discontinuo para visualizar claramente sus límites dentro del diseño.
+            </p>
+
+            <p class="columna columna-derecha">
+                <strong>Columna 2:</strong> Este es el segundo párrafo ubicado al lado del primero. Al utilizar <code>float: left;</code> en ambos y asignarles un ancho porcentual junto a un margen, logramos crear una maquetación fluida en dos columnas paralelas.
+            </p>
+        </div>
+
+        <hr>
+
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+
+    </body>
+</html>

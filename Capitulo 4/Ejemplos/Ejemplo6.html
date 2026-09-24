@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<!--figura 4.10 posicionamiento2.html
+posicionamiento relativo d los elementos-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Posicionamiento relativo</title>
+        <style type="text/css">
+            p       {font-size: 1.3em;
+                    font-family: verdana, arial, sans-serif;}
+            span    {color: red;
+                    font-size: .6em;
+                    height: 1em;}
+            .super  {position: relative;
+                    top: -1ex;}
+            .desplizq {position: relative;
+                      left: -1ex;}
+            .desplder {position: relative;
+                      right: -1ex;}
+        </style>
+    </head>
+    <body>
+        <p>El texto al final de esta oracion
+            <span class="super">esta en superindice</span>.</p>
+
+        <p>El texto al final de esta oracion 
+            <span class="sub">esta en subindice</span></p>
+        
+        <p>El texto al final de esta oracion
+            <span class="desplizq"> esta desplazado a la izquierda</span></p>
+        
+        <p>El texto al final de esta oracion
+            <span class="desplder">esta desplazado a la derecha</span></p>
+        
+        <footer>
+            <hr>
+            <p><a href="lista_ejemplos.html">Regresar a la lista de ejemplos</a></p>
+        </footer>
+    </body>
+</html>
