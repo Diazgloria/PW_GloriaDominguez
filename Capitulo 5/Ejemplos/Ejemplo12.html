@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<!--figura 5.13 inclinar.html
+elementos de inclinacion y de tranformacion en CSS3-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Inclinar(skew)</title>
+        <style type="text/css">
+            .skew .textbox
+            {
+                margin-left: 75px;
+                background: lightgreen;
+                height: 100px;
+                width: 200px;
+                padding: 20px 0;
+                text-align: center;
+                font-size: 250%;
+                border: 3px solid darkgreen;
+                border-radius: 15px;
+                -webkit-animation: skew 3s infinite linear;
+                -moz-animation: skew 3s infinite linear;
+                animation: skew 3s infinite linear;
+            }
+            @-webkit-keyframes skew
+            {
+                from {-webkit-transform: skewX(0deg);}
+                25%  {-webkit-transform: skewX(45deg);}
+                50% {-webkit-transform: skewX(0);}
+                75% {-webkit-transform: skewX(-45deg);}
+                to {-webkit-transform: skewX(0);}
+            }
+            @-moz-keyframes skew
+            {
+                from {-webkit-transform: skewX(0deg);}
+                25% {-webkit-transform: skewX(45deg);}
+                50% {-webkit-transform: skewX(0);}
+                75% {-webkit-transform: skewX(-45deg);}
+                to {-webkit-transform: skewX(0);}
+            }
+            @-o-keyframes skew 
+            {
+                from {-webkit-transform: skewX(0deg);}
+                25% {-webkit-transform: skewX(45deg);}
+                50% {-webkit-transform: skewX(0);}
+                75% {-webkit-transform: skewX(-45deg);}
+                to {-webkit-transform: skewX(0);}
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box skew">
+            <div class="textbox">Inclinar texto</div>
+        </div>
+    </body>
+</html>

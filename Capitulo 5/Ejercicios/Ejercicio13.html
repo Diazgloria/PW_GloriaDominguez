@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 5.13 - Modelo de Diseño de Caja Flexible Vertical -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 5.13 - Caja Flexible Vertical</title>
+        <style type="text/css">
+            /* Contenedor principal en orientación vertical */
+            .contenedor {
+                display: flex;
+                flex-direction: column; /* Cambia la disposición a vertical */
+                width: 350px;
+                gap: 10px;
+                font-family: Arial, sans-serif;
+            }
+
+            /* Estilo general para cada tarjeta flexible */
+            .caja {
+                background-color: #e0e0e0;
+                border: 2px solid #333333;
+                border-radius: 10px;
+                padding: 15px;
+                transition: all 0.4s ease;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .caja img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .caja p {
+                margin: 0;
+                font-size: 14px;
+                color: #333333;
+            }
+
+            /* Efecto hover especificado en las instrucciones para :nth-child(2) */
+            .caja:nth-child(2):hover {
+                background-color: Crimson;
+                color: white;
+                transform: scale(1.03); /* Expande la caja ligeramente */
+            }
+
+            .caja:nth-child(2):hover p {
+                color: white;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Modelo de diseño de caja flexible vertical</h1>
+
+        <div class="contenedor">
+            <div class="caja">
+                <img src="../Ejercicios/Imagenes/GPP.png" alt="Icono 1">
+                <p>Las buenas prácticas de programación indican las técnicas que le ayudarán a producir programas más claros.</p>
+            </div>
+
+            <div class="caja">
+                <img src="../Ejercicios/Imagenes/EPT.png" alt="Icono 2">
+                <p>Los tips para prevenir errores contienen sugerencias para exponer errores y eliminarlos de sus programas.</p>
+            </div>
+
+            <div class="caja">
+                <img src="../Ejercicios/Imagenes/CPE.png" alt="Icono 3">
+                <p>Los errores comunes de programación señalan los errores que cometen los estudiantes con frecuencia.</p>
+            </div>
+
+            <div class="caja">
+                <img src="../Ejercicios/Imagenes/SEO.png" alt="Icono 4">
+                <p>Las observaciones de ingeniería de software resaltan los asuntos de arquitectura y diseño.</p>
+            </div>
+        </div>
+
+        <hr>
+        <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+
+    </body>
+</html>

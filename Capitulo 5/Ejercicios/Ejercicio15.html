@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 5.15 - Reflejo de Imagen en CSS3 -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 5.15 - Reflejo de Imagen</title>
+        <style type="text/css">
+            /* Espaciado para que el reflejo a la derecha no se salga de la pantalla */
+            body {
+                margin: 40px;
+            }
+
+            .imagen-reflejo {
+                width: 150px;
+                /* Genera un reflejo a la derecha con un espacio de 20px */
+                -webkit-box-reflect: right 20px linear-gradient(to right, transparent 50%, rgba(255, 255, 255, 0.4));
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Ejercicio 5.15: Reflejo de Imagen</h1>
+
+        <!-- Imagen con la propiedad de reflejo aplicada -->
+        <img src="../Ejercicios/Imagenes/GPP.png" alt="Imagen original" class="imagen-reflejo">
+
+        <hr style="margin-top: 100px;">
+        <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+
+    </body>
+</html>
