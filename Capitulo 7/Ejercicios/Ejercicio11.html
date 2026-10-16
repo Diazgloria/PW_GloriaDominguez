@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 7.11 kilometraje.html
+Kilómetros por litro de cada viaje y total acumulado -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 7.11</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            p { font-size: 1.1em; }
+            .viaje {
+                background-color: #fff;
+                border-left: 5px solid #2980b9;
+                max-width: 450px;
+                margin: 15px auto;
+                padding: 10px 20px;
+                text-align: left;
+            }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            var kilometros;        // kilómetros del viaje
+            var litros;            // litros usados en el viaje
+            var kmPorLitro;        // km/L del viaje
+            var totalKm = 0;       // total de kilómetros
+            var totalLitros = 0;   // total de litros
+            var totalKmPorLitro;   // km/L acumulados
+            var viaje = 0;         // número de viaje
+
+            document.writeln("<h1>Kilómetros por litro</h1>");
+
+            // lee los kilómetros del primer viaje
+            kilometros = parseFloat(window.prompt("Kilómetros conducidos (-1 para terminar)"));
+
+            // el ciclo termina cuando se escribe el centinela -1
+            while (kilometros != -1)
+            {
+                litros = parseFloat(window.prompt("Litros usados"));
+
+                kmPorLitro = kilometros / litros;
+                totalKm += kilometros;
+                totalLitros += litros;
+                totalKmPorLitro = totalKm / totalLitros;
+                ++viaje;
+
+                document.writeln("<div class='viaje'>");
+                document.writeln("<p><strong>Viaje " + viaje + "</strong></p>");
+                document.writeln("<p>Kilómetros por litro del viaje: " + kmPorLitro.toFixed(2) + "</p>");
+                document.writeln("<p>Total de km por litro hasta ahora: " + totalKmPorLitro.toFixed(2) + "</p>");
+                document.writeln("</div>");
+
+                // lee los kilómetros del siguiente viaje
+                kilometros = parseFloat(window.prompt("Kilómetros conducidos (-1 para terminar)"));
+            } // fin del while
+        </script>
+    </head>
+    <body>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

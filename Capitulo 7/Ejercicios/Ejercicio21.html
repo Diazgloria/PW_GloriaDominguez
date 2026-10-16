@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 7.21 infinito.html
+Ciclo infinito que muestra los múltiplos de 2: 2, 4, 8, 16, 32, 64... -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 7.21</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            p { font-size: 1.1em; margin: 4px; }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            var multiplo = 2;  // empieza en 2
+
+            document.writeln("<h1>Múltiplos de 2</h1>");
+
+            // la condición siempre es verdadera: el ciclo nunca termina
+            while (true)
+            {
+                document.writeln("<p>" + multiplo + "</p>");
+                multiplo = multiplo * 2;  // duplica el valor
+            } // fin del while
+        </script>
+    </head>
+    <body>
+        <footer>
+            <hr>
+            <p><a href="lista_ejemplos.html">Regresar a la lista de ejemplos</a></p>
+        </footer>
+    </body>
+</html>

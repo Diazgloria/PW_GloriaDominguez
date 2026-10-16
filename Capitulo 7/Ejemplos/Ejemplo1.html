@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<!--figura 7.7 promedio.html
+repeticion controlada por contador para calcular el promedio de una clase-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Programa del promedi de una clase</title>
+        <script>
+
+            var total; //suma de calificaciones
+            var contadorCalificaciones; //numero de calificaciones introducidas
+            var calificacion; //calificacion escrita por el usuario (como una cadena)
+            var valorCalificacion; //valor de la calificacion (convertido en entero)
+            var promedio; //promedio de todas las calificaciones
+
+            //fase de inicializacion
+            total = 0; //borrar el total
+            contadorCalificaciones = 1; //prepeara para iterar
+
+            //fase de procesamiento
+            while (contadorCalificaciones <= 10)//iterar 10 vecese
+            {
+                //pedir la entrada y leer la calificacion del usuario
+                calificacion = window.prompt("Escriba la calificacion entera: ", 0);
+
+                //convertit calificacion de cadena en entero
+                valorCalificacion = parseInt(calificacion);
+
+                //sumar valorCalificacion al total
+                total = total + valorCalificacion;
+
+                //agregar 1 al contadorCalificaciones 
+                contadorCalificaciones = contadorCalificaciones + 1;
+            }//fin del while
+
+            //fase de terminacion
+            promedio = total/10; //calcular el promedio
+
+            //mostrar el promedio de las calificaciones de los examenes
+            document.writeln(
+                "<h1>El promedio de la clase es "+ promedio + "<h1/>"
+            );
+        </script>
+    </head>
+
+    <body>
+        <p><a href="lista_ejemplos.html">Regresar a la lista de ejemplos</a></p>
+    </body>
+</html>

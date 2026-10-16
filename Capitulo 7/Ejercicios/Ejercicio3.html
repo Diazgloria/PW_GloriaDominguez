@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 7.3 instrucciones.html
+Operadores de asignación, incremento, decremento y residuo -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 7.3</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            p { font-size: 1.1em; }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            var x, y, z, cuenta, total, q, divisor;
+
+            document.writeln("<h1>Ejercicio 7.3</h1>");
+
+            // a) asigna x + y a z y después incrementa x en 1 (una instrucción)
+            x = 4;
+            y = 6;
+            z = x++ + y;
+            document.writeln("<p>a) z = x++ + y; &rarr; z vale " + z + " y x vale " + x + "</p>");
+
+            // b) evalúa si cuenta es mayor que 10
+            cuenta = 15;
+            if (cuenta > 10)
+                document.writeln("<p>b) Cuenta es mayor que 10</p>");
+
+            // c) decrementa x en 1 y luego se lo resta a total (una instrucción)
+            x = 5;
+            total = 50;
+            total -= --x;
+            document.writeln("<p>c) total -= --x; &rarr; x vale " + x + " y total vale " + total + "</p>");
+
+            // d) residuo de q entre divisor, asignado a q (dos maneras)
+            q = 17;
+            divisor = 5;
+            q %= divisor;
+            document.writeln("<p>d) q %= divisor; &rarr; q vale " + q + "</p>");
+
+            q = 17;
+            q = q % divisor;
+            document.writeln("<p>d) q = q % divisor; &rarr; q vale " + q + "</p>");
+        </script>
+    </head>
+    <body>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

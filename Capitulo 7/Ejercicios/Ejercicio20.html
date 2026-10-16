@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 7.20 palindromo.html
+Determina si un entero de cinco dígitos es un palíndromo -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 7.20</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            p { font-size: 1.1em; }
+            .resultado {
+                background-color: #fff;
+                border-left: 5px solid #2980b9;
+                max-width: 450px;
+                margin: 15px auto;
+                padding: 10px 20px;
+            }
+            .si { color: #27ae60; font-weight: bold; }
+            .no { color: #c0392b; font-weight: bold; }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            var numero;     // entero introducido
+            var digito1;    // dígito de las decenas de millar
+            var digito2;    // dígito de los millares
+            var digito4;    // dígito de las decenas
+            var digito5;    // dígito de las unidades
+
+            // lee el número
+            numero = parseInt(window.prompt("Escriba un entero de cinco dígitos"));
+
+            // repite mientras no sea de cinco dígitos
+            while (isNaN(numero) || numero < 10000 || numero > 99999)
+            {
+                window.alert("El número debe tener exactamente cinco dígitos. Intente de nuevo.");
+                numero = parseInt(window.prompt("Escriba un entero de cinco dígitos"));
+            } // fin del while
+
+            // "selecciona" cada dígito con división y residuo
+            digito1 = Math.floor(numero / 10000);
+            digito2 = Math.floor((numero % 10000) / 1000);
+            digito4 = Math.floor((numero % 100) / 10);
+            digito5 = numero % 10;
+
+            document.writeln("<h1>Palíndromo</h1>");
+            document.writeln("<div class='resultado'>");
+
+            // el dígito central no hace falta compararlo
+            if (digito1 == digito5 && digito2 == digito4)
+                document.writeln("<p class='si'>" + numero + " es un palíndromo</p>");
+            else
+                document.writeln("<p class='no'>" + numero + " no es un palíndromo</p>");
+
+            document.writeln("</div>");
+        </script>
+    </head>
+    <body>
+        <footer>
+            <hr>
+            <p><a href="lista_ejemplos.html">Regresar a la lista de ejemplos</a></p>
+        </footer>
+    </body>
+</html>

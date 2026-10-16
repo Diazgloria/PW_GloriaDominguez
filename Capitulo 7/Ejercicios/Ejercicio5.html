@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 7.5 suma_while.html
+Suma de los enteros del 1 al 10 usando la instrucción while -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 7.5</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            p { font-size: 1.1em; }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            var suma;  // acumula la suma de los enteros
+            var x;     // contador del ciclo
+
+            suma = 0;  // inicializa la suma
+            x = 1;     // inicializa el contador
+
+            // el ciclo termina cuando x se vuelve 11
+            while (x <= 10)
+            {
+                suma += x;  // suma x a suma
+                ++x;        // incrementa x en 1
+            } // fin del while
+
+            document.writeln("<h1>Suma de los enteros del 1 al 10</h1>");
+            document.writeln("<p>La suma es: " + suma + "</p>");
+        </script>
+    </head>
+    <body>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 7.13 comisiones.html
+Ingresos semanales de un vendedor: $200 + 9% de las ventas brutas -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 7.13</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            p { font-size: 1.1em; }
+            .resultado {
+                background-color: #fff;
+                border-left: 5px solid #2980b9;
+                max-width: 450px;
+                margin: 15px auto;
+                padding: 10px 20px;
+                text-align: left;
+            }
+            .error { color: #c0392b; }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            var articulo;          // número del artículo vendido
+            var cantidad;          // cantidad vendida de ese artículo
+            var valor;             // valor unitario del artículo
+            var ventasBrutas = 0;  // total de ventas de la semana
+            var ingresos;          // ingresos del vendedor
+
+            document.writeln("<h1>Ingresos del vendedor</h1>");
+
+            // lee el primer artículo vendido
+            articulo = parseInt(window.prompt("Número de artículo vendido, 1 a 4 (-1 para terminar)"));
+
+            // el ciclo termina cuando se escribe el centinela -1
+            while (articulo != -1)
+            {
+                cantidad = parseInt(window.prompt("Cantidad vendida del artículo " + articulo));
+                valor = 0;
+
+                // obtiene el valor del artículo
+                if (articulo == 1)
+                    valor = 239.99;
+                else if (articulo == 2)
+                    valor = 129.75;
+                else if (articulo == 3)
+                    valor = 99.95;
+                else if (articulo == 4)
+                    valor = 350.89;
+                else
+                    document.writeln("<p class='error'>Artículo " + articulo + " inválido, se ignoró.</p>");
+
+                // acumula las ventas brutas
+                ventasBrutas += valor * cantidad;
+
+                // lee el siguiente artículo
+                articulo = parseInt(window.prompt("Número de artículo vendido, 1 a 4 (-1 para terminar)"));
+            } // fin del while
+
+            // $200 por semana más el 9% de las ventas brutas
+            ingresos = 200 + 0.09 * ventasBrutas;
+
+            document.writeln("<div class='resultado'>");
+            document.writeln("<p>Ventas brutas: $" + ventasBrutas.toFixed(2) + "</p>");
+            document.writeln("<p><strong>Ingresos de la semana: $" + ingresos.toFixed(2) + "</strong></p>");
+            document.writeln("</div>");
+        </script>
+    </head>
+    <body>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

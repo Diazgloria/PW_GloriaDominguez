@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 7.23 descifrar.html
+Descifra un entero de cuatro dígitos cifrado con el ejercicio 7.22 -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 7.23</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            p { font-size: 1.1em; }
+            .resultado {
+                background-color: #fff;
+                border-left: 5px solid #2980b9;
+                max-width: 450px;
+                margin: 15px auto;
+                padding: 10px 20px;
+            }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            var numero;     // entero cifrado
+            var d1, d2, d3, d4;  // dígitos del número
+            var temporal;   // auxiliar para intercambiar dígitos
+
+            // lee el número cifrado (puede empezar con 0, por eso se acepta de 0 a 9999)
+            numero = parseInt(window.prompt("Escriba el entero cifrado de cuatro dígitos"));
+
+            while (isNaN(numero) || numero < 0 || numero > 9999)
+            {
+                window.alert("El número debe tener cuatro dígitos. Intente de nuevo.");
+                numero = parseInt(window.prompt("Escriba el entero cifrado de cuatro dígitos"));
+            } // fin del while
+
+            // separa los dígitos (un cero inicial queda como dígito 0)
+            d1 = Math.floor(numero / 1000);
+            d2 = Math.floor((numero % 1000) / 100);
+            d3 = Math.floor((numero % 100) / 10);
+            d4 = numero % 10;
+
+            // deshace los intercambios
+            temporal = d1;
+            d1 = d3;
+            d3 = temporal;
+
+            temporal = d2;
+            d2 = d4;
+            d4 = temporal;
+
+            // revierte el "+ 7": sumar 3 módulo 10
+            d1 = (d1 + 3) % 10;
+            d2 = (d2 + 3) % 10;
+            d3 = (d3 + 3) % 10;
+            d4 = (d4 + 3) % 10;
+
+            document.writeln("<h1>Número descifrado</h1>");
+            document.writeln("<div class='resultado'>");
+            document.writeln("<p>Número cifrado: " + numero + "</p>");
+            document.writeln("<p>Número original: <strong>" + d1 + d2 + d3 + d4 + "</strong></p>");
+            document.writeln("</div>");
+        </script>
+    </head>
+    <body>
+        <footer>
+            <hr>
+            <p><a href="lista_ejemplos.html">Regresar a la lista de ejemplos</a></p>
+        </footer>
+    </body>
+</html>

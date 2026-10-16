@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 7.7 - Autoevaluación Capítulo 7 -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 7.7 - Capítulo 7</title>
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f9;
+                color: #333333;
+                margin: 20px;
+            }
+
+            h1 {
+                color: #2c3e50;
+                border-bottom: 2px solid #3498db;
+                padding-bottom: 10px;
+            }
+
+            .tarjeta {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            ol {
+                line-height: 1.8;
+            }
+
+            pre {
+                background-color: #f8f9fa;
+                padding: 10px;
+                border-radius: 4px;
+                border: 1px solid #e9ecef;
+                font-family: Consolas, monospace;
+            }
+
+            .detalle {
+                margin: 5px 0 10px 0;
+                color: #555555;
+                font-size: 14px;
+            }
+
+            .respuesta {
+                color: #d9534f;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Ejercicios de autoevaluación: Capítulo 7</h1>
+
+        <div class="tarjeta">
+            <h2>7.7 Identifique y corrija los errores en cada uno de los siguientes segmentos de código:</h2>
+
+            <ol type="a">
+                <li>
+                    <div class="detalle">
+                        <strong>Error:</strong> Se usa la palabra incorrecta <code>mH11</code> en lugar de <code>while</code>, una flecha <code>&lt;-</code> inválida en lugar de un operador de comparación o menor igual (<code>&lt;=</code>), un operador de asignación múltiple <code>* -</code> en lugar de <code>*=</code>, y falta un punto y coma en el incremento <code>++c:</code>.
+                    </div>
+                    Código corregido:
+                    <pre>while (c &lt;= 5) {
+                            producto *= c;
+                            ++c;
+                        }</pre>
+                </li>
+                <li>
+                    <div class="detalle">
+                        <strong>Error:</strong> Se utiliza un punto y coma después de <code>else</code>, lo que termina prematuramente la estructura condicional y provoca que la siguiente instrucción se ejecute siempre de forma independiente. Además, el operador de asignación <code>—</code> es incorrecto para una comparación (debe usarse <code>==</code> o <code>===</code>).
+                    </div>
+                    Código corregido:
+                    <pre>if (genero == 1) {
+                            document.writeln("Mujer");
+                        } else {
+                            document.writeln("Hombre");
+                        }</pre>
+                </li>
+            </ol>
+        </div>
+
+        <hr style="margin-top: 20px; border: none; border-top: 1px solid #ccc;">
+        <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+
+    </body>
+</html>

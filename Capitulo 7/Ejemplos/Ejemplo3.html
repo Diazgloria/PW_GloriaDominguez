@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<!--figura 7.11 analisis.html
+calculo de los resultados de un examne-->
+<html>
+    <head>
+        <meta charset="utf.8">
+        <title>Analisis de los resultados de un examne</title>
+        <script>
+
+            //inicializar variables en declaraciones
+            var aprobados = 0; //numero de reprobados
+            var reprobados = 0;  //numero de reprobados
+            var estudiante = 1; //contador de estudiantes
+            var resultado; //el resultado de un examen
+
+            //procesar 10 estudiantes; ciclo controlado por contador
+            while (estudiante <= 10)
+            {
+                resultado =window.prompt("Escriba el resultado (1 = aprobado, 2 = reprobado)", "0");
+
+                if(resultado =="1")
+                    aprobados = aprobados +1;
+                else 
+                    reprobados = reprobados +1;
+
+                    estudiante = estudiante + 1;
+            } //fin del while
+
+            //fase de terminacion
+            document.writeln("<h1>Resultados del examen </h1>");
+            document.writeln("<p>Aprobados: " + aprobados + ": Reprobados: " + reprobados + "</p>");
+
+            if (aprobados > 8)
+                document.writeln("<p>Bono para el instructor</p>")
+        </script>
+    </head>
+    <body>
+        <footer><p><a href="lista_ejemplos.html">Regresar a la lista de ejemplos</a></p></footer>
+    </body>
+</html>

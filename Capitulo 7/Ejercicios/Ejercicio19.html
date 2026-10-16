@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 7.19 - Autoevaluación Capítulo 7 -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 7.19 - Capítulo 7</title>
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f9;
+                color: #333333;
+                margin: 20px;
+            }
+
+            h1 {
+                color: #2c3e50;
+                border-bottom: 2px solid #3498db;
+                padding-bottom: 10px;
+            }
+
+            .tarjeta {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            ol {
+                line-height: 1.8;
+            }
+
+            pre {
+                background-color: #f8f9fa;
+                padding: 10px;
+                border-radius: 4px;
+                border: 1px solid #e9ecef;
+                font-family: Consolas, monospace;
+            }
+
+            .detalle {
+                margin: 5px 0 10px 0;
+                color: #555555;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Ejercicios de autoevaluación: Capítulo 7</h1>
+
+        <div class="tarjeta">
+            <h2>7.19 (Problema del else suelto) Determine la salida de cada uno de los siguientes segmentos de código, cuando x es 9 y y es 11, y cuando x es 11 y y es 9:</h2>
+
+            <ol type="a">
+                <li>
+                    <strong>Segmento a (sin llaves):</strong>
+                    <div class="detalle">
+                        El <code>else</code> se empareja por defecto con el <code>if</code> más cercano (el segundo <code>if (y > 10)</code>).
+                    </div>
+                    <pre>• Cuando x = 9 y y = 11:
+                        *****
+
+                        • Cuando x = 11 y y = 9:
+                        $$$$$</pre>
+                </li>
+                <li>
+                    <strong>Segmento b (con llaves):</strong>
+                    <div class="detalle">
+                        Las llaves modifican la asociación; el <code>else</code> ahora corresponde al primer <code>if (x < 10)</code>.
+                    </div>
+                    <pre>• Cuando x = 9 y y = 11:
+                        (No imprime nada, ya que se cumple x < 10 y y > 10, y no hay instrucciones dentro de ese if).
+
+                        • Cuando x = 11 y y = 9:
+                        #####
+                        $$$$$</pre>
+                </li>
+            </ol>
+        </div>
+
+        <hr style="margin-top: 20px; border: none; border-top: 1px solid #ccc;">
+        <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+
+    </body>
+</html>

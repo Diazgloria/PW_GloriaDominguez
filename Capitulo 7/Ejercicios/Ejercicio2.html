@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 7.2 sumar_uno.html
+Cuatro instrucciones que suman 1 a la variable x -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 7.2</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            p { font-size: 1.1em; }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            var x;
+
+            document.writeln("<h1>Cuatro formas de sumar 1 a x</h1>");
+
+            // 1) suma y asignación explícita
+            x = 5;
+            x = x + 1;
+            document.writeln("<p>x = x + 1; &rarr; x vale " + x + "</p>");
+
+            // 2) operador de asignación de suma
+            x = 5;
+            x += 1;
+            document.writeln("<p>x += 1; &rarr; x vale " + x + "</p>");
+
+            // 3) operador de preincremento
+            x = 5;
+            ++x;
+            document.writeln("<p>++x; &rarr; x vale " + x + "</p>");
+
+            // 4) operador de postincremento
+            x = 5;
+            x++;
+            document.writeln("<p>x++; &rarr; x vale " + x + "</p>");
+        </script>
+    </head>
+    <body>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

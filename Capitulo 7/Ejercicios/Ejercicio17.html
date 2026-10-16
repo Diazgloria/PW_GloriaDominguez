@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 7.17 dos_mayores.html
+Encuentra los dos valores más grandes de 10 números introducidos -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 7.17</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            p { font-size: 1.1em; }
+            .resultado {
+                background-color: #fff;
+                border-left: 5px solid #2980b9;
+                max-width: 450px;
+                margin: 15px auto;
+                padding: 10px 20px;
+            }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            var contador = 1;      // cuenta los números introducidos
+            var numero;            // número más reciente introducido
+            var mayor = 0;         // el número más grande hasta ahora
+            var segundoMayor = 0;  // el segundo más grande hasta ahora
+
+            // el ciclo se repite hasta procesar los 10 números
+            while (contador <= 10)
+            {
+                numero = parseInt(window.prompt("Escriba el número " + contador + " de 10 (un solo dígito)"));
+
+                if (numero > mayor)
+                {
+                    // el mayor anterior pasa a ser el segundo mayor
+                    segundoMayor = mayor;
+                    mayor = numero;
+                }
+                else if (numero > segundoMayor)
+                    segundoMayor = numero;
+
+                ++contador;  // pasa al siguiente número
+            } // fin del while
+
+            document.writeln("<h1>Los dos números más grandes</h1>");
+            document.writeln("<div class='resultado'>");
+            document.writeln("<p>El más grande es: <strong>" + mayor + "</strong></p>");
+            document.writeln("<p>El segundo más grande es: <strong>" + segundoMayor + "</strong></p>");
+            document.writeln("</div>");
+        </script>
+    </head>
+    <body>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

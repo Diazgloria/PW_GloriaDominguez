@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 7.6 - Autoevaluación Capítulo 7 -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 7.6 - Capítulo 7</title>
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f9;
+                color: #333333;
+                margin: 20px;
+            }
+
+            h1 {
+                color: #2c3e50;
+                border-bottom: 2px solid #3498db;
+                padding-bottom: 10px;
+            }
+
+            .tarjeta {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            ol {
+                line-height: 1.8;
+            }
+
+            pre {
+                background-color: #f8f9fa;
+                padding: 10px;
+                border-radius: 4px;
+                border: 1px solid #e9ecef;
+                font-family: Consolas, monospace;
+            }
+
+            .detalle {
+                margin: 5px 0 10px 0;
+                color: #555555;
+                font-size: 14px;
+            }
+
+            .respuesta {
+                color: #d9534f;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Ejercicios de autoevaluación: Capítulo 7</h1>
+
+        <div class="tarjeta">
+            <h2>7.6 Determine el valor de cada variable después de realizar el cálculo. Suponga que, cuando se empieza a ejecutar cada instrucción, todas las variables tienen el valor entero 5.</h2>
+
+            <ol type="a">
+                <li>
+                    <code>producto *= x++;</code>
+                    <div class="detalle">
+                        <strong>Explicación:</strong> Se evalúa como <code>producto = producto * x</code> usando el valor actual de x (5), por lo que <code>producto = 5 * 5 = 25</code>. Después de la operación, <code>x</code> se incrementa a 6 debido al operador postincremento.
+                    </div>
+                    Valores finales: producto = <span class="respuesta">25</span>, x = <span class="respuesta">6</span>
+                </li>
+                <li>
+                    <code>cociente /= ++x;</code>
+                    <div class="detalle">
+                        <strong>Explicación:</strong> El operador preincremento aumenta <code>x</code> antes de usarlo, por lo que <code>x</code> pasa de 5 a 6. Luego se evalúa como <code>cociente = cociente / x</code>, resultando en <code>cociente = 5 / 6</code> (aproximadamente 0.8333).
+                    </div>
+                    Valores finales: cociente = <span class="respuesta">0.8333</span> (o 5/6), x = <span class="respuesta">6</span>
+                </li>
+            </ol>
+        </div>
+
+        <hr style="margin-top: 20px; border: none; border-top: 1px solid #ccc;">
+        <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+
+    </body>
+</html>
