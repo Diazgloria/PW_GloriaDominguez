@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 9.16 mostrar_digitos.html
+a) cociente  b) residuo  c) mostrarDigitos  d) secuencia de comandos con prompt -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 9.16</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            .resultado {
+                background-color: #fff;
+                border-left: 5px solid #2980b9;
+                max-width: 450px;
+                margin: 15px auto;
+                padding: 10px 20px;
+                font-size: 1.3em;
+                letter-spacing: 2px;
+            }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            // a) parte entera del cociente de a entre b
+            function cociente(a, b)
+            {
+                return Math.floor(a / b);
+            } // fin de la función cociente
+
+            // b) residuo entero de a entre b
+            function residuo(a, b)
+            {
+                return a % b;
+            } // fin de la función residuo
+
+            // c) imprime el entero (1 a 99999) como dígitos separados por dos espacios
+            function mostrarDigitos(numero)
+            {
+                var divisor = 1;
+                var digitos = [];
+
+                // busca la mayor potencia de 10 que cabe en el número
+                while (cociente(numero, divisor * 10) > 0)
+                    divisor *= 10;
+
+                // extrae un dígito por vuelta
+                while (divisor >= 1)
+                {
+                    digitos.push(cociente(numero, divisor));  // dígito actual
+                    numero = residuo(numero, divisor);        // quita ese dígito
+                    divisor = cociente(divisor, 10);          // pasa al siguiente
+                } // fin del while
+
+                // &nbsp; evita que el navegador junte los dos espacios en uno solo
+                document.writeln("<div class='resultado'>" +
+                    digitos.join("&nbsp;&nbsp;") + "</div>");
+            } // fin de la función mostrarDigitos
+
+            // d) secuencia de comandos que recibe el entero con prompt
+            var entrada = parseInt(window.prompt("Escriba un entero entre 1 y 99999"));
+
+            while (isNaN(entrada) || entrada < 1 || entrada > 99999)
+            {
+                window.alert("El número debe estar entre 1 y 99999. Intente de nuevo.");
+                entrada = parseInt(window.prompt("Escriba un entero entre 1 y 99999"));
+            } // fin del while
+
+            document.writeln("<h1>Dígitos de " + entrada + "</h1>");
+            mostrarDigitos(entrada);
+        </script>
+    </head>
+    <body>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

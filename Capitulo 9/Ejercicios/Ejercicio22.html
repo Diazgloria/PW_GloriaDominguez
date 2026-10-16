@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 9.22 multiplicacion.html
+Programa de práctica de multiplicación para primaria -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 9.22</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            form {
+                background-color: #fff;
+                border-left: 5px solid #2980b9;
+                max-width: 380px;
+                margin: 20px auto;
+                padding: 20px;
+            }
+            #pregunta { font-size: 1.5em; font-weight: bold; color: #2c3e50; }
+            input[type=text] { padding: 6px; width: 80px; text-align: center; font-size: 1.1em; }
+            input[type=submit] {
+                padding: 7px 16px;
+                background-color: #2980b9;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+            }
+            #mensaje { font-size: 1.3em; font-weight: bold; }
+            .bien { color: #27ae60; }
+            .mal { color: #c0392b; }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            var factor1;  // primer factor (1 a 9)
+            var factor2;  // segundo factor (1 a 9)
+
+            // genera una pregunta nueva con dos enteros positivos de un dígito
+            function nuevaPregunta()
+            {
+                factor1 = Math.floor(Math.random() * 9) + 1;
+                factor2 = Math.floor(Math.random() * 9) + 1;
+
+                document.getElementById("pregunta").innerHTML =
+                    "¿Cuánto es " + factor1 + " por " + factor2 + "?";
+                document.getElementById("respuesta").value = "";
+                document.getElementById("respuesta").focus();
+            } // fin de la función nuevaPregunta
+
+            // verifica la respuesta del estudiante
+            function verificar()
+            {
+                var respuesta = parseInt(document.getElementById("respuesta").value);
+                var mensaje = document.getElementById("mensaje");
+
+                if (isNaN(respuesta))
+                {
+                    mensaje.className = "mal";
+                    mensaje.innerHTML = "Escriba un número entero.";
+                    return;
+                }
+
+                if (respuesta == factor1 * factor2)
+                {
+                    mensaje.className = "bien";
+                    mensaje.innerHTML = "Muy bien";
+                    nuevaPregunta();   // pregunta nueva solo si acertó
+                }
+                else
+                {
+                    mensaje.className = "mal";
+                    mensaje.innerHTML = "No. Intente de nuevo.";
+                    document.getElementById("respuesta").value = "";
+                    document.getElementById("respuesta").focus();
+                }
+            } // fin de la función verificar
+        </script>
+    </head>
+    <body>
+        <h1>Aprende a multiplicar</h1>
+        <form action="#" onsubmit="verificar(); return false;">
+            <p id="pregunta"></p>
+            <p>
+                <input id="respuesta" type="text" autocomplete="off">
+                <input type="submit" value="Responder">
+            </p>
+        </form>
+        <p id="mensaje">&nbsp;</p>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+        <script>
+            nuevaPregunta();  // primera pregunta al empezar
+        </script>
+    </body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 9.5 - Autoevaluación Capítulo 9 -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 9.5 - Capítulo 9</title>
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f9;
+                color: #333333;
+                margin: 20px;
+            }
+
+            h1 {
+                color: #2c3e50;
+                border-bottom: 2px solid #3498db;
+                padding-bottom: 10px;
+            }
+
+            .tarjeta {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            ol {
+                line-height: 1.8;
+            }
+
+            pre {
+                background-color: #f8f9fa;
+                padding: 10px;
+                border-radius: 4px;
+                border: 1px solid #e9ecef;
+                font-family: Consolas, monospace;
+            }
+
+            .detalle {
+                margin: 5px 0 10px 0;
+                color: #555555;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Ejercicios de autoevaluación: Capítulo 9</h1>
+
+        <div class="tarjeta">
+            <h2>9.5 Localice el error en cada uno de los siguientes segmentos de programa y explique cómo corregirlo:</h2>
+
+            <ol type="a">
+                <li>
+                    <div class="detalle">
+                        <strong>Error:</strong> <code>method</code> no es la palabra clave que se utiliza para comenzar la definición de una función[cite: 16].<br>
+                        <strong>Corrección:</strong> Cambiar <code>method</code> a <code>function</code>[cite: 16].
+                    </div>
+                    <pre>function g() {
+    document.writeln("Dentro del método g");
+}</pre>
+                </li>
+                <li>
+                    <div class="detalle">
+                        <strong>Error:</strong> Se supone que la función debe devolver un valor, pero no hay instrucción <code>return</code>[cite: 16].<br>
+                        <strong>Corrección:</strong> Eliminar la variable <code>resultado</code> y colocar la instrucción <code>return x + y;</code> o agregar <code>return resultado;</code> al final del cuerpo[cite: 16].
+                    </div>
+                    <pre>function suma(x, y) {
+    return x + y;
+}</pre>
+                </li>
+                <li>
+                    <div class="detalle">
+                        <strong>Error:</strong> El punto y coma después del paréntesis derecho que encierra la lista de parámetros es incorrecto[cite: 16].<br>
+                        <strong>Corrección:</strong> Eliminar el punto y coma después del paréntesis derecho de la lista de parámetros[cite: 16].
+                    </div>
+                    <pre>function f( a ) {
+    document.writeln( a );
+}</pre>
+                </li>
+            </ol>
+        </div>
+
+        <hr style="margin-top: 20px; border: none; border-top: 1px solid #ccc;">
+        <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+
+    </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 9.15 es_par.html
+Determina si cada entero introducido es par, con ciclo controlado por centinela -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 9.15</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            p {
+                font-size: 1.1em;
+                background-color: #fff;
+                border-left: 5px solid #2980b9;
+                max-width: 350px;
+                margin: 10px auto;
+                padding: 8px 20px;
+            }
+            .error { color: #c0392b; }
+            footer { margin-top: 40px; }
+            footer p { background: none; border: none; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            // devuelve true si el entero es par
+            function esPar(numero)
+            {
+                return numero % 2 == 0;
+            } // fin de la función esPar
+
+            var numero;
+
+            document.writeln("<h1>¿Par o impar?</h1>");
+
+            numero = parseInt(window.prompt("Escriba un entero (-1 para terminar)"));
+
+            // el ciclo termina cuando se escribe el centinela -1
+            while (numero != -1)
+            {
+                if (isNaN(numero))
+                    document.writeln("<p class='error'>Eso no es un entero.</p>");
+                else if (esPar(numero))
+                    document.writeln("<p>" + numero + " es par</p>");
+                else
+                    document.writeln("<p>" + numero + " es impar</p>");
+
+                numero = parseInt(window.prompt("Escriba un entero (-1 para terminar)"));
+            } // fin del while
+        </script>
+    </head>
+    <body>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de Ejercicios</a></p>
+        </footer>
+    </body>
+</html>

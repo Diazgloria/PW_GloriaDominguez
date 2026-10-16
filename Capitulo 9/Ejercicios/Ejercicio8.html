@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 9.8 estacionamiento.html
+Cargos de estacionamiento con la función calcularCargos y total corriente -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 9.8</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            form {
+                background-color: #fff;
+                border-left: 5px solid #2980b9;
+                max-width: 380px;
+                margin: 20px auto;
+                padding: 20px;
+            }
+            input[type=number] { padding: 5px; width: 120px; }
+            input[type=button] {
+                padding: 6px 14px;
+                background-color: #2980b9;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+            }
+            table {
+                margin: 20px auto;
+                border-collapse: collapse;
+                background-color: #fff;
+            }
+            th, td {
+                border: 2px solid #2c3e50;
+                padding: 6px 20px;
+                text-align: center;
+            }
+            th { background-color: #dfe6ec; color: #2c3e50; }
+            #mensaje { font-size: 1.1em; color: #c0392b; }
+            #total { font-size: 1.2em; font-weight: bold; color: #2c3e50; }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            var totalRecibos = 0;  // total corriente de los recibos de ayer
+            var cliente = 0;       // número de cliente
+
+            // calcula el cargo según las horas estacionadas
+            function calcularCargos(horas)
+            {
+                var cargo = 2.00;  // cuota mínima hasta tres horas
+
+                if (horas > 3)
+                    cargo = 2.00 + 0.50 * Math.ceil(horas - 3);  // $0.50 por hora o fracción
+
+                if (cargo > 10.00)
+                    cargo = 10.00;  // cargo máximo por 24 horas
+
+                return cargo;
+            } // fin de la función calcularCargos
+
+            // se llama al hacer clic en el botón
+            function registrar()
+            {
+                var horas = parseFloat(document.getElementById("horas").value);
+                var cargo;
+
+                if (isNaN(horas) || horas <= 0 || horas > 24)
+                {
+                    document.getElementById("mensaje").innerHTML =
+                        "Escriba un número de horas mayor que 0 y hasta 24.";
+                    return;
+                }
+
+                document.getElementById("mensaje").innerHTML = "";
+
+                cargo = calcularCargos(horas);
+                totalRecibos += cargo;
+                ++cliente;
+
+                // agrega una fila a la tabla
+                document.getElementById("tabla").innerHTML +=
+                    "<tr><td>" + cliente + "</td><td>" + horas +
+                    "</td><td>$" + cargo.toFixed(2) + "</td></tr>";
+
+                document.getElementById("total").innerHTML =
+                    "Total de los recibos de ayer: $" + totalRecibos.toFixed(2);
+
+                document.getElementById("horas").value = "";
+            } // fin de la función registrar
+        </script>
+    </head>
+    <body>
+        <h1>Cargos de estacionamiento</h1>
+        <form action="#">
+            <p>
+                <label>Horas estacionadas:
+                    <input id="horas" type="number" step="any" min="0" max="24">
+                </label>
+            </p>
+            <p><input type="button" value="Calcular cargo" onclick="registrar()"></p>
+        </form>
+        <p id="mensaje"></p>
+        <table id="tabla">
+            <tr><th>Cliente</th><th>Horas</th><th>Cargo</th></tr>
+        </table>
+        <p id="total">Total de los recibos de ayer: $0.00</p>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

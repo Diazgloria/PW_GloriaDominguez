@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 9.25 adivinar.html
+Juego de adivinar un número entre 1 y 1000 -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 9.25</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            form {
+                background-color: #fff;
+                border-left: 5px solid #2980b9;
+                max-width: 420px;
+                margin: 20px auto;
+                padding: 20px;
+            }
+            input[type=text] { padding: 6px; width: 90px; text-align: center; font-size: 1.1em; }
+            input[type=submit] {
+                padding: 7px 16px;
+                background-color: #2980b9;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+            }
+            #mensaje { font-size: 1.3em; font-weight: bold; color: #c0392b; }
+            #mensaje.gano { color: #27ae60; }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            // número secreto: entero aleatorio de 1 a 1000
+            var secreto = Math.floor(Math.random() * 1000) + 1;
+
+            function adivinar()
+            {
+                var intento = parseInt(document.getElementById("intento").value);
+                var mensaje = document.getElementById("mensaje");
+
+                if (isNaN(intento) || intento < 1 || intento > 1000)
+                {
+                    mensaje.className = "";
+                    mensaje.innerHTML = "Escriba un entero entre 1 y 1000.";
+                }
+                else if (intento > secreto)
+                {
+                    mensaje.className = "";
+                    mensaje.innerHTML = "Demasiado alto. Intente de nuevo.";
+                }
+                else if (intento < secreto)
+                {
+                    mensaje.className = "";
+                    mensaje.innerHTML = "Demasiado bajo. Intente de nuevo.";
+                }
+                else
+                {
+                    mensaje.className = "gano";
+                    mensaje.innerHTML = "Felicidades. ¡Adivinó el número!";
+                    secreto = Math.floor(Math.random() * 1000) + 1;  // nuevo juego
+                }
+
+                // borra el campo para el siguiente intento
+                document.getElementById("intento").value = "";
+                document.getElementById("intento").focus();
+            } // fin de la función adivinar
+        </script>
+    </head>
+    <body>
+        <h1>Adivine el número</h1>
+        <form action="#" onsubmit="adivinar(); return false;">
+            <p>Adivine un número entre 1 y 1000</p>
+            <p>
+                <input id="intento" type="text" autocomplete="off">
+                <input type="submit" value="Enviar">
+            </p>
+        </form>
+        <p id="mensaje">&nbsp;</p>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

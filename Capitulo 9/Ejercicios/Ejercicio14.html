@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 9.14 multiplo.html
+Determina si el segundo entero es múltiplo del primero -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 9.14</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            form {
+                background-color: #fff;
+                border-left: 5px solid #2980b9;
+                max-width: 380px;
+                margin: 20px auto;
+                padding: 20px;
+            }
+            input[type=text] { padding: 5px; width: 80px; text-align: center; }
+            input[type=button] {
+                padding: 6px 14px;
+                background-color: #2980b9;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+            }
+            #mensaje { color: #c0392b; }
+            table {
+                margin: 20px auto;
+                border-collapse: collapse;
+                background-color: #fff;
+            }
+            th, td {
+                border: 2px solid #2c3e50;
+                padding: 6px 20px;
+                text-align: center;
+            }
+            th { background-color: #dfe6ec; color: #2c3e50; }
+            .si { color: #27ae60; font-weight: bold; }
+            .no { color: #c0392b; font-weight: bold; }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            // devuelve true si segundo es múltiplo de primero
+            function multiplo(primero, segundo)
+            {
+                return segundo % primero == 0;
+            } // fin de la función multiplo
+
+            // se llama al hacer clic en el botón
+            function revisar()
+            {
+                var primero = parseInt(document.getElementById("primero").value);
+                var segundo = parseInt(document.getElementById("segundo").value);
+                var esMultiplo;
+
+                if (isNaN(primero) || isNaN(segundo) || primero == 0)
+                {
+                    document.getElementById("mensaje").innerHTML =
+                        "Escriba dos enteros (el primero no puede ser 0).";
+                    return;
+                }
+
+                document.getElementById("mensaje").innerHTML = "";
+                esMultiplo = multiplo(primero, segundo);
+
+                document.getElementById("tabla").innerHTML +=
+                    "<tr><td>" + primero + "</td><td>" + segundo + "</td>" +
+                    (esMultiplo
+                        ? "<td class='si'>true</td>"
+                        : "<td class='no'>false</td>") + "</tr>";
+
+                document.getElementById("primero").value = "";
+                document.getElementById("segundo").value = "";
+            } // fin de la función revisar
+        </script>
+    </head>
+    <body>
+        <h1>¿El segundo es múltiplo del primero?</h1>
+        <form action="#">
+            <p>Primer entero: <input id="primero" type="text"></p>
+            <p>Segundo entero: <input id="segundo" type="text"></p>
+            <p><input type="button" value="Comprobar" onclick="revisar()"></p>
+        </form>
+        <p id="mensaje"></p>
+        <table id="tabla">
+            <tr><th>Primero</th><th>Segundo</th><th>¿Múltiplo?</th></tr>
+        </table>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

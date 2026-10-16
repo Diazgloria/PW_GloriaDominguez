@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 9.6 - Autoevaluación Capítulo 9 -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 9.6 - Capítulo 9</title>
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f9;
+                color: #333333;
+                margin: 20px;
+            }
+
+            h1 {
+                color: #2c3e50;
+                border-bottom: 2px solid #3498db;
+                padding-bottom: 10px;
+            }
+
+            .tarjeta {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            pre {
+                background-color: #f8f9fa;
+                padding: 10px;
+                border-radius: 4px;
+                border: 1px solid #e9ecef;
+                font-family: Consolas, monospace;
+            }
+
+            .detalle {
+                margin: 5px 0 10px 0;
+                color: #555555;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Ejercicios de autoevaluación: Capítulo 9</h1>
+
+        <div class="tarjeta">
+            <h2>9.6 Escriba un programa de JavaScript completo para pedir al usuario el radio de una esfera y luego llame a la función volumenEsfera para calcular y mostrar el volumen de la esfera:</h2>
+
+            <div class="detalle">
+                Solución completa en HTML5 con JavaScript incorporado:
+            </div>
+            <pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset = "utf-8"&gt;
+        &lt;title&gt;Calcular volumen de esferas&lt;/title&gt;
+        &lt;script&gt;
+            function iniciar()
+            {
+                var boton = document.getElementById( "botonCalcular" );
+                boton.addEventListener( "click", mostrarVolumen, false );
+            }
+
+            function mostrarVolumen()
+            {
+                var campoEntrada = document.getElementById( "camporadio" );
+                var radio = parseFloat( campoEntrada.value );
+                var resultado = document.getElementById( "resultado" );
+                resultado.innerHTML = "El volumen de la esfera es: " + volumenEsfera( radio );
+            }
+
+            function volumenEsfera( radio )
+            {
+                return ( 4.0 / 3.0 ) * Math.PI * Math.pow( radio, 3 );
+            }
+
+            window.addEventListener( "load", iniciar, false );
+        &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;form action = "#"&gt;
+            &lt;p&gt;&lt;label&gt;Radio:
+                &lt;input id = "camporadio" type = "number"&gt;&lt;/label&gt;
+                &lt;input id = "botonCalcular" type = "button" value = "Calcular"&gt;&lt;/p&gt;
+        &lt;/form&gt;
+        &lt;p id = "resultado"&gt;&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</pre>[cite: 17]
+        </div>
+
+        <hr style="margin-top: 20px; border: none; border-top: 1px solid #ccc;">
+        <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+
+    </body>
+</html>

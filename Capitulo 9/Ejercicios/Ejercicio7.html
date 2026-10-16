@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 9.7 area_circulo.html
+Obtiene el radio de un formulario y calcula el área con la función areaCirculo -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 9.7</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            form {
+                background-color: #fff;
+                border-left: 5px solid #2980b9;
+                max-width: 350px;
+                margin: 20px auto;
+                padding: 20px;
+            }
+            input[type=number] { padding: 5px; width: 120px; }
+            input[type=button] {
+                padding: 6px 14px;
+                background-color: #2980b9;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+            }
+            #resultado { font-size: 1.2em; font-weight: bold; color: #2c3e50; }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            // calcula y devuelve el área de un círculo
+            function areaCirculo(radio)
+            {
+                return Math.PI * radio * radio;
+            } // fin de la función areaCirculo
+
+            // se llama al hacer clic en el botón
+            function calcular()
+            {
+                var radio = parseFloat(document.getElementById("radio").value);
+
+                if (isNaN(radio) || radio < 0)
+                    document.getElementById("resultado").innerHTML =
+                        "Escriba un radio válido (número mayor o igual a 0).";
+                else
+                    document.getElementById("resultado").innerHTML =
+                        "El área de un círculo de radio " + radio + " es " +
+                        areaCirculo(radio).toFixed(2);
+            } // fin de la función calcular
+        </script>
+    </head>
+    <body>
+        <h1>Área de un círculo</h1>
+        <form action="#">
+            <p>
+                <label>Radio:
+                    <input id="radio" type="number" step="any" min="0">
+                </label>
+            </p>
+            <p><input type="button" value="Calcular área" onclick="calcular()"></p>
+        </form>
+        <p id="resultado"></p>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de Ejercicio</a></p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 9.18 minimo3.html
+Menor de tres números de punto flotante usando Math.min -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 9.18</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            form {
+                background-color: #fff;
+                border-left: 5px solid #2980b9;
+                max-width: 380px;
+                margin: 20px auto;
+                padding: 20px;
+            }
+            input[type=text] { padding: 5px; width: 100px; text-align: center; }
+            input[type=button] {
+                padding: 6px 14px;
+                background-color: #2980b9;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+            }
+            #resultado { font-size: 1.2em; font-weight: bold; color: #2c3e50; }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            // devuelve el menor de tres números de punto flotante
+            function minimo3(a, b, c)
+            {
+                return Math.min(a, Math.min(b, c));
+            } // fin de la función minimo3
+
+            // se llama al hacer clic en el botón
+            function calcular()
+            {
+                var a = parseFloat(document.getElementById("a").value);
+                var b = parseFloat(document.getElementById("b").value);
+                var c = parseFloat(document.getElementById("c").value);
+
+                if (isNaN(a) || isNaN(b) || isNaN(c))
+                    document.getElementById("resultado").innerHTML = "Escriba los tres números.";
+                else
+                    document.getElementById("resultado").innerHTML =
+                        "El menor de " + a + ", " + b + " y " + c + " es " + minimo3(a, b, c);
+            } // fin de la función calcular
+        </script>
+    </head>
+    <body>
+        <h1>El menor de tres números</h1>
+        <form action="#">
+            <p>Primer número: <input id="a" type="text"></p>
+            <p>Segundo número: <input id="b" type="text"></p>
+            <p>Tercer número: <input id="c" type="text"></p>
+            <p><input type="button" value="Encontrar el menor" onclick="calcular()"></p>
+        </form>
+        <p id="resultado"></p>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicioss</a></p>
+        </footer>
+    </body>
+</html>

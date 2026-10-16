@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 9.28 craps.html
+Juego de Craps con apuestas y conversación aleatoria -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 9.28</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            form {
+                background-color: #fff;
+                border-left: 5px solid #2980b9;
+                max-width: 420px;
+                margin: 20px auto;
+                padding: 20px;
+            }
+            input[type=text] { padding: 6px; width: 90px; text-align: center; font-size: 1.1em; }
+            input[type=submit], input[type=button] {
+                padding: 7px 16px;
+                background-color: #2980b9;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+            }
+            input[type=submit]:disabled { background-color: #95a5a6; cursor: not-allowed; }
+            #saldo { font-size: 1.4em; font-weight: bold; color: #2c3e50; }
+            #tiro { font-size: 1.2em; }
+            #resultado { font-size: 1.3em; font-weight: bold; }
+            .gano { color: #27ae60; }
+            .perdio { color: #c0392b; }
+            #conversacion { font-style: italic; color: #7f8c8d; }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            var saldoBanco = 1000;  // dinero del jugador
+            var apuesta = 0;        // apuesta de la partida actual
+            var punto = 0;          // punto establecido (0 si no hay)
+            var jugando = false;    // true mientras la partida está en curso
+
+            // tira un dado: entero de 1 a 6
+            function tirarDado()
+            {
+                return Math.floor(Math.random() * 6) + 1;
+            } // fin de la función tirarDado
+
+            // elige al azar una frase de conversación
+            function conversacion()
+            {
+                var frases = [
+                    "¿Así que se va a quedar en bancarrota?",
+                    "¡Vamos, arriésguese!",
+                    "¡Está teniendo éxito! ¡Ahora es momento de cambiar sus fichas!",
+                    "La suerte favorece a los valientes.",
+                    "¿Seguro que no quiere subir la apuesta?"
+                ];
+
+                return frases[Math.floor(Math.random() * frases.length)];
+            } // fin de la función conversacion
+
+            function mostrarSaldo()
+            {
+                document.getElementById("saldo").innerHTML = "Saldo: $" + saldoBanco;
+            } // fin de la función mostrarSaldo
+
+            // termina la partida actual
+            function terminar(gano)
+            {
+                var resultado = document.getElementById("resultado");
+
+                if (gano)
+                {
+                    saldoBanco += apuesta;
+                    resultado.className = "gano";
+                    resultado.innerHTML = "¡Ganó $" + apuesta + "!";
+                }
+                else
+                {
+                    saldoBanco -= apuesta;
+                    resultado.className = "perdio";
+                    resultado.innerHTML = "Perdió $" + apuesta + ".";
+                }
+
+                jugando = false;
+                punto = 0;
+                document.getElementById("apuesta").disabled = false;
+                mostrarSaldo();
+
+                if (saldoBanco == 0)
+                {
+                    resultado.innerHTML += " ¡Lo siento. Está en bancarrota!";
+                    document.getElementById("tirar").disabled = true;
+                    document.getElementById("conversacion").innerHTML = "";
+                }
+                else
+                    document.getElementById("conversacion").innerHTML = conversacion();
+            } // fin de la función terminar
+
+            // se llama al hacer clic en el botón Tirar dados
+            function tirar()
+            {
+                var campo = document.getElementById("apuesta");
+                var d1, d2, suma;
+
+                // al inicio de una partida se valida la apuesta
+                if (!jugando)
+                {
+                    apuesta = parseFloat(campo.value);
+
+                    if (isNaN(apuesta) || apuesta <= 0 || apuesta % 1 != 0 || apuesta > saldoBanco)
+                    {
+                        document.getElementById("resultado").className = "perdio";
+                        document.getElementById("resultado").innerHTML =
+                            "Apuesta no válida. Escriba un entero mayor que 0 y menor o igual a $" + saldoBanco + ".";
+                        campo.value = "";
+                        campo.focus();
+                        return;
+                    }
+
+                    jugando = true;
+                    campo.disabled = true;  // la apuesta no cambia durante la partida
+                    document.getElementById("resultado").innerHTML = "";
+                }
+
+                d1 = tirarDado();
+                d2 = tirarDado();
+                suma = d1 + d2;
+                document.getElementById("tiro").innerHTML =
+                    "El jugador tiró " + d1 + " + " + d2 + " = " + suma;
+
+                if (punto == 0)  // primer tiro
+                {
+                    switch (suma)
+                    {
+                        case 7:
+                        case 11:
+                            terminar(true);
+                            break;
+                        case 2:
+                        case 3:
+                        case 12:
+                            terminar(false);
+                            break;
+                        default:
+                            punto = suma;
+                            document.getElementById("resultado").className = "";
+                            document.getElementById("resultado").innerHTML =
+                                "Su punto es " + punto + ". Siga tirando.";
+                    } // fin del switch
+                }
+                else  // tiros siguientes
+                {
+                    if (suma == punto)
+                        terminar(true);
+                    else if (suma == 7)
+                        terminar(false);
+                    else
+                        document.getElementById("resultado").innerHTML =
+                            "Su punto es " + punto + ". Siga tirando.";
+                }
+            } // fin de la función tirar
+
+            // reinicia el juego completo
+            function reiniciar()
+            {
+                saldoBanco = 1000;
+                punto = 0;
+                jugando = false;
+                document.getElementById("apuesta").disabled = false;
+                document.getElementById("apuesta").value = "";
+                document.getElementById("tirar").disabled = false;
+                document.getElementById("tiro").innerHTML = "";
+                document.getElementById("resultado").innerHTML = "";
+                document.getElementById("conversacion").innerHTML = "";
+                mostrarSaldo();
+            } // fin de la función reiniciar
+        </script>
+    </head>
+    <body>
+        <h1>Craps</h1>
+        <p id="saldo">Saldo: $1000</p>
+        <form action="#" onsubmit="tirar(); return false;">
+            <p>Apuesta: $ <input id="apuesta" type="text" autocomplete="off"></p>
+            <p>
+                <input id="tirar" type="submit" value="Tirar dados">
+                <input type="button" value="Reiniciar juego" onclick="reiniciar()">
+            </p>
+        </form>
+        <p id="tiro">&nbsp;</p>
+        <p id="resultado">&nbsp;</p>
+        <p id="conversacion"></p>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

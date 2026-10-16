@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 9.19 primos.html
+Función esPrimo y lista de los primos entre 1 y 10,000 en un textarea -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 9.19</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            p { font-size: 1.1em; }
+            textarea {
+                width: 90%;
+                max-width: 700px;
+                padding: 10px;
+                font-size: 1em;
+                border: 2px solid #2c3e50;
+            }
+            .resultado {
+                background-color: #fff;
+                border-left: 5px solid #2980b9;
+                max-width: 550px;
+                margin: 15px auto;
+                padding: 10px 20px;
+                text-align: left;
+            }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            var pruebas = 0;  // cuenta cuántas divisiones se realizan en total
+
+            // a) devuelve true si n es primo
+            function esPrimo(n)
+            {
+                var i;
+
+                if (n < 2)
+                    return false;     // 0 y 1 no son primos
+
+                if (n == 2)
+                    return true;      // el único primo par
+
+                if (n % 2 == 0)
+                    return false;     // los demás pares no son primos
+
+                // solo hace falta probar divisores impares hasta la raíz cuadrada de n
+                for (i = 3; i * i <= n; i += 2)
+                {
+                    ++pruebas;
+                    if (n % i == 0)
+                        return false;
+                } // fin del for
+
+                return true;
+            } // fin de la función esPrimo
+
+            // b) recorre del 1 al 10,000 y guarda los primos
+            var lista = "";
+            var encontrados = 0;
+            var numero;
+
+            for (numero = 1; numero <= 10000; ++numero)
+            {
+                if (esPrimo(numero))
+                {
+                    lista += numero + " ";
+                    ++encontrados;
+                }
+            } // fin del for
+
+            document.writeln("<h1>Números primos del 1 al 10,000</h1>");
+            document.writeln("<textarea rows='14' readonly>" + lista + "</textarea>");
+            document.writeln("<div class='resultado'>");
+            document.writeln("<p>Números primos encontrados: <strong>" + encontrados + "</strong></p>");
+            document.writeln("<p>Números candidatos revisados: <strong>10000</strong></p>");
+            document.writeln("<p>Divisiones realizadas en total: <strong>" + pruebas + "</strong></p>");
+            document.writeln("</div>");
+        </script>
+    </head>
+    <body>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

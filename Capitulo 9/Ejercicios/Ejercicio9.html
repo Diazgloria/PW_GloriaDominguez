@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 9.9 distancia.html
+Distancia entre dos puntos (x1,y1) y (x2,y2) con la función distancia -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 9.9</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            form {
+                background-color: #fff;
+                border-left: 5px solid #2980b9;
+                max-width: 380px;
+                margin: 20px auto;
+                padding: 20px;
+            }
+            input[type=number] { padding: 5px; width: 90px; }
+            input[type=button] {
+                padding: 6px 14px;
+                background-color: #2980b9;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+            }
+            #resultado { font-size: 1.2em; font-weight: bold; color: #2c3e50; }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            // calcula la distancia entre dos puntos (valores de punto flotante)
+            function distancia(x1, y1, x2, y2)
+            {
+                var dx = x2 - x1;
+                var dy = y2 - y1;
+
+                return Math.sqrt(dx * dx + dy * dy);
+            } // fin de la función distancia
+
+            // se llama al hacer clic en el botón
+            function calcular()
+            {
+                var x1 = parseFloat(document.getElementById("x1").value);
+                var y1 = parseFloat(document.getElementById("y1").value);
+                var x2 = parseFloat(document.getElementById("x2").value);
+                var y2 = parseFloat(document.getElementById("y2").value);
+
+                if (isNaN(x1) || isNaN(y1) || isNaN(x2) || isNaN(y2))
+                    document.getElementById("resultado").innerHTML =
+                        "Escriba las cuatro coordenadas.";
+                else
+                    document.getElementById("resultado").innerHTML =
+                        "La distancia entre (" + x1 + ", " + y1 + ") y (" +
+                        x2 + ", " + y2 + ") es " + distancia(x1, y1, x2, y2).toFixed(4);
+            } // fin de la función calcular
+        </script>
+    </head>
+    <body>
+        <h1>Distancia entre dos puntos</h1>
+        <form action="#">
+            <p>
+                Punto 1:
+                x1 <input id="x1" type="number" step="any">
+                y1 <input id="y1" type="number" step="any">
+            </p>
+            <p>
+                Punto 2:
+                x2 <input id="x2" type="number" step="any">
+                y2 <input id="y2" type="number" step="any">
+            </p>
+            <p><input type="button" value="Calcular distancia" onclick="calcular()"></p>
+        </form>
+        <p id="resultado"></p>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 9.10 - Autoevaluación Capítulo 9 -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 9.10 - Capítulo 9</title>
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f9;
+                color: #333333;
+                margin: 20px;
+            }
+
+            h1 {
+                color: #2c3e50;
+                border-bottom: 2px solid #3498db;
+                padding-bottom: 10px;
+            }
+
+            .tarjeta {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            ol {
+                line-height: 1.8;
+            }
+
+            .respuesta {
+                color: #d9534f;
+                font-weight: bold;
+            }
+
+            .detalle {
+                margin: 5px 0 10px 0;
+                color: #555555;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Ejercicios de autoevaluación: Capítulo 9</h1>
+
+        <div class="tarjeta">
+            <h2>9.10 Responda a cada una de las siguientes preguntas:</h2>
+
+            <ol type="a">
+                <li>
+                    ¿Qué significa elegir números “al azar"?
+                    <div class="detalle">
+                        Significa que cada número en un conjunto específico tiene exactamente la misma probabilidad (oportunidad) de ser seleccionado en cada intento.
+                    </div>
+                </li>
+                <li>
+                    ¿Por qué es útil la función <code>Math.random</code> para simular juegos de probabilidad?
+                    <div class="detalle">
+                        Porque genera valores numéricos pseudoaleatorios (por lo general números decimales comprendidos en el rango de 0.0 hasta casi 1.0), lo cual permite modelar eventos inciertos como el lanzamiento de dados, monedas o cartas.
+                    </div>
+                </li>
+                <li>
+                    ¿Por qué es a menudo necesario escalar y/o desplazar los valores producidos por <code>Math.random</code>?
+                    <div class="detalle">
+                        Porque <code>Math.random</code> solo produce valores entre 0 y 1, por lo que se requiere escalar (multiplicar) y desplazar (sumar o restar) dichos valores para adaptarlos al rango específico de enteros deseados en un problema particular (por ejemplo, enteros del 1 al 6 para un dado).
+                    </div>
+                </li>
+                <li>
+                    ¿Por qué es la simulación computarizada de situaciones reales una técnica útil?
+                    <div class="detalle">
+                        Porque permite analizar sistemas complejos, predecir comportamientos o evaluar escenarios de riesgo sin los costos, peligros o tiempos que implicaría realizarlo en la vida real.
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <hr style="margin-top: 20px; border: none; border-top: 1px solid #ccc;">
+        <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+
+    </body>
+</html>
