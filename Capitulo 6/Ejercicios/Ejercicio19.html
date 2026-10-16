@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 6.19 circulo.html
+Diámetro, circunferencia y área de un círculo -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 6.19</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            p { font-size: 1.1em; }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            var PI = 3.14159;   // valor constante de pi
+            var radio;
+            var diametro, circunferencia, area;
+
+            // lee el radio
+            radio = parseFloat(window.prompt("Escriba el radio del círculo"));
+
+            // cálculos
+            diametro = 2 * radio;
+            circunferencia = 2 * PI * radio;
+            area = PI * radio * radio;
+
+            // muestra los resultados
+            document.writeln("<h1>Círculo de radio " + radio + "</h1>");
+            document.writeln("<p>Diámetro: " + diametro + "</p>");
+            document.writeln("<p>Circunferencia: " + circunferencia + "</p>");
+            document.writeln("<p>Área: " + area + "</p>");
+        </script>
+    </head>
+    <body>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

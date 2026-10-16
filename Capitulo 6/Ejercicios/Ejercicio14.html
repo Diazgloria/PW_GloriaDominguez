@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 6.14 - Autoevaluación Capítulo 6 (JavaScript) -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 6.14 - JavaScript</title>
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f9;
+                color: #333333;
+                margin: 20px;
+            }
+
+            h1 {
+                color: #2c3e50;
+                border-bottom: 2px solid #3498db;
+                padding-bottom: 10px;
+            }
+
+            .tarjeta {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            ol {
+                line-height: 1.8;
+            }
+
+            .detalle {
+                margin: 5px 0 10px 0;
+                color: #555555;
+                font-size: 14px;
+            }
+
+            .respuesta {
+                color: #d9534f;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Ejercicios de autoevaluación: Capítulo 6</h1>
+
+        <div class="tarjeta">
+            <h2>6.14 Indique el orden de evaluación de los operadores en cada una de las siguientes instrucciones de JavaScript, y muestre el valor de x después de ejecutar cada instrucción.</h2>
+
+            <ol type="a">
+                <li>
+                    <code>x = 7 + 3 * 6 / 2 - 1;</code>
+                    <div class="detalle">
+                        <strong>Orden de evaluación:</strong> 1) <code>*</code> y <code>/</code> (de izquierda a derecha: primero 3 * 6 = 18, luego 18 / 2 = 9), 2) <code>+</code> y <code>-</code> (de izquierda a derecha: primero 7 + 9 = 16, luego 16 - 1 = 15).
+                    </div>
+                    Valor de x: <span class="respuesta">15</span>
+                </li>
+                <li>
+                    <code>x = 2 % 2 + 2 * 2 - 2 / 2;</code>
+                    <div class="detalle">
+                        <strong>Orden de evaluación:</strong> 1) Operadores de alta precedencia <code>%</code>, <code>*</code>, <code>/</code> (2 % 2 = 0, 2 * 2 = 4, 2 / 2 = 1), 2) Operadores de baja precedencia <code>+</code> y <code>-</code> de izquierda a derecha (0 + 4 = 4, 4 - 1 = 3).
+                    </div>
+                    Valor de x: <span class="respuesta">3</span>
+                </li>
+                <li>
+                    <code>x = (3 * 9 * (3 + (9 * 3 / 3)));</code>
+                    <div class="detalle">
+                        <strong>Orden de evaluación:</strong> 1) Paréntesis más interno <code>(9 * 3 / 3)</code> = 9, 2) Siguiente nivel <code>(3 + 9)</code> = 12, 3) Siguiente nivel <code>(3 * 9 * 12)</code> = 324.
+                    </div>
+                    Valor de x: <span class="respuesta">324</span>
+                </li>
+            </ol>
+        </div>
+
+        <hr style="margin-top: 20px; border: none; border-top: 1px solid #ccc;">
+        <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 6.21 par_impar.html
+Determina si un entero es par o impar -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 6.21</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            p { font-size: 1.1em; }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            var numero;
+
+            // lee el entero
+            numero = parseInt(window.prompt("Escriba un entero"));
+
+            // si el residuo al dividir entre 2 es cero, es par
+            if (numero % 2 == 0)
+                document.writeln("<h1>" + numero + " es un número par</h1>");
+
+            if (numero % 2 != 0)
+                document.writeln("<h1>" + numero + " es un número impar</h1>");
+        </script>
+    </head>
+    <body>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 6.16 operaciones.html
+Secuencia de comandos que calcula suma, producto, diferencia y cociente -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Operaciones con dos números</title>
+        <script>
+            var primerNumero;  // primera cadena introducida por el usuario
+            var segundoNumero; // segunda cadena introducida por el usuario
+            var numero1;       // primer número
+            var numero2;       // segundo número
+            var suma;          // suma de numero1 y numero2
+            var producto;      // producto de numero1 y numero2
+            var diferencia;    // diferencia de numero1 y numero2
+            var cociente;      // cociente de numero1 entre numero2
+
+            // lee el primer número del usuario como una cadena
+            primerNumero = window.prompt("Escriba el primer entero");
+
+            // lee el segundo número como una cadena
+            segundoNumero = window.prompt("Escriba el segundo entero");
+
+            // convierte las cadenas en enteros
+            numero1 = parseInt(primerNumero);
+            numero2 = parseInt(segundoNumero);
+
+            // realiza los cálculos
+            suma = numero1 + numero2;
+            producto = numero1 * numero2;
+            diferencia = numero1 - numero2;
+            cociente = numero1 / numero2;
+
+            // muestra los resultados
+            document.writeln("<h1>Resultados</h1>");
+            document.writeln("<p>La suma de " + numero1 + " y " + numero2 + " es " + suma + "</p>");
+            document.writeln("<p>El producto de " + numero1 + " y " + numero2 + " es " + producto + "</p>");
+            document.writeln("<p>La diferencia de " + numero1 + " y " + numero2 + " es " + diferencia + "</p>");
+            document.writeln("<p>El cociente de " + numero1 + " entre " + numero2 + " es " + cociente + "</p>");
+        </script>
+    </head>
+    <body>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

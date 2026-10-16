@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 6.24 tabla.html
+Tabla de cuadrados y cubos de los números del 0 al 5 -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 6.24</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            table {
+                margin: 20px auto;
+                border-collapse: collapse;
+                background-color: #fff;
+            }
+            th, td {
+                border: 2px solid #2c3e50;
+                padding: 8px 30px;
+                font-size: 1.1em;
+            }
+            th {
+                background-color: #dfe6ec;
+                color: #2c3e50;
+            }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            var n0 = 0, n1 = 1, n2 = 2, n3 = 3, n4 = 4, n5 = 5;
+
+            document.writeln("<h1>Cuadrados y cubos</h1>");
+            document.writeln("<table>");
+
+            // encabezado de la tabla
+            document.writeln("<tr><th>número</th><th>cuadrado</th><th>cubo</th></tr>");
+
+            // una fila por cada número: número, cuadrado y cubo
+            document.writeln("<tr><td>" + n0 + "</td><td>" + (n0 * n0) + "</td><td>" + (n0 * n0 * n0) + "</td></tr>");
+            document.writeln("<tr><td>" + n1 + "</td><td>" + (n1 * n1) + "</td><td>" + (n1 * n1 * n1) + "</td></tr>");
+            document.writeln("<tr><td>" + n2 + "</td><td>" + (n2 * n2) + "</td><td>" + (n2 * n2 * n2) + "</td></tr>");
+            document.writeln("<tr><td>" + n3 + "</td><td>" + (n3 * n3) + "</td><td>" + (n3 * n3 * n3) + "</td></tr>");
+            document.writeln("<tr><td>" + n4 + "</td><td>" + (n4 * n4) + "</td><td>" + (n4 * n4 * n4) + "</td></tr>");
+            document.writeln("<tr><td>" + n5 + "</td><td>" + (n5 * n5) + "</td><td>" + (n5 * n5 * n5) + "</td></tr>");
+
+            document.writeln("</table>");
+        </script>
+    </head>
+    <body>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

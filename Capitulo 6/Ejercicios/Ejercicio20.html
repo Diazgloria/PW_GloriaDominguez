@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 6.20 menor_mayor.html
+Menor y mayor de cinco enteros -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 6.20</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            p { font-size: 1.1em; }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            var n1, n2, n3, n4, n5;
+            var menor, mayor;
+
+            // lee los cinco enteros
+            n1 = parseInt(window.prompt("Escriba el primer entero"));
+            n2 = parseInt(window.prompt("Escriba el segundo entero"));
+            n3 = parseInt(window.prompt("Escriba el tercer entero"));
+            n4 = parseInt(window.prompt("Escriba el cuarto entero"));
+            n5 = parseInt(window.prompt("Escriba el quinto entero"));
+
+            // supone que el primero es el menor y el mayor
+            menor = n1;
+            mayor = n1;
+
+            // compara con los demás
+            if (n2 < menor) menor = n2;
+            if (n3 < menor) menor = n3;
+            if (n4 < menor) menor = n4;
+            if (n5 < menor) menor = n5;
+
+            if (n2 > mayor) mayor = n2;
+            if (n3 > mayor) mayor = n3;
+            if (n4 > mayor) mayor = n4;
+            if (n5 > mayor) mayor = n5;
+
+            // muestra los resultados
+            document.writeln("<h1>Resultados</h1>");
+            document.writeln("<p>Números introducidos: " +
+                n1 + ", " + n2 + ", " + n3 + ", " + n4 + ", " + n5 + "</p>");
+            document.writeln("<p>El menor es: " + menor + "</p>");
+            document.writeln("<p>El mayor es: " + mayor + "</p>");
+        </script>
+    </head>
+    <body>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

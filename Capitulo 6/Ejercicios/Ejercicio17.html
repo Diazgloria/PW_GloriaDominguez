@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 6.17 mayor.html
+Uso de operadores de igualdad y relacionales -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Comparación de números</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+
+            h1 {
+                color: #2c3e50;
+            }
+
+            p {
+                font-size: 1.1em;
+            }
+
+            footer {
+                margin-top: 40px;
+            }
+
+            a {
+                color: #2980b9;
+                text-decoration: none;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+        </style>
+        <script>
+            var primerNumero;  // primera cadena introducida por el usuario
+            var segundoNumero; // segunda cadena introducida por el usuario
+            var numero1;       // primer entero
+            var numero2;       // segundo entero
+
+            // lee los números del usuario como cadenas
+            primerNumero = window.prompt("Escriba el primer entero");
+            segundoNumero = window.prompt("Escriba el segundo entero");
+
+            // convierte las cadenas en enteros
+            numero1 = parseInt(primerNumero);
+            numero2 = parseInt(segundoNumero);
+
+            // compara los números
+            if (numero1 > numero2)
+                window.alert(numero1 + " es mayor que " + numero2);
+
+            if (numero2 > numero1)
+                window.alert(numero2 + " es mayor que " + numero1);
+
+            if (numero1 == numero2)
+                document.writeln("<h1>Estos números son iguales</h1>");
+        </script>
+    </head>
+    <body>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejerciciosS</a></p>
+        </footer>
+    </body>
+</html>

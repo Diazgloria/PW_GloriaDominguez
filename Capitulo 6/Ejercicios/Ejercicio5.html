@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Producto de Tres Enteros</title>
+    <script type="text/javascript">
+        // a) Secuencia de comandos que calcula el producto de tres enteros
+        
+        // b) Declarar variables de cálculo
+        var x, y, z, resultado;
+        
+        // c) Declarar variables para los valores de entrada (cadenas)
+        var xVal, yVal, zVal;
+        
+        // d, e, f) Pedir los valores al usuario mediante cuadros de diálogo
+        xVal = prompt("Introduzca el primer entero:");
+        yVal = prompt("Introduzca el segundo entero:");
+        zVal = prompt("Introduzca el tercer entero:");
+        
+        // g, h, i) Convertir las cadenas a enteros
+        x = parseInt(xVal);
+        y = parseInt(yVal);
+        z = parseInt(zVal);
+        
+        // j) Calcular el producto
+        resultado = x * y * z;
+        
+        // k) Mostrar el resultado en el documento HTML5
+        document.writeln("<p>El producto es " + resultado + "</p>");
+    </script>
+</head>
+<body>
+    <footer><p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p></footer>
+</body>
+</html>

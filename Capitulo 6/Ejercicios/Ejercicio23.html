@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 6.23 conteo.html
+Cuenta números negativos, positivos y ceros -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 6.23</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            p { font-size: 1.1em; }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            var numero1, numero2, numero3;
+            var negativos = 0;
+            var positivos = 0;
+            var ceros = 0;
+
+            // lee los tres números
+            numero1 = parseFloat(window.prompt("Escriba el primer número"));
+            numero2 = parseFloat(window.prompt("Escriba el segundo número"));
+            numero3 = parseFloat(window.prompt("Escriba el tercer número"));
+
+            // clasifica el primer número
+            if (numero1 < 0) negativos = negativos + 1;
+            if (numero1 > 0) positivos = positivos + 1;
+            if (numero1 == 0) ceros = ceros + 1;
+
+            // clasifica el segundo número
+            if (numero2 < 0) negativos = negativos + 1;
+            if (numero2 > 0) positivos = positivos + 1;
+            if (numero2 == 0) ceros = ceros + 1;
+
+            // clasifica el tercer número
+            if (numero3 < 0) negativos = negativos + 1;
+            if (numero3 > 0) positivos = positivos + 1;
+            if (numero3 == 0) ceros = ceros + 1;
+
+            // muestra los resultados
+            document.writeln("<h1>Resultados</h1>");
+            document.writeln("<p>Negativos: " + negativos + "</p>");
+            document.writeln("<p>Positivos: " + positivos + "</p>");
+            document.writeln("<p>Ceros: " + ceros + "</p>");
+        </script>
+    </head>
+    <body>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

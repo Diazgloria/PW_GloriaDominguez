@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 6.18 estadisticas.html
+Suma, promedio, producto, menor y mayor de tres enteros -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 6.18</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            p { font-size: 1.1em; }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            var numero1, numero2, numero3;
+            var suma, promedio, producto, menor, mayor;
+
+            // lee los tres números
+            numero1 = parseInt(window.prompt("Escriba el primer entero"));
+            numero2 = parseInt(window.prompt("Escriba el segundo entero"));
+            numero3 = parseInt(window.prompt("Escriba el tercer entero"));
+
+            // cálculos
+            suma = numero1 + numero2 + numero3;
+            promedio = suma / 3;
+            producto = numero1 * numero2 * numero3;
+
+            // determina el menor y el mayor
+            menor = numero1;
+            mayor = numero1;
+
+            if (numero2 < menor)
+                menor = numero2;
+            if (numero3 < menor)
+                menor = numero3;
+
+            if (numero2 > mayor)
+                mayor = numero2;
+            if (numero3 > mayor)
+                mayor = numero3;
+
+            // muestra los resultados en un diálogo de alerta
+            window.alert("Suma: " + suma +
+                "\nPromedio: " + promedio +
+                "\nProducto: " + producto +
+                "\nMenor: " + menor +
+                "\nMayor: " + mayor);
+        </script>
+    </head>
+    <body>
+        <h1>Ejercicio 6.18</h1>
+        <p>Los resultados se mostraron en el cuadro de alerta.</p>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

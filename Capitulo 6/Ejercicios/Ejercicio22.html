@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 6.22 multiplo.html
+Determina si el primer entero es múltiplo del segundo -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 6.22</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f8;
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            h1 { color: #2c3e50; }
+            p { font-size: 1.1em; }
+            footer { margin-top: 40px; }
+            a { color: #2980b9; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+        <script>
+            var numero1, numero2;
+
+            // lee los dos enteros
+            numero1 = parseInt(window.prompt("Escriba el primer entero"));
+            numero2 = parseInt(window.prompt("Escriba el segundo entero"));
+
+            // si el residuo es cero, el primero es múltiplo del segundo
+            if (numero1 % numero2 == 0)
+                document.writeln("<h1>" + numero1 + " es múltiplo de " + numero2 + "</h1>");
+
+            if (numero1 % numero2 != 0)
+                document.writeln("<h1>" + numero1 + " no es múltiplo de " + numero2 + "</h1>");
+        </script>
+    </head>
+    <body>
+        <footer>
+            <hr>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

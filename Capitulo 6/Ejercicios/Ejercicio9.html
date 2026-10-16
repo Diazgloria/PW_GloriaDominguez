@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 6.9 - Autoevaluación Capítulo 6 (JavaScript) -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 6.9 - JavaScript</title>
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f9;
+                color: #333333;
+                margin: 20px;
+            }
+
+            h1 {
+                color: #2c3e50;
+                border-bottom: 2px solid #3498db;
+                padding-bottom: 10px;
+            }
+
+            .tarjeta {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            ol {
+                line-height: 1.8;
+            }
+
+            .respuesta {
+                color: #d9534f;
+                font-weight: bold;
+            }
+
+            .explicacion {
+                display: block;
+                font-size: 14px;
+                color: #555555;
+                margin-top: 4px;
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Ejercicios de autoevaluación: Capítulo 6</h1>
+
+        <div class="tarjeta">
+            <h2>6.9 Indique si cada uno de los siguientes enunciados es verdadero o falso. Si es falso, explique por qué:</h2>
+
+            <ol type="a">
+                <li>
+                    Los operadores de JavaScript se evalúan de izquierda a derecha.
+                    <br><span class="respuesta">Falso.</span>
+                    <span class="explicacion">Los operadores no se evalúan estrictamente de izquierda a derecha, sino de acuerdo con las reglas de precedencia de operadores (por ejemplo, la multiplicación y la división tienen mayor jerarquía que la suma y la resta).</span>
+                </li>
+                <li>
+                    Los siguientes son nombres de variables válidos: ..guión bajo_. «928134, t5, j 7, sus ventas!. el_total_de_su_cuenta, a, b$, c, z, z2.
+                    <br><span class="respuesta">Falso.</span>
+                    <span class="explicacion">Muchos de esos nombres contienen espacios, signos de puntuación o caracteres prohibidos que generan errores de sintaxis en JavaScript.</span>
+                </li>
+                <li>
+                    Una expresión aritmética válida de JavaScript sin paréntesis se evalúa de izquierda a derecha.
+                    <br><span class="respuesta">Falso.</span>
+                    <span class="explicacion">Incluso sin paréntesis, las expresiones aritméticas se evalúan según la precedencia de los operadores (los operadores de mayor jerarquía se ejecutan primero), y no simplemente de izquierda a derecha.</span>
+                </li>
+                <li>
+                    Los siguientes son nombres de variables inválidos: 3g, 87, 67h2, h22, 2h.
+                    <br><span class="respuesta">Verdadero.</span>
+                    <span class="explicacion">En JavaScript, los nombres de las variables no pueden comenzar con un número ni estar formados únicamente por números.</span>
+                </li>
+            </ol>
+        </div>
+
+        <hr style="margin-top: 20px; border: none; border-top: 1px solid #ccc;">
+        <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+
+    </body>
+</html>

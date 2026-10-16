@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Ejercicio 6.4 - Corrección de Errores</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .error-box {
+            background-color: #fdf2f2;
+            border-left: 4px solid #e74c3c;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+        }
+        .correct-box {
+            background-color: #f0fdf4;
+            border-left: 4px solid #2ecc71;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+    </style>
+    <script type="text/javascript">
+        
+        // Declaramos una variable de prueba 'c' (por ejemplo, con valor 5)
+        var c = 5;
+
+        // Comprobación de la parte a)
+        function probarIncisoA() {
+            var mensaje = "";
+            // Código corregido del inciso a)
+            if (c < 7) {
+                mensaje = "Inciso a) Correcto: 'c' es menor que 7 (c = " + c + ").";
+            }
+            return mensaje;
+        }
+
+        // Comprobación de la parte b)
+        function probarIncisoB() {
+            c = 8;
+            var mensaje = "";
+            if (c >= 7) {
+                mensaje = "Inciso b) Correcto: 'c' es igual o mayor que 7 (c = " + c + ").";
+            }
+            return mensaje;
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Ejercicio 6.4: Identificación y corrección de errores</h1>
+    <p>A continuación se detallan los errores encontrados en cada instrucción y su respectiva corrección:</p>
+
+    <!-- INCISO A -->
+    <h2>Inciso a)</h2>
+    <div class="error-box">
+        <strong>Instrucción original con error:</strong>
+        <pre>if (c &lt; 7);
+    window.alert("c es menor que 7");</pre>
+        <p><em>Error:</em> El punto y coma (;) al final del <code>if</code> cierra la condición de inmediato, haciendo que la instrucción del cuadro de diálogo se ejecute siempre por separado.</p>
+    </div>
+
+    <div class="correct-box">
+        <strong>Instrucción corregida:</strong>
+        <pre>if (c &lt; 7) {
+    window.alert("c es menor que 7");
+}</pre>
+    </div>
+
+
+    <!-- INCISO B -->
+    <h2>Inciso b)</h2>
+    <div class="error-box">
+        <strong>Instrucción original con error:</strong>
+        <pre>if (c =&gt; 7)
+    window.alert("c es igual o mayor que 7");</pre>
+        <p><em>Error:</em> El operador correcto en JavaScript para "mayor o igual que" es <code>&gt;=</code>, no <code>=&gt;</code>.</p>
+    </div>
+
+    <div class="correct-box">
+        <strong>Instrucción corregida:</strong>
+        <pre>if (c &gt;= 7) {
+    window.alert("c es igual o mayor que 7");
+}</pre>
+    </div>
+
+    <hr>
+    <h3>Resultados de la ejecución en pantalla:</h3>
+    
+    <script type="text/javascript">
+        // Ejecutamos las funciones de prueba y escribimos el resultado en pantalla
+        document.writeln("<p><strong>" + probarIncisoA() + "</strong></p>");
+        document.writeln("<p><strong>" + probarIncisoB() + "</strong></p>");
+        
+        window.alert("Demostración Ejercicio 6.4:\n1. c < 7 evaluado con éxito.\n2. c >= 7 evaluado con éxito.");
+    </script>
+
+    <br><hr>
+    <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+
+</body>
+</html>
