@@ -1,0 +1,73 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 8.11</title>
+</head>
+<body>
+
+<h1>Ventas de una tienda</h1>
+
+<p>Precios de los productos:</p>
+
+<ul>
+    <li>Producto 1: $2.98</li>
+    <li>Producto 2: $4.50</li>
+    <li>Producto 3: $9.98</li>
+    <li>Producto 4: $4.49</li>
+    <li>Producto 5: $6.87</li>
+</ul>
+
+<p>Ingresa 0 para terminar la captura.</p>
+
+<button onclick="ejercicio811()">Registrar ventas</button>
+<div id="resultado"></div>
+
+<script>
+function ejercicio811() {
+    let precios = [0, 2.98, 4.50, 9.98, 4.49, 6.87];
+    let total = 0;
+    let detalle = "";
+
+    while (true) {
+        let producto = Number(prompt(
+            "Ingresa el número del producto (1 al 5, o 0 para terminar):"
+        ));
+
+        if (producto === 0) {
+            break;
+        }
+
+        if (!Number.isInteger(producto) ||
+            producto < 1 || producto > 5) {
+            alert("Producto inválido.");
+            continue;
+        }
+
+        let cantidad = Number(prompt(
+            "¿Cuántas unidades del producto " + producto + "?"
+        ));
+
+        if (!Number.isInteger(cantidad) || cantidad <= 0) {
+            alert("Ingresa una cantidad válida.");
+            continue;
+        }
+
+        let subtotal = precios[producto] * cantidad;
+        total += subtotal;
+
+        detalle += "Producto " + producto +
+            " - Cantidad: " + cantidad +
+            " - Subtotal: $" + subtotal.toFixed(2) + "<br>";
+    }
+
+    document.getElementById("resultado").innerHTML =
+        detalle + "<strong>Total de ventas: $" +
+        total.toFixed(2) + "</strong>";
+}
+</script>
+
+</body>
+</html>
+```

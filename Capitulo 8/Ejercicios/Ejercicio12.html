@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 8.7</title>
+</head>
+<body>
+
+<h1>Producto de los números impares del 1 al 15</h1>
+
+<button onclick="ejercicio87()">Ejecutar ejercicio</button>
+<p id="resultado"></p>
+
+<script>
+function ejercicio87() {
+    let producto = 1;
+
+    for (let i = 1; i <= 15; i += 2) {
+        producto *= i;
+    }
+
+    document.getElementById("resultado").textContent =
+        "El producto es: " + producto;
+}
+</script>
+
+</body>
+</html>
+```

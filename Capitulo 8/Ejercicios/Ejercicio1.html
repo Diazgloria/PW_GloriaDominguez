@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 8.1 - Autoevaluación Capítulo 8 -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 8.1 - Capítulo 8</title>
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f9;
+                color: #333333;
+                margin: 20px;
+            }
+
+            h1 {
+                color: #2c3e50;
+                border-bottom: 2px solid #3498db;
+                padding-bottom: 10px;
+            }
+
+            .tarjeta {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            ol {
+                line-height: 1.8;
+            }
+
+            .respuesta {
+                color: #d9534f;
+                font-weight: bold;
+            }
+
+            .detalle {
+                margin: 5px 0 10px 0;
+                color: #555555;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Ejercicios de autoevaluación: Capítulo 8</h1>
+
+        <div class="tarjeta">
+            <h2>8.1 Indique si cada uno de los siguientes enunciados es verdadero o falso. Si es falso, explique por qué.</h2>
+
+            <ol type="a">
+                <li>
+                    El caso <code>default</code> es requerido en la instrucción de selección <code>switch</code>.
+                    <div class="detalle">
+                        Respuesta: <span class="respuesta">Falso</span>. El caso <code>default</code> es opcional; si se omite y ninguna de las constantes coincide, simplemente no se ejecuta ninguna acción dentro del <code>switch</code>.
+                    </div>
+                </li>
+                <li>
+                    La instrucción <code>break</code> es requerida en el último caso de una instrucción de selección <code>switch</code>.
+                    <div class="detalle">
+                        Respuesta: <span class="respuesta">Falso</span>. El <code>break</code> no es estrictamente obligatorio en el último caso (aunque a menudo se incluye por consistencia), ya que el flujo del programa naturalmente sale del <code>switch</code> al terminar ese bloque.
+                    </div>
+                </li>
+                <li>
+                    La expresión <code>(x > y && a < b)</code> es verdadera si <code>x > y</code> es verdadera, o si <code>a < b</code> es verdadera.
+                    <div class="detalle">
+                        Respuesta: <span class="respuesta">Falso</span>. Al utilizar el operador lógico AND (<code>&&</code>), ambos operandos deben ser verdaderos para que toda la expresión sea verdadera. Si fuera verdadera con uno solo, se trataría del operador OR (<code>||</code>).
+                    </div>
+                </li>
+                <li>
+                    Una expresión que contiene el operador <code>||</code> es verdadera si uno o ambos de sus operandos son verdaderos.
+                    <div class="detalle">
+                        Respuesta: <span class="respuesta">Verdadero</span>. El operador lógico OR (<code>||</code>) evalúa como verdadero cuando al menos una de las condiciones evaluadas se cumple.
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <hr style="margin-top: 20px; border: none; border-top: 1px solid #ccc;">
+        <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+
+    </body>
+</html>

@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 8.6</title>
+</head>
+<body>
+
+<h1>Encontrar el menor número</h1>
+
+<button onclick="ejercicio86()">Ejecutar ejercicio</button>
+<p id="resultado"></p>
+
+<script>
+function ejercicio86() {
+    let cantidad = parseInt(prompt("¿Cuántos números deseas ingresar?"));
+    let menor = Infinity;
+
+    if (isNaN(cantidad) || cantidad <= 0) {
+        alert("Ingresa una cantidad válida.");
+        return;
+    }
+
+    for (let i = 1; i <= cantidad; i++) {
+        let numero = Number(prompt("Ingresa un entero no negativo:"));
+
+        if (!Number.isInteger(numero) || numero < 0) {
+            alert("Debes ingresar un entero no negativo.");
+            return;
+        }
+
+        if (numero < menor) {
+            menor = numero;
+        }
+    }
+
+    document.getElementById("resultado").textContent =
+        "El número menor es: " + menor;
+}
+</script>
+
+</body>
+</html>
+```

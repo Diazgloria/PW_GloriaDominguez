@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 8.12</title>
+</head>
+<body>
+
+<h1>¿Qué imprime cada instrucción?</h1>
+
+<button onclick="ejercicio812()">Ejecutar ejercicio</button>
+<div id="resultado"></div>
+
+<script>
+function ejercicio812() {
+    let i = 1;
+    let j = 2;
+    let k = 3;
+    let m = 2;
+
+    let a = (i == 1);
+    let b = (j == 3);
+    let c = (i > 1 && j < 4);
+    let d = (m <= 99 && k < m);
+    let e = (j >= 1 || k == m);
+    let f = (k + m < j || 3 - j >= k);
+    let g = (!(k > m));
+
+    document.getElementById("resultado").innerHTML =
+        "a) " + a + "<br>" +
+        "b) " + b + "<br>" +
+        "c) " + c + "<br>" +
+        "d) " + d + "<br>" +
+        "e) " + e + "<br>" +
+        "f) " + f + "<br>" +
+        "g) " + g;
+}
+</script>
+
+</body>
+</html>

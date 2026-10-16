@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejercicios 8.4</title>
+</head>
+<body>
+
+    <h2>Ejercicio a: Numeros del 100 al 1</h2>
+    <script>
+        for (let x = 100; x >= 1; x--) {
+            document.writeln(x + " ");
+        }
+    </script>
+
+    <hr>
+
+    <h2>Ejercicio b: Numero par o impar</h2>
+    <script>
+        let valor = 5;
+
+        switch (valor % 2) {
+            case 0:
+                document.writeln("Entero par");
+                break;
+
+            case 1:
+                document.writeln("Entero impar");
+                break;
+        }
+    </script>
+
+    <hr>
+
+    <h2>Ejercicio c: Numeros impares del 19 al 1</h2>
+    <script>
+        for (let x = 19; x >= 1; x -= 2) {
+            document.writeln(x + " ");
+        }
+    </script>
+
+    <hr>
+
+    <h2>Ejercicio d: Numeros pares del 2 al 100</h2>
+    <script>
+        let contador = 2;
+
+        do {
+            document.writeln(contador + " ");
+            contador += 2;
+        } while (contador <= 100);
+    </script>
+
+</body>
+</html>
+```

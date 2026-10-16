@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<!-- Ejercicio: Encuentre el error en cada segmento de código -->
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Encontrar errores en el código</title>
+</head>
+<body>
+    <p>a) Error: El punto y coma después de while termina la instrucción. Además, falta inicializar correctamente x y el incremento debe estar dentro del ciclo.</p>
+
+    <p>Código corregido:</p>
+    <pre>
+var x = 1;
+while (x <= 10)
+{
+    ++x;
+}
+    </pre>
+
+    <p>b) Error: Falta break en el case 1, default debe llevar dos puntos y document.writeln está escrito incorrectamente.</p>
+
+    <p>Código corregido:</p>
+    <pre>
+switch (n)
+{
+    case 1:
+        document.writeln("El número es 1");
+        break;
+    case 2:
+        document.writeln("El número es 2");
+        break;
+    default:
+        document.writeln("El número no es 1 ni 2");
+        break;
+}
+    </pre>
+
+    <p>c) Error: Falta inicializar n con el operador = y la condición debe permitir imprimir hasta el 10.</p>
+
+    <p>Código corregido:</p>
+    <pre>
+var n = 1;
+while (n <= 10)
+    document.writeln(n++);
+    </pre>
+</body>
+</html>

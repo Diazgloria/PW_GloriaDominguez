@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 8.8</title>
+</head>
+<body>
+
+<h1>Interés compuesto</h1>
+
+<button onclick="ejercicio88()">Ejecutar ejercicio</button>
+<div id="resultado"></div>
+
+<script>
+function ejercicio88() {
+    let principal = 1000;
+    let tasas = [5, 6, 7, 8, 9];
+
+    let resultado = "<table border='1' cellpadding='5'>";
+    resultado += "<tr><th>Año</th>";
+
+    for (let tasa of tasas) {
+        resultado += "<th>" + tasa + "%</th>";
+    }
+
+    resultado += "</tr>";
+
+    for (let anio = 1; anio <= 10; anio++) {
+        resultado += "<tr><td>" + anio + "</td>";
+
+        for (let tasa of tasas) {
+            let monto = principal *
+                Math.pow(1 + tasa / 100, anio);
+
+            resultado += "<td>$" + monto.toFixed(2) + "</td>";
+        }
+
+        resultado += "</tr>";
+    }
+
+    resultado += "</table>";
+
+    document.getElementById("resultado").innerHTML = resultado;
+}
+</script>
+
+</body>
+</html>

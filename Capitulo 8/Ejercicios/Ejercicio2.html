@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 8.2 - Autoevaluación Capítulo 8 -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 8.2 - Capítulo 8</title>
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f9;
+                color: #333333;
+                margin: 20px;
+            }
+
+            h1 {
+                color: #2c3e50;
+                border-bottom: 2px solid #3498db;
+                padding-bottom: 10px;
+            }
+
+            .tarjeta {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            ol {
+                line-height: 1.8;
+            }
+
+            pre {
+                background-color: #f8f9fa;
+                padding: 10px;
+                border-radius: 4px;
+                border: 1px solid #e9ecef;
+                font-family: Consolas, monospace;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Ejercicios de autoevaluación: Capítulo 8</h1>
+
+        <div class="tarjeta">
+            <h2>8.2 Escriba una instrucción o un conjunto de instrucciones en JavaScript para realizar cada una de las siguientes tareas:</h2>
+
+            <ol type="a">
+                <li>
+                    <strong>Sumar los enteros impares entre 1 y 99. Utilice una instrucción for.</strong>
+                    <pre>suma = 0;
+                        for ( cuenta = 1; cuenta &lt;= 99; cuenta += 2 )
+                            suma += cuenta;</pre>
+                </li>
+                <li>
+                    <strong>Calcular el valor de 2.5 elevado a la potencia de 3. Use el método pow.</strong>
+                    <pre>Math.pow( 2.5, 3 );</pre>
+                </li>
+                <li>
+                    <strong>Imprimir los enteros del 1 al 20 mediante el uso de un ciclo while y la variable contador x.</strong>
+                    <pre>x = 1;
+                        document.writeln( "&lt;p&gt;" );
+                        while ( x &lt;= 20 ) {
+                            document.write( x + " " );
+                            if ( x % 5 == 0 )
+                                document.write( "&lt;/p&gt;&lt;p&gt;" );
+                            ++x;
+                        }</pre>[cite: 8, 9]
+                </li>
+                <li>
+                    <strong>Replica el ejercicio 8.2, (c), pero ahora use una instrucción for.</strong>
+                    <pre>document.writeln( "&lt;p&gt;" );
+                        for ( x = 1; x &lt;= 20; x++ ) {
+                            document.write( x + " " );
+                            if ( x % 5 == 0 )
+                                document.write( "&lt;/p&gt;&lt;p&gt;" );
+                        }
+                        document.writeln( "&lt;/p&gt;" );</pre>
+                </li>
+            </ol>
+        </div>
+
+        <hr style="margin-top: 20px; border: none; border-top: 1px solid #ccc;">
+        <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+
+    </body>
+</html>
