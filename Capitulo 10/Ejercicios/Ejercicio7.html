@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 10.7 - Capítulo 10 -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 10.7 - Capítulo 10</title>
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f9;
+                color: #333333;
+                margin: 20px;
+            }
+
+            h1 {
+                color: #2c3e50;
+                border-bottom: 2px solid #3498db;
+                padding-bottom: 10px;
+            }
+
+            .tarjeta {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            ol {
+                line-height: 1.8;
+            }
+
+            .respuesta {
+                color: #d9534f;
+                font-weight: bold;
+            }
+
+            .detalle {
+                margin: 5px 0 10px 0;
+                color: #555555;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Ejercicios: Capítulo 10</h1>
+
+        <div class="tarjeta">
+            <h2>10.7 Indique si cada uno de los siguientes enunciados es verdadero o falso. Si es falso, explique por qué.</h2>
+
+            <ol type="a">
+                <li>
+                    Para hacer referencia a una ubicación o elemento específico en un arreglo, especificamos el nombre del arreglo y el valor del elemento.
+                    <div class="detalle">
+                        Respuesta: <span class="respuesta">Falso</span>. Se especifica el nombre del arreglo y la posición o subíndice (índice) del elemento.
+                    </div>
+                </li>
+                <li>
+                    La declaración de una variable reserva espacio para un arreglo.
+                    <div class="detalle">
+                        Respuesta: <span class="respuesta">Falso</span>. Para reservar espacio para un arreglo se debe inicializar utilizando la sintaxis de corchetes <code>[]</code> o instanciarlo mediante <code>new Array()</code>.
+                    </div>
+                </li>
+                <li>
+                    Para indicar que deben reservarse 100 ubicaciones para el arreglo entero <code>p</code>, el programador debe escribir la siguiente declaración: <code>p[ 100 ];</code>
+                    <div class="detalle">
+                        Respuesta: <span class="respuesta">Falso</span>. La forma correcta de instanciar un arreglo de 100 elementos es <code>var p = new Array( 100 );</code> o declarando sus valores.
+                    </div>
+                </li>
+                <li>
+                    Un programa de JavaScript que inicializa los elementos de un arreglo de 15 elementos en cero debe contener cuando menos una instrucción <code>for</code>.
+                    <div class="detalle">
+                        Respuesta: <span class="respuesta">Falso</span>. Se pueden inicializar directamente al declarar el arreglo usando la sintaxis literal: <code>var a = [0, 0, 0, ...];</code> o mediante otros métodos iterativos o de llenado como <code>fill()</code>.
+                    </div>
+                </li>
+                <li>
+                    Un programa de JavaScript que calcula el total de los elementos de un arreglo bidimensional debe contener instrucciones <code>for</code> anidadas.
+                    <div class="detalle">
+                        Respuesta: <span class="respuesta">Falso</span>. Aunque usar dos ciclos <code>for</code> anidados es la forma habitual de recorrer filas y columnas, también se pueden emplear métodos modernos de arreglos como <code>flat()</code> y <code>reduce()</code> sin anidar instrucciones <code>for</code> explícitas.
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <hr style="margin-top: 20px; border: none; border-top: 1px solid #ccc;">
+        <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+
+    </body>
+</html>

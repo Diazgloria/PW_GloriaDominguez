@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 11.18: TablaCodigos255.html
+     Generación de códigos de 000 a 255 y visualización de sus caracteres en un textarea -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Tabla de Códigos (000 a 255)</title>
+        <style type="text/css">
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f4f7f6;
+                color: #333;
+                margin: 0;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            main {
+                background-color: #ffffff;
+                padding: 25px 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                max-width: 650px;
+                width: 100%;
+            }
+
+            h2 {
+                color: #2c3e50;
+                margin-top: 0;
+                border-bottom: 2px solid #8e44ad;
+                padding-bottom: 8px;
+            }
+
+            p {
+                color: #666;
+                font-size: 0.95em;
+            }
+
+            input[type="button"] {
+                width: 100%;
+                padding: 12px;
+                background-color: #8e44ad;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 1em;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.2s;
+                margin: 15px 0;
+            }
+
+            input[type="button"]:hover {
+                background-color: #712b8d;
+            }
+
+            textarea {
+                width: 100%;
+                height: 320px;
+                font-family: 'Consolas', 'Courier New', monospace;
+                font-size: 0.95em;
+                background-color: #1e1e1e;
+                color: #a3e635;
+                padding: 12px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                resize: vertical;
+                box-sizing: border-box;
+            }
+
+            footer {
+                margin-top: 20px;
+            }
+
+            footer a {
+                color: #8e44ad;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            footer a:hover {
+                text-decoration: underline;
+            }
+        </style>
+        <script>
+            function generarTablaCodigos() {
+                var reporte = "=========================================\n";
+                reporte += " TABLA DE CÓDIGOS Y CARACTERES (000-255)\n";
+                reporte += "=========================================\n";
+                reporte += "CÓDIGO          CARÁCTER\n";
+                reporte += "-----------------------------------------\n";
+
+                for (var i = 0; i <= 255; i++) {
+                    // Formatear código a tres dígitos (000, 001, ..., 255)
+                    var codigoFormateado = i.toString().padStart(3, '0');
+                    
+                    // Obtener carácter
+                    var caracter = String.fromCharCode(i);
+
+                    // Reemplazar caracteres no imprimibles/de control para visualización limpia
+                    if (i < 32 || (i >= 127 && i <= 160)) {
+                        caracter = "[Control/No imprimible]";
+                    }
+
+                    reporte += codigoFormateado.padEnd(16, " ") + caracter + "\n";
+                }
+
+                document.getElementById("salidaTextarea").value = reporte;
+            }
+
+            function iniciar() {
+                document.getElementById("btnGenerar").addEventListener("click", generarTablaCodigos, false);
+            }
+
+            window.addEventListener("load", iniciar, false);
+        </script>
+    </head>
+    <body>
+        <main>
+            <h2>Tabla de Caracteres (000 a 255)</h2>
+            <p>Presione el botón para generar e intentar imprimir todos los caracteres del rango 000 a 255:</p>
+
+            <input type="button" id="btnGenerar" value="Generar Lista de Caracteres">
+
+            <label for="salidaTextarea"><strong>Resultados:</strong></label>
+            <textarea id="salidaTextarea" readonly wrap="off"></textarea>
+        </main>
+
+        <footer>
+            <p><a href="lista_ejemplos.html">Regresar a la lista de ejemplos</a></p>
+        </footer>
+    </body>
+</html>

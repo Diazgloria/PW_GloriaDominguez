@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 11.12: MayusculasMinusculas.html
+     Conversión de texto a mayúsculas y minúsculas usando String.toUpperCase y String.toLowerCase -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Conversor de Mayúsculas y Minúsculas</title>
+        <style type="text/css">
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f4f7f6;
+                color: #333;
+                margin: 0;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            main {
+                background-color: #ffffff;
+                padding: 25px 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                max-width: 600px;
+                width: 100%;
+            }
+
+            h2 {
+                color: #2c3e50;
+                margin-top: 0;
+                border-bottom: 2px solid #27ae60;
+                padding-bottom: 8px;
+            }
+
+            p {
+                color: #666;
+                font-size: 0.95em;
+            }
+
+            .grupo-campo {
+                margin: 15px 0;
+                display: flex;
+                flex-direction: column;
+            }
+
+            label {
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: #34495e;
+            }
+
+            input[type="text"] {
+                padding: 10px;
+                border: 1px solid #cccccc;
+                border-radius: 5px;
+                font-size: 1em;
+                outline: none;
+            }
+
+            input[type="text"]:focus {
+                border-color: #27ae60;
+            }
+
+            input[type="button"] {
+                width: 100%;
+                padding: 12px;
+                background-color: #27ae60;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 1em;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.2s;
+                margin-top: 10px;
+            }
+
+            input[type="button"]:hover {
+                background-color: #219653;
+            }
+
+            .resultado-caja {
+                margin-top: 20px;
+                padding: 15px;
+                background-color: #f8f9fa;
+                border-radius: 6px;
+                border-left: 5px solid #27ae60;
+            }
+
+            .resultado-item {
+                margin-bottom: 15px;
+            }
+
+            .resultado-item:last-child {
+                margin-bottom: 0;
+            }
+
+            .resultado-texto {
+                background-color: #ffffff;
+                padding: 10px;
+                border: 1px solid #e0e0e0;
+                border-radius: 4px;
+                font-family: monospace;
+                font-size: 1.05em;
+                word-break: break-all;
+            }
+
+            footer {
+                margin-top: 20px;
+            }
+
+            footer a {
+                color: #27ae60;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            footer a:hover {
+                text-decoration: underline;
+            }
+        </style>
+        <script>
+            function convertirTexto() {
+                var campoEntrada = document.getElementById("textoInput");
+                var texto = campoEntrada.value;
+
+                if (texto.trim() === "") {
+                    alert("Por favor, ingrese algún texto para convertir.");
+                    return;
+                }
+
+                // Conversión de cadenas
+                var textoMayusculas = texto.toUpperCase();
+                var textoMinusculas = texto.toLowerCase();
+
+                // Construcción de la interfaz de resultados
+                var htmlResultado = "<div class='resultado-caja'>" +
+                    "<div class='resultado-item'>" +
+                        "<label>Texto en Mayúsculas:</label>" +
+                        "<div class='resultado-texto'>" + textoMayusculas + "</div>" +
+                    "</div>" +
+                    "<div class='resultado-item'>" +
+                        "<label>Texto en Minúsculas:</label>" +
+                        "<div class='resultado-texto'>" + textoMinusculas + "</div>" +
+                    "</div>" +
+                "</div>";
+
+                document.getElementById("contenedorResultado").innerHTML = htmlResultado;
+            }
+
+            function iniciar() {
+                document.getElementById("btnConvertir").addEventListener("click", convertirTexto, false);
+            }
+
+            window.addEventListener("load", iniciar, false);
+        </script>
+    </head>
+    <body>
+        <main>
+            <h2>Conversor a Mayúsculas y Minúsculas</h2>
+            <p>Ingrese cualquier texto a continuación para transformarlo instantáneamente a Mayúsculas y Minúsculas:</p>
+
+            <form action="#" onsubmit="convertirTexto(); return false;">
+                <div class="grupo-campo">
+                    <label for="textoInput">Texto de entrada:</label>
+                    <input type="text" id="textoInput" placeholder="Ej: Hola Mundo desde JavaScript" required>
+                </div>
+
+                <input type="button" id="btnConvertir" value="Convertir Texto">
+            </form>
+
+            <div id="contenedorResultado"></div>
+        </main>
+
+        <footer>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

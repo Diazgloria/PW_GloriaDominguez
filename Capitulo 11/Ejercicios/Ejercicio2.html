@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 11.2: FechasAlertas.html
+     Demostración de manipulación de fechas con botones y alert -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Alertas de Fecha y Hora</title>
+        <style type="text/css">
+            form { margin-bottom: 20px; }
+            input[type="button"] { margin-right: 5px; margin-bottom: 5px; }
+        </style>
+        <script>
+            // Registrar los escuchadores de eventos al cargar la página
+            function iniciar() {
+                document.getElementById("btnAhora").addEventListener("click", mostrarAhora, false);
+                document.getElementById("btnAyer").addEventListener("click", mostrarAyer, false);
+                document.getElementById("btnDiezAnios").addEventListener("click", mostrarDiezAnios, false);
+                document.getElementById("btnUnaSemana").addEventListener("click", mostrarUnaSemana, false);
+            }
+
+            // Muestra la fecha y hora actual
+            function mostrarAhora() {
+                var fecha = new Date();
+                alert("Hora y fecha actual:\n" + fecha.toString());
+            }
+
+            // Muestra la fecha y hora de hace 24 horas
+            function mostrarAyer() {
+                var fecha = new Date();
+                fecha.setDate(fecha.getDate() - 1); // Resta 1 día (24 horas)
+                alert("Hace 24 horas (Ayer):\n" + fecha.toString());
+            }
+
+            // Muestra la fecha y hora de hace 10 años
+            function mostrarDiezAnios() {
+                var fecha = new Date();
+                fecha.setFullYear(fecha.getFullYear() - 10); // Resta 10 años
+                alert("Hace 10 años:\n" + fecha.toString());
+            }
+
+            // Muestra la fecha y hora de dentro de una semana
+            function mostrarUnaSemana() {
+                var fecha = new Date();
+                fecha.setDate(fecha.getDate() + 7); // Suma 7 días
+                alert("Una semana a partir de hoy:\n" + fecha.toString());
+            }
+
+            window.addEventListener("load", iniciar, false);
+        </script>
+    </head>
+    <body>
+        <h2>Demostración de Fechas y Horas con Alert</h2>
+        
+        <form action="#">
+            <input id="btnAhora" type="button" value="Ahora">
+            <input id="btnAyer" type="button" value="Ayer">
+            <input id="btnDiezAnios" type="button" value="Hace 10 años">
+            <input id="btnUnaSemana" type="button" value="Una semana a partir de hoy">
+        </form>
+
+        <footer>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

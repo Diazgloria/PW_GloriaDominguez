@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 11.14: AlfabetoFrecuencias.html
+     Conteo de frecuencias de cada letra del alfabeto usando String.indexOf y almacenamiento en arreglo -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Frecuencia de Letras del Alfabeto</title>
+        <style type="text/css">
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f4f7f6;
+                color: #333;
+                margin: 0;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            main {
+                background-color: #ffffff;
+                padding: 25px 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                max-width: 650px;
+                width: 100%;
+            }
+
+            h2 {
+                color: #2c3e50;
+                margin-top: 0;
+                border-bottom: 2px solid #8e44ad;
+                padding-bottom: 8px;
+            }
+
+            p {
+                color: #666;
+                font-size: 0.95em;
+            }
+
+            .grupo-campo {
+                margin-bottom: 15px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            label {
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: #34495e;
+            }
+
+            textarea#textoInput {
+                width: 100%;
+                height: 120px;
+                padding: 10px;
+                border: 1px solid #cccccc;
+                border-radius: 5px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 0.95em;
+                outline: none;
+                resize: vertical;
+                box-sizing: border-box;
+            }
+
+            textarea#textoInput:focus {
+                border-color: #8e44ad;
+            }
+
+            input[type="button"] {
+                width: 100%;
+                padding: 12px;
+                background-color: #8e44ad;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 1em;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.2s;
+                margin: 10px 0 15px 0;
+            }
+
+            input[type="button"]:hover {
+                background-color: #712b8d;
+            }
+
+            textarea#resultadoTextarea {
+                width: 100%;
+                height: 280px;
+                font-family: 'Consolas', 'Courier New', monospace;
+                font-size: 0.95em;
+                background-color: #1e1e1e;
+                color: #a3e635;
+                padding: 12px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                resize: vertical;
+                box-sizing: border-box;
+            }
+
+            footer {
+                margin-top: 20px;
+            }
+
+            footer a {
+                color: #8e44ad;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            footer a:hover {
+                text-decoration: underline;
+            }
+        </style>
+        <script>
+            function calcularFrecuencias() {
+                var texto = document.getElementById("textoInput").value;
+
+                if (texto.trim() === "") {
+                    alert("Por favor, ingrese un texto de varias líneas.");
+                    return;
+                }
+
+                // Convertir todo el texto a minúsculas para contar mayúsculas y minúsculas como una sola
+                var textoMinusculas = texto.toLowerCase();
+
+                // Arreglo con las letras del alfabeto (incluyendo la 'ñ')
+                var alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", 
+                                "n", "ñ", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+                // Arreglo para almacenar los totales de cada letra
+                var frecuencias = new Array(alfabeto.length);
+
+                // Contar las ocurrencias de cada letra mediante indexOf
+                for (var i = 0; i < alfabeto.length; i++) {
+                    var letra = alfabeto[i];
+                    var contador = 0;
+                    var posicion = textoMinusculas.indexOf(letra);
+
+                    while (posicion !== -1) {
+                        contador++;
+                        posicion = textoMinusculas.indexOf(letra, posicion + 1);
+                    }
+
+                    frecuencias[i] = contador;
+                }
+
+                // Generar el formato tabular para el textarea
+                var reporte = "=========================================\n";
+                reporte += " TABLA DE FRECUENCIAS DEL ALFABETO\n";
+                reporte += "=========================================\n";
+                reporte += "LETRA            OCURRENCIAS\n";
+                reporte += "-----------------------------------------\n";
+
+                for (var j = 0; j < alfabeto.length; j++) {
+                    var letraCol = alfabeto[j].toUpperCase() + " / " + alfabeto[j];
+                    var cantidadCol = frecuencias[j].toString();
+                    
+                    reporte += letraCol.padEnd(17, " ") + cantidadCol.padStart(10, " ") + "\n";
+                }
+
+                reporte += "-----------------------------------------\n";
+
+                // Mostrar el resultado en el textarea
+                document.getElementById("resultadoTextarea").value = reporte;
+            }
+
+            function iniciar() {
+                document.getElementById("btnCalcular").addEventListener("click", calcularFrecuencias, false);
+            }
+
+            window.addEventListener("load", iniciar, false);
+        </script>
+    </head>
+    <body>
+        <main>
+            <h2>Frecuencia de Letras del Alfabeto</h2>
+            <p>Ingrese un texto para contar la cantidad total de apariciones de cada letra utilizando el método <code>indexOf</code>:</p>
+
+            <form action="#" onsubmit="calcularFrecuencias(); return false;">
+                <div class="grupo-campo">
+                    <label for="textoInput">Líneas de texto:</label>
+                    <textarea id="textoInput" placeholder="Escriba o pegue aquí su texto..." required></textarea>
+                </div>
+
+                <input type="button" id="btnCalcular" value="Calcular Frecuencia de Letras">
+            </form>
+
+            <label for="resultadoTextarea"><strong>Resultados en formato tabular:</strong></label>
+            <textarea id="resultadoTextarea" readonly wrap="off"></textarea>
+        </main>
+
+        <footer>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

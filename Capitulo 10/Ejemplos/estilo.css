@@ -1,0 +1,45 @@
+body {
+   font-family: Arial, sans-serif;
+}
+
+/* Alineación e imágenes de los dados */
+img {
+   width: 60px;
+   height: 60px;
+   margin: 4px;
+}
+
+button {
+   margin-top: 10px;
+   margin-bottom: 20px;
+}
+
+/* Estilo de la tabla de frecuencias */
+table {
+   width: 320px;
+   border-collapse: collapse;
+   text-align: left;
+}
+
+caption {
+   text-align: left;
+   font-family: "Times New Roman", Times, serif;
+   font-size: 1.2em;
+   font-weight: normal;
+   margin-bottom: 6px;
+}
+
+th, td {
+   border: 1px solid #333333;
+   padding: 4px 8px;
+}
+
+th {
+   background-color: #000000;
+   color: #ffffff;
+   font-weight: bold;
+}
+
+td {
+   background-color: #cccccc;
+}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 11.22: FormatosFecha.html
+     Lectura de fecha desde HTML5 y visualización en múltiples formatos usando métodos del objeto Date -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Formatos de Fecha con Date</title>
+        <style type="text/css">
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f4f7f6;
+                color: #333;
+                margin: 0;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            main {
+                background-color: #ffffff;
+                padding: 25px 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                max-width: 650px;
+                width: 100%;
+            }
+
+            h2 {
+                color: #2c3e50;
+                margin-top: 0;
+                border-bottom: 2px solid #27ae60;
+                padding-bottom: 8px;
+            }
+
+            p {
+                color: #666;
+                font-size: 0.95em;
+            }
+
+            .grupo-campo {
+                margin: 15px 0;
+                display: flex;
+                flex-direction: column;
+            }
+
+            label {
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: #34495e;
+            }
+
+            input[type="datetime-local"] {
+                padding: 10px;
+                border: 1px solid #cccccc;
+                border-radius: 5px;
+                font-size: 1em;
+                outline: none;
+            }
+
+            input[type="datetime-local"]:focus {
+                border-color: #27ae60;
+            }
+
+            input[type="button"] {
+                width: 100%;
+                padding: 12px;
+                background-color: #27ae60;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 1em;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.2s;
+                margin-top: 10px;
+            }
+
+            input[type="button"]:hover {
+                background-color: #219653;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+
+            th, td {
+                padding: 10px;
+                text-align: left;
+                border-bottom: 1px solid #e0e0e0;
+                font-size: 0.95em;
+            }
+
+            th {
+                background-color: #2c3e50;
+                color: white;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f8f9fa;
+            }
+
+            td.metodo {
+                font-family: monospace;
+                font-weight: bold;
+                color: #27ae60;
+            }
+
+            footer {
+                margin-top: 20px;
+            }
+
+            footer a {
+                color: #27ae60;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            footer a:hover {
+                text-decoration: underline;
+            }
+        </style>
+        <script>
+            function mostrarFormatosFecha() {
+                var fechaEntrada = document.getElementById("fechaInput").value;
+
+                if (!fechaEntrada) {
+                    alert("Por favor, seleccione una fecha y hora válidas.");
+                    return;
+                }
+
+                // Crear el objeto Date a partir del valor ingresado
+                var fechaObj = new Date(fechaEntrada);
+
+                // Construcción de la tabla con los diferentes métodos de conversión
+                var htmlTabla = "<table>" +
+                    "<thead><tr><th>Método de Date</th><th>Representación en Cadena</th></tr></thead>" +
+                    "<tbody>" +
+                        "<tr><td class='metodo'>toString()</td><td>" + fechaObj.toString() + "</td></tr>" +
+                        "<tr><td class='metodo'>toLocaleString()</td><td>" + fechaObj.toLocaleString() + "</td></tr>" +
+                        "<tr><td class='metodo'>toUTCString()</td><td>" + fechaObj.toUTCString() + "</td></tr>" +
+                        "<tr><td class='metodo'>toDateString()</td><td>" + fechaObj.toDateString() + "</td></tr>" +
+                        "<tr><td class='metodo'>toTimeString()</td><td>" + fechaObj.toTimeString() + "</td></tr>" +
+                        "<tr><td class='metodo'>toISOString()</td><td>" + fechaObj.toISOString() + "</td></tr>" +
+                        "<tr><td class='metodo'>toLocaleDateString()</td><td>" + fechaObj.toLocaleDateString() + "</td></tr>" +
+                        "<tr><td class='metodo'>toLocaleTimeString()</td><td>" + fechaObj.toLocaleTimeString() + "</td></tr>" +
+                    "</tbody>" +
+                    "</table>";
+
+                document.getElementById("contenedorResultado").innerHTML = htmlTabla;
+            }
+
+            function iniciar() {
+                document.getElementById("btnConvertir").addEventListener("click", mostrarFormatosFecha, false);
+            }
+
+            window.addEventListener("load", iniciar, false);
+        </script>
+    </head>
+    <body>
+        <main>
+            <h2>Formatos de Conversión de Fechas</h2>
+            <p>Seleccione una fecha y hora para construir un objeto <code>Date</code> y visualizar sus representaciones en cadena:</p>
+
+            <form action="#" onsubmit="mostrarFormatosFecha(); return false;">
+                <div class="grupo-campo">
+                    <label for="fechaInput">Seleccione Fecha y Hora:</label>
+                    <input type="datetime-local" id="fechaInput" required>
+                </div>
+
+                <input type="button" id="btnConvertir" value="Mostrar Formatos">
+            </form>
+
+            <div id="contenedorResultado"></div>
+        </main>
+
+        <footer>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejemplos</a></p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 11.27: CorrectorOrtografico.html
+     Proyecto: Corrector ortográfico en JavaScript con detección de transposiciones, letras dobles y teclas adyacentes -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Corrector Ortográfico</title>
+        <style type="text/css">
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f4f7f6;
+                color: #333;
+                margin: 0;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            main {
+                background-color: #ffffff;
+                padding: 25px 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                max-width: 700px;
+                width: 100%;
+            }
+
+            h2 {
+                color: #2c3e50;
+                margin-top: 0;
+                border-bottom: 2px solid #8e44ad;
+                padding-bottom: 8px;
+            }
+
+            p {
+                color: #666;
+                font-size: 0.95em;
+                line-height: 1.4;
+            }
+
+            .seccion-diccionario {
+                background-color: #f8f9fa;
+                border: 1px solid #e0e0e0;
+                padding: 15px;
+                border-radius: 6px;
+                margin-bottom: 20px;
+            }
+
+            .grupo-campo {
+                margin: 10px 0;
+                display: flex;
+                flex-direction: column;
+            }
+
+            label {
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: #34495e;
+            }
+
+            input[type="text"], textarea {
+                padding: 10px;
+                border: 1px solid #cccccc;
+                border-radius: 5px;
+                font-size: 0.95em;
+                outline: none;
+                font-family: inherit;
+            }
+
+            textarea {
+                height: 80px;
+                resize: vertical;
+            }
+
+            input[type="text"]:focus, textarea:focus {
+                border-color: #8e44ad;
+            }
+
+            input[type="button"] {
+                padding: 10px 18px;
+                background-color: #8e44ad;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 0.95em;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.2s;
+                margin-top: 5px;
+            }
+
+            input[type="button"]:hover {
+                background-color: #712b8d;
+            }
+
+            .resultado-caja {
+                margin-top: 20px;
+                padding: 15px;
+                border-radius: 6px;
+                font-size: 1.05em;
+                line-height: 1.5;
+            }
+
+            .resultado-correcto {
+                background-color: #e8f8f5;
+                border-left: 5px solid #27ae60;
+                color: #1e8449;
+            }
+
+            .resultado-incorrecto {
+                background-color: #fef9e7;
+                border-left: 5px solid #f39c12;
+                color: #7e5109;
+            }
+
+            .lista-sugerencias {
+                margin-top: 10px;
+                padding-left: 20px;
+            }
+
+            .sugerencia-item {
+                font-weight: bold;
+                color: #8e44ad;
+            }
+
+            footer {
+                margin-top: 20px;
+            }
+
+            footer a {
+                color: #8e44ad;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            footer a:hover {
+                text-decoration: underline;
+            }
+        </style>
+        <script>
+            // Diccionario por defecto (listaDePalabras)
+            var listaDePalabras = [
+                "predeterminado", "cumpleaños", "útil", "computadora",
+                "javascript", "desarrollo", "sistema", "programación",
+                "algoritmo", "diccionario", "teclado", "sugerencia"
+            ];
+
+            // Mapeo simplificado de teclas adyacentes en distribución QWERTY
+            var teclasAdyacentes = {
+                'a': ['q', 'w', 's', 'z'],
+                'b': ['v', 'g', 'h', 'n'],
+                'c': ['x', 'd', 'f', 'v'],
+                'd': ['s', 'e', 'r', 'f', 'c', 'x'],
+                'e': ['w', 's', 'd', 'r'],
+                'f': ['d', 'r', 't', 'g', 'v', 'c'],
+                'g': ['f', 't', 'y', 'h', 'b', 'v'],
+                'h': ['g', 'y', 'u', 'j', 'n', 'b'],
+                'i': ['u', 'j', 'k', 'o'],
+                'j': ['h', 'u', 'i', 'k', 'm', 'n'],
+                'k': ['j', 'i', 'o', 'l'],
+                'l': ['k', 'o', 'p', 'ñ'],
+                'm': ['n', 'j', 'k'],
+                'n': ['b', 'h', 'j', 'm'],
+                'ñ': ['l', 'p'],
+                'o': ['i', 'k', 'l', 'p'],
+                'p': ['o', 'l', 'ñ'],
+                'q': ['1', 'a', 'w'],
+                'r': ['e', 'd', 'f', 't'],
+                's': ['a', 'w', 'e', 'd', 'x', 'z'],
+                't': ['r', 'f', 'g', 'y'],
+                'u': ['y', 'h', 'j', 'i'],
+                'v': ['c', 'f', 'g', 'b'],
+                'w': ['q', 'a', 's', 'e'],
+                'x': ['z', 's', 'd', 'c'],
+                'y': ['t', 'g', 'h', 'u'],
+                'z': ['a', 's', 'x']
+            };
+
+            function actualizarDiccionarioDesdeInput() {
+                var textoArea = document.getElementById("diccionarioInput").value.trim();
+                if (textoArea !== "") {
+                    var palabrasIngresadas = textoArea.split(/[\n,]+/).map(p => p.trim().toLowerCase()).filter(p => p.length > 0);
+                    listaDePalabras = Array.from(new Set(palabrasIngresadas));
+                    document.getElementById("contadorDiccionario").innerText = listaDePalabras.length;
+                    alert("Diccionario actualizado correctamente con " + listaDePalabras.length + " palabras.");
+                }
+            }
+
+            function verificarOrtografia() {
+                var palabraBusqueda = document.getElementById("palabraInput").value.trim().toLowerCase();
+
+                if (palabraBusqueda === "") {
+                    alert("Por favor, ingrese una palabra para comprobar.");
+                    return;
+                }
+
+                // 1. Verificación directa en listaDePalabras
+                if (listaDePalabras.indexOf(palabraBusqueda) !== -1) {
+                    mostrarResultado("<div class='resultado-caja resultado-correcto'><strong>✔ La palabra '" + palabraBusqueda + "' está escrita correctamente.</strong></div>");
+                    return;
+                }
+
+                // 2. Si no se encuentra, buscar sugerencias
+                var sugerencias = generarSugerencias(palabraBusqueda);
+
+                var htmlResultado = "<div class='resultado-caja resultado-incorrecto'>" +
+                    "<strong>✘ La palabra '" + palabraBusqueda + "' no está escrita correctamente.</strong>";
+
+                if (sugerencias.length > 0) {
+                    htmlResultado += "<p style='margin-bottom: 5px;'>¿Quiso decir?</p><ul class='lista-sugerencias'>";
+                    for (var i = 0; i < sugerencias.length; i++) {
+                        htmlResultado += "<li><span class='sugerencia-item'>\"" + sugerencias[i] + "\"</span></li>";
+                    }
+                    htmlResultado += "</ul>";
+                } else {
+                    htmlResultado += "<p>No se encontraron sugerencias cercanas en el diccionario actual.</p>";
+                }
+
+                htmlResultado += "</div>";
+                mostrarResultado(htmlResultado);
+            }
+
+            function generarSugerencias(palabra) {
+                var candidatos = new Set();
+
+                // Prueba A: Transposiciones de letras adyacentes
+                for (var i = 0; i < palabra.length - 1; i++) {
+                    var arr = palabra.split("");
+                    var temp = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = temp;
+                    var palabraTranspuesta = arr.join("");
+                    if (listaDePalabras.indexOf(palabraTranspuesta) !== -1) {
+                        candidatos.add(palabraTranspuesta);
+                    }
+                }
+
+                // Prueba B: Reemplazo de letras dobles repetidas
+                var palabraSinDobles = palabra.replace(/(.)\1+/g, "$1");
+                if (listaDePalabras.indexOf(palabraSinDobles) !== -1) {
+                    candidatos.add(palabraSinDobles);
+                }
+
+                // Prueba C: Reemplazo de caracteres por teclas adyacentes
+                for (var j = 0; j < palabra.length; j++) {
+                    var charActual = palabra.charAt(j);
+                    var vecinas = teclasAdyacentes[charActual] || [];
+                    for (var k = 0; k < vecinas.length; k++) {
+                        var palabraVecina = palabra.substring(0, j) + vecinas[k] + palabra.substring(j + 1);
+                        if (listaDePalabras.indexOf(palabraVecina) !== -1) {
+                            candidatos.add(palabraVecina);
+                        }
+                    }
+                }
+
+                // Prueba D: Omisión de una letra (falta un carácter)
+                for (var m = 0; m < palabra.length; m++) {
+                    var palabraOmitida = palabra.substring(0, m) + palabra.substring(m + 1);
+                    if (listaDePalabras.indexOf(palabraOmitida) !== -1) {
+                        candidatos.add(palabraOmitida);
+                    }
+                }
+
+                return Array.from(candidatos);
+            }
+
+            function mostrarResultado(contenidoHtml) {
+                document.getElementById("contenedorResultado").innerHTML = contenidoHtml;
+            }
+
+            function cargarDiccionarioInicial() {
+                document.getElementById("diccionarioInput").value = listaDePalabras.join("\n");
+                document.getElementById("contadorDiccionario").innerText = listaDePalabras.length;
+            }
+
+            function iniciar() {
+                cargarDiccionarioInicial();
+                document.getElementById("btnVerificar").addEventListener("click", verificarOrtografia, false);
+                document.getElementById("btnActualizarDiccionario").addEventListener("click", actualizarDiccionarioDesdeInput, false);
+            }
+
+            window.addEventListener("load", iniciar, false);
+        </script>
+    </head>
+    <body>
+        <main>
+            <h2>Proyecto 11.27: Corrector Ortográfico</h2>
+            <p>Comprueba la ortografía de una palabra contra el diccionario de la aplicación:</p>
+
+            <div class="seccion-diccionario">
+                <label for="diccionarioInput">Diccionario (<code>listaDePalabras</code> - <span id="contadorDiccionario">0</span> palabras):</label>
+                <textarea id="diccionarioInput" placeholder="Ingrese las palabras separadas por comas o saltos de línea..."></textarea>
+                <input type="button" id="btnActualizarDiccionario" value="Actualizar Diccionario">
+            </div>
+
+            <form action="#" onsubmit="verificarOrtografia(); return false;">
+                <div class="grupo-campo">
+                    <label for="palabraInput">Introduzca una palabra a comprobar:</label>
+                    <input type="text" id="palabraInput" placeholder="Ej: perdeterminado, cunpleaños, úttil..." required>
+                </div>
+
+                <input type="button" id="btnVerificar" value="Comprobar Ortografía">
+            </form>
+
+            <div id="contenedorResultado"></div>
+        </main>
+
+        <footer>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

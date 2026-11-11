@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 11.15: CadenasConB.html
+     Filtrado e impresión de cadenas que comienzan con el carácter 'b' -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Filtrador de Cadenas con B</title>
+        <style type="text/css">
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f4f7f6;
+                color: #333;
+                margin: 0;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            main {
+                background-color: #ffffff;
+                padding: 25px 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                max-width: 600px;
+                width: 100%;
+            }
+
+            h2 {
+                color: #2c3e50;
+                margin-top: 0;
+                border-bottom: 2px solid #27ae60;
+                padding-bottom: 8px;
+            }
+
+            p {
+                color: #666;
+                font-size: 0.95em;
+            }
+
+            .grupo-campo {
+                margin-bottom: 15px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            label {
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: #34495e;
+            }
+
+            textarea#entradasTextarea {
+                width: 100%;
+                height: 120px;
+                padding: 10px;
+                border: 1px solid #cccccc;
+                border-radius: 5px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 0.95em;
+                outline: none;
+                resize: vertical;
+                box-sizing: border-box;
+            }
+
+            textarea#entradasTextarea:focus {
+                border-color: #27ae60;
+            }
+
+            input[type="button"] {
+                width: 100%;
+                padding: 12px;
+                background-color: #27ae60;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 1em;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.2s;
+                margin: 10px 0 15px 0;
+            }
+
+            input[type="button"]:hover {
+                background-color: #219653;
+            }
+
+            textarea#salidaTextarea {
+                width: 100%;
+                height: 200px;
+                font-family: 'Consolas', 'Courier New', monospace;
+                font-size: 0.95em;
+                background-color: #1e1e1e;
+                color: #2ecc71;
+                padding: 12px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                resize: vertical;
+                box-sizing: border-box;
+            }
+
+            footer {
+                margin-top: 20px;
+            }
+
+            footer a {
+                color: #27ae60;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            footer a:hover {
+                text-decoration: underline;
+            }
+        </style>
+        <script>
+            function filtrarCadenas() {
+                var textoEntrada = document.getElementById("entradasTextarea").value;
+
+                if (textoEntrada.trim() === "") {
+                    alert("Por favor, ingrese una serie de cadenas.");
+                    return;
+                }
+
+                // Dividir la entrada por saltos de línea o comas para obtener el arreglo de palabras/cadenas
+                var lineas = textoEntrada.split(/[\n,]+/);
+                var coincidencias = [];
+
+                // Iterar sobre cada cadena ingresada
+                for (var i = 0; i < lineas.length; i++) {
+                    var cadena = lineas[i].trim();
+
+                    // Verificar si la cadena no está vacía y comienza con 'b' o 'B'
+                    if (cadena.length > 0 && (cadena.charAt(0) === 'b' || cadena.charAt(0) === 'B')) {
+                        coincidencias.push(cadena);
+                    }
+                }
+
+                // Construir el reporte para el textarea de salida
+                var reporte = "=========================================\n";
+                reporte += " CADENAS QUE COMIENZAN CON 'b' / 'B'\n";
+                reporte += "=========================================\n\n";
+
+                if (coincidencias.length > 0) {
+                    for (var j = 0; j < coincidencias.length; j++) {
+                        reporte += (j + 1) + ". " + coincidencias[j] + "\n";
+                    }
+                    reporte += "\nTotal de coincidencias encontradas: " + coincidencias.length;
+                } else {
+                    reporte += "No se encontraron cadenas que comiencen con la letra 'b'.";
+                }
+
+                document.getElementById("salidaTextarea").value = reporte;
+            }
+
+            function iniciar() {
+                document.getElementById("btnFiltrar").addEventListener("click", filtrarCadenas, false);
+            }
+
+            window.addEventListener("load", iniciar, false);
+        </script>
+    </head>
+    <body>
+        <main>
+            <h2>Filtrador de Cadenas por Letra Inicial</h2>
+            <p>Ingrese varias palabras o cadenas (separadas por saltos de línea o comas) para filtrar aquellas que comiencen con la letra <strong>"b"</strong>:</p>
+
+            <form action="#" onsubmit="filtrarCadenas(); return false;">
+                <div class="grupo-campo">
+                    <label for="entradasTextarea">Serie de cadenas de entrada:</label>
+                    <textarea id="entradasTextarea" placeholder="Ejemplo:&#10;barco&#10;casa&#10;bicicleta&#10;perro&#10;balón" required></textarea>
+                </div>
+
+                <input type="button" id="btnFiltrar" value="Filtrar Cadenas">
+            </form>
+
+            <label for="salidaTextarea"><strong>Resultado del filtrado:</strong></label>
+            <textarea id="salidaTextarea" readonly wrap="off"></textarea>
+        </main>
+
+        <footer>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejemplos</a></p>
+        </footer>
+    </body>
+</html>

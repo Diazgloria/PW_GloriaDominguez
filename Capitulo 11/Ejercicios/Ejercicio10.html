@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 11.10: ExtraerTelefono.html
+     Separación de código de área y número telefónico de 7 dígitos usando String.split() -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Extractor de Número Telefónico</title>
+        <style type="text/css">
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f4f7f6;
+                color: #333;
+                margin: 0;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            main {
+                background-color: #ffffff;
+                padding: 25px 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                max-width: 550px;
+                width: 100%;
+            }
+
+            h2 {
+                color: #2c3e50;
+                margin-top: 0;
+                border-bottom: 2px solid #2980b9;
+                padding-bottom: 8px;
+            }
+
+            p {
+                color: #666;
+                font-size: 0.95em;
+            }
+
+            .grupo-campo {
+                margin-bottom: 15px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            label {
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: #34495e;
+            }
+
+            input[type="text"] {
+                padding: 10px;
+                border: 1px solid #cccccc;
+                border-radius: 5px;
+                font-size: 1em;
+                outline: none;
+            }
+
+            input[type="text"]:focus {
+                border-color: #2980b9;
+            }
+
+            input[readonly] {
+                background-color: #f8f9fa;
+                color: #2c3e50;
+                font-weight: bold;
+            }
+
+            input[type="button"] {
+                width: 100%;
+                padding: 12px;
+                background-color: #2980b9;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 1em;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.2s;
+                margin: 10px 0 20px 0;
+            }
+
+            input[type="button"]:hover {
+                background-color: #1b4f72;
+            }
+
+            .resultado-seccion {
+                border-top: 2px dashed #e0e0e0;
+                padding-top: 15px;
+            }
+
+            footer {
+                margin-top: 20px;
+            }
+
+            footer a {
+                color: #2980b9;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            footer a:hover {
+                text-decoration: underline;
+            }
+        </style>
+        <script>
+            function procesarTelefono() {
+                var telefonoInput = document.getElementById("telefono").value.trim();
+
+                // Validar que la cadena cumpla aproximadamente el formato (555)555-5555
+                if (telefonoInput === "" || !telefonoInput.includes(")") || !telefonoInput.includes("-")) {
+                    alert("Por favor, ingrese un número en el formato requerido: (555)555-5555");
+                    return;
+                }
+
+                // 1. Usar split con ')' para separar el código de área del resto
+                var partesIniciales = telefonoInput.split(")");
+                
+                // Remover el paréntesis de apertura del código de área
+                var codigoArea = partesIniciales[0].replace("(", "");
+
+                // 2. Usar split con '-' en la segunda parte para separar los 3 y 4 dígitos
+                var restoTelefono = partesIniciales[1].split("-");
+                var primerosTres = restoTelefono[0];
+                var ultimosCuatro = restoTelefono[1];
+
+                // Concatenar los 7 dígitos del número telefónico
+                var numeroSieteDigitos = primerosTres + " " + ultimosCuatro;
+
+                // Asignar los tokens a sus respectivos campos de texto
+                document.getElementById("codigoArea").value = codigoArea;
+                document.getElementById("numeroSiete").value = numeroSieteDigitos;
+            }
+
+            function iniciar() {
+                document.getElementById("btnProcesar").addEventListener("click", procesarTelefono, false);
+            }
+
+            window.addEventListener("load", iniciar, false);
+        </script>
+    </head>
+    <body>
+        <main>
+            <h2>Extractor de Número Telefónico</h2>
+            <p>Ingrese un número telefónico en el formato <strong>(555)555-5555</strong> para descomponerlo en tokens:</p>
+
+            <form action="#" onsubmit="procesarTelefono(); return false;">
+                <div class="grupo-campo">
+                    <label for="telefono">Número Telefónico:</label>
+                    <input type="text" id="telefono" placeholder="(555)555-5555" required>
+                </div>
+
+                <input type="button" id="btnProcesar" value="Extraer Tokens">
+
+                <div class="resultado-seccion">
+                    <div class="grupo-campo">
+                        <label for="codigoArea">Código de Área:</label>
+                        <input type="text" id="codigoArea" readonly placeholder="Token 1">
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label for="numeroSiete">Número Telefónico (7 dígitos):</label>
+                        <input type="text" id="numeroSiete" readonly placeholder="Token 2 y 3">
+                    </div>
+                </div>
+            </form>
+        </main>
+
+        <footer>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

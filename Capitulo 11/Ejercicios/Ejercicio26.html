@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 11.26: ConversionMetrica.html
+     Programa de conversión métrica inteligente que interpreta preguntas en lenguaje natural y valida la compatibilidad de magnitudes -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Programa de Conversión Métrica</title>
+        <style type="text/css">
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f4f7f6;
+                color: #333;
+                margin: 0;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            main {
+                background-color: #ffffff;
+                padding: 25px 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                max-width: 650px;
+                width: 100%;
+            }
+
+            h2 {
+                color: #2c3e50;
+                margin-top: 0;
+                border-bottom: 2px solid #2980b9;
+                padding-bottom: 8px;
+            }
+
+            p {
+                color: #666;
+                font-size: 0.95em;
+                line-height: 1.4;
+            }
+
+            .ejemplos {
+                background-color: #ebf5fb;
+                padding: 10px 15px;
+                border-radius: 6px;
+                font-size: 0.9em;
+                margin-bottom: 15px;
+                border-left: 4px solid #2980b9;
+            }
+
+            .grupo-campo {
+                margin: 15px 0;
+                display: flex;
+                flex-direction: column;
+            }
+
+            label {
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: #34495e;
+            }
+
+            input[type="text"] {
+                padding: 10px;
+                border: 1px solid #cccccc;
+                border-radius: 5px;
+                font-size: 1em;
+                outline: none;
+            }
+
+            input[type="text"]:focus {
+                border-color: #2980b9;
+            }
+
+            input[type="button"] {
+                width: 100%;
+                padding: 12px;
+                background-color: #2980b9;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 1em;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.2s;
+                margin-top: 10px;
+            }
+
+            input[type="button"]:hover {
+                background-color: #1f618d;
+            }
+
+            .resultado-caja {
+                margin-top: 20px;
+                padding: 15px;
+                border-radius: 6px;
+                font-size: 1.05em;
+                line-height: 1.5;
+            }
+
+            .resultado-exito {
+                background-color: #e8f8f5;
+                border-left: 5px solid #27ae60;
+                color: #1e8449;
+            }
+
+            .resultado-error {
+                background-color: #fadbd8;
+                border-left: 5px solid #e74c3c;
+                color: #78281f;
+            }
+
+            footer {
+                margin-top: 20px;
+            }
+
+            footer a {
+                color: #2980b9;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            footer a:hover {
+                text-decoration: underline;
+            }
+        </style>
+        <script>
+            // Factores de conversión referenciados al SI (metro, kilogramo, litro)
+            var factoresSI = {
+                // Longitud (base: metros)
+                "metro": 1, "metros": 1, "m": 1,
+                "centimetro": 0.01, "centimetros": 0.01, "cm": 0.01,
+                "pulgada": 0.0254, "pulgadas": 0.0254, "in": 0.0254,
+                "pie": 0.3048, "pies": 0.3048, "ft": 0.3048,
+                "yarda": 0.9144, "yardas": 0.9144,
+                "kilometro": 1000, "kilometros": 1000, "km": 1000,
+                "milla": 1609.34, "millas": 1609.34,
+
+                // Masa (base: kilogramos)
+                "kilogramo": 1, "kilogramos": 1, "kg": 1, "kilo": 1, "kilos": 1,
+                "gramo": 0.001, "gramos": 0.001, "g": 0.001,
+                "libra": 0.453592, "libras": 0.453592, "lb": 0.453592,
+                "onza": 0.0283495, "onzas": 0.0283495, "oz": 0.0283495,
+
+                // Volumen (base: litros)
+                "litro": 1, "litros": 1, "l": 1,
+                "mililitro": 0.001, "mililitros": 0.001, "ml": 0.001,
+                "cuarto": 0.946353, "cuartos": 0.946353, // Cuarto de galón
+                "galon": 3.78541, "galones": 3.78541
+            };
+
+            // Clasificación por categorías de magnitudes
+            var categorias = {
+                "longitud": ["metro", "metros", "m", "centimetro", "centimetros", "cm", "pulgada", "pulgadas", "in", "pie", "pies", "ft", "yarda", "yardas", "kilometro", "kilometros", "km", "milla", "millas"],
+                "masa": ["kilogramo", "kilogramos", "kg", "kilo", "kilos", "gramo", "gramos", "g", "libra", "libras", "lb", "onza", "onzas"],
+                "volumen": ["litro", "litros", "l", "mililitro", "mililitros", "ml", "cuarto", "cuartos", "galon", "galones"]
+            };
+
+            function obtenerCategoria(unidad) {
+                for (var cat in categorias) {
+                    if (categorias[cat].indexOf(unidad) !== -1) {
+                        return cat;
+                    }
+                }
+                return null;
+            }
+
+            function procesarPregunta() {
+                var preguntaOriginal = document.getElementById("preguntaInput").value.trim();
+
+                if (preguntaOriginal === "") {
+                    alert("Por favor, ingrese una pregunta de conversión.");
+                    return;
+                }
+
+                // Normalizar entrada (minusculas, sin signos de interrogación ni tildes para fácil matching)
+                var textoLimpio = preguntaOriginal.toLowerCase()
+                    .replace(/[¿?¡!]/g, "")
+                    .replace(/á/g, "a").replace(/é/g, "e").replace(/í/g, "i").replace(/ó/g, "o").replace(/ú/g, "u");
+
+                // Extraer el número de la pregunta
+                var numeroMatch = textoLimpio.match(/\d+(\.\d+)?/);
+
+                if (!numeroMatch) {
+                    mostrarResultado("No se encontró ningún valor numérico en la pregunta.", false);
+                    return;
+                }
+
+                var valor = parseFloat(numeroMatch[0]);
+
+                // Tokenizar palabras
+                var palabras = textoLimpio.split(/\s+/);
+                var unidadesEncontradas = [];
+
+                for (var i = 0; i < palabras.length; i++) {
+                    var pal = palabras[i];
+                    if (factoresSI[pal]) {
+                        unidadesEncontradas.push(pal);
+                    }
+                }
+
+                if (unidadesEncontradas.length < 2) {
+                    mostrarResultado("No se identificaron claramente las dos unidades para realizar la conversión.", false);
+                    return;
+                }
+
+                // Unidad objetivo (la primera mencionada en la pregunta) y unidad origen (la que acompaña al número)
+                var unidadDestino = unidadesEncontradas[0];
+                var unidadOrigen = unidadesEncontradas[1];
+
+                var catOrigen = obtenerCategoria(unidadOrigen);
+                var catDestino = obtenerCategoria(unidadDestino);
+
+                // Validar si pertenecen a la misma magnitud física
+                if (catOrigen !== catDestino) {
+                    mostrarResultado("<strong>Conversión inválida:</strong> No se puede convertir de <em>'" + unidadOrigen + "'</em> (" + catOrigen + ") a <em>'" + unidadDestino + "'</em> (" + catDestino + "). Las unidades pertenecen a magnitudes distintas.", false);
+                    return;
+                }
+
+                // Realizar la conversión usando la unidad base del SI
+                var enBaseSI = valor * factoresSI[unidadOrigen];
+                var resultadoFinal = enBaseSI / factoresSI[unidadDestino];
+
+                var mensajeExito = "<strong>Resultado de la conversión:</strong><br>" +
+                    valor + " " + unidadOrigen + " equivalen a <strong>" + resultadoFinal.toFixed(4) + " " + unidadDestino + "</strong>.";
+
+                mostrarResultado(mensajeExito, true);
+            }
+
+            function mostrarResultado(mensaje, esExito) {
+                var contenedor = document.getElementById("contenedorResultado");
+                var claseCSS = esExito ? "resultado-exito" : "resultado-error";
+                contenedor.innerHTML = "<div class='resultado-caja " + claseCSS + "'>" + mensaje + "</div>";
+            }
+
+            function iniciar() {
+                document.getElementById("btnConvertir").addEventListener("click", procesarPregunta, false);
+            }
+
+            window.addEventListener("load", iniciar, false);
+        </script>
+    </head>
+    <body>
+        <main>
+            <h2>Programa de Conversión Métrica</h2>
+            <p>Escriba una pregunta de conversión en lenguaje natural para obtener el resultado automáticamente:</p>
+
+            <div class="ejemplos">
+                <strong>Ejemplos válidos:</strong>
+                <ul>
+                    <li>¿Cuántas pulgadas hay en 2 metros?</li>
+                    <li>¿Cuántos litros hay en 10 cuartos?</li>
+                </ul>
+                <strong>Ejemplo de conversión inválida:</strong>
+                <ul>
+                    <li>¿Cuántos pies hay en 5 kilogramos?</li>
+                </ul>
+            </div>
+
+            <form action="#" onsubmit="procesarPregunta(); return false;">
+                <div class="grupo-campo">
+                    <label for="preguntaInput">Pregunta de conversión:</label>
+                    <input type="text" id="preguntaInput" placeholder="Ej: ¿Cuántas pulgadas hay en 2 metros?" required>
+                </div>
+
+                <input type="button" id="btnConvertir" value="Analizar y Convertir">
+            </form>
+
+            <div id="contenedorResultado"></div>
+        </main>
+
+        <footer>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

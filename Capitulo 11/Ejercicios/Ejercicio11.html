@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 11.11: TokensInversos.html
+     División de una línea de texto en tokens mediante String.split e impresión en orden inverso -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Tokens en Orden Inverso</title>
+        <style type="text/css">
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f4f7f6;
+                color: #333;
+                margin: 0;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            main {
+                background-color: #ffffff;
+                padding: 25px 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                max-width: 600px;
+                width: 100%;
+            }
+
+            h2 {
+                color: #2c3e50;
+                margin-top: 0;
+                border-bottom: 2px solid #e74c3c;
+                padding-bottom: 8px;
+            }
+
+            p {
+                color: #666;
+                font-size: 0.95em;
+            }
+
+            .grupo-campo {
+                margin: 15px 0;
+                display: flex;
+                gap: 10px;
+            }
+
+            input[type="text"] {
+                flex: 1;
+                padding: 10px;
+                border: 1px solid #cccccc;
+                border-radius: 5px;
+                font-size: 1em;
+                outline: none;
+            }
+
+            input[type="text"]:focus {
+                border-color: #e74c3c;
+            }
+
+            input[type="button"] {
+                padding: 10px 20px;
+                background-color: #e74c3c;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 1em;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.2s;
+            }
+
+            input[type="button"]:hover {
+                background-color: #c0392b;
+            }
+
+            textarea {
+                width: 100%;
+                height: 220px;
+                font-family: 'Consolas', 'Courier New', monospace;
+                font-size: 0.95em;
+                background-color: #1e1e1e;
+                color: #f39c12;
+                padding: 12px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                resize: vertical;
+                box-sizing: border-box;
+                margin-top: 10px;
+            }
+
+            footer {
+                margin-top: 20px;
+            }
+
+            footer a {
+                color: #e74c3c;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            footer a:hover {
+                text-decoration: underline;
+            }
+        </style>
+        <script>
+            function invertirTokens() {
+                var campoEntrada = document.getElementById("textoInput");
+                var texto = campoEntrada.value.trim();
+
+                if (texto === "") {
+                    alert("Por favor, ingrese una línea de texto.");
+                    return;
+                }
+
+                // 1. Dividir la cadena en tokens usando split con el espacio como delimitador
+                var tokens = texto.split(/\s+/);
+
+                // 2. Invertir el orden de los tokens en el arreglo
+                var tokensInvertidos = tokens.reverse();
+
+                // 3. Formatear la salida para presentar cada token
+                var resultado = "Texto original: \"" + texto + "\"\n";
+                resultado += "--------------------------------------------------\n";
+                resultado += "Tokens en orden inverso:\n\n";
+
+                for (var i = 0; i < tokensInvertidos.length; i++) {
+                    resultado += "Token [" + (i + 1) + "]: " + tokensInvertidos[i] + "\n";
+                }
+
+                resultado += "\nLínea reconstruida al revés:\n" + tokensInvertidos.join(" ");
+
+                // Mostrar el resultado en el textarea
+                document.getElementById("salidaTextarea").value = resultado;
+            }
+
+            function iniciar() {
+                document.getElementById("btnInvertir").addEventListener("click", invertirTokens, false);
+            }
+
+            window.addEventListener("load", iniciar, false);
+        </script>
+    </head>
+    <body>
+        <main>
+            <h2>Inversor de Tokens de Texto</h2>
+            <p>Ingrese una frase para dividirla en palabras y mostrarlas en orden inverso:</p>
+
+            <form action="#" onsubmit="invertirTokens(); return false;">
+                <div class="grupo-campo">
+                    <input type="text" id="textoInput" placeholder="Ej: Aprender JavaScript es divertido" required>
+                    <input type="button" id="btnInvertir" value="Invertir Tokens">
+                </div>
+            </form>
+
+            <label for="salidaTextarea"><strong>Resultado:</strong></label>
+            <textarea id="salidaTextarea" readonly wrap="off"></textarea>
+        </main>
+
+        <footer>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

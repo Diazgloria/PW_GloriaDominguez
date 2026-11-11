@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<!-- Fig. 10.15: Ordenar.html (Unificado para Ejemplo13.html) -->
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>El método sort de Array</title>
+      <style>
+         body {
+            font-family: Arial, sans-serif;
+         }
+         h1 {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 1.8em;
+         }
+         p {
+            margin: 6px 0;
+         }
+      </style>
+      <script>
+         function iniciar()
+         {
+            var a = [ 10, 1, 9, 2, 8, 3, 7, 4, 6, 5 ];
+
+            imprimirArreglo( "Elementos de datos en el orden original: ", a,
+               document.getElementById( "arregloOriginal" ) );
+            a.sort( compararEnteros );
+            imprimirArreglo( "Elementos de datos en orden ascendente: ", a,
+               document.getElementById( "arregloOrdenado" ) );
+         }
+
+         function imprimirArreglo( encabezado, elArreglo, salida )
+         {
+            salida.innerHTML = encabezado + elArreglo.join( " " );
+         }
+
+         function compararEnteros( valor1, valor2 )
+         {
+            return parseInt( valor1 ) - parseInt( valor2 );
+         }
+
+         window.addEventListener( "load", iniciar, false );
+      </script>
+   </head>
+   <body>
+      <h1>Ordenar un arreglo</h1>
+      <p id="arregloOriginal"></p>
+      <p id="arregloOrdenado"></p>
+
+      <footer>
+        <p><a href="lista_ejemplos.html">Regresar a la lista de ejemplos</a></p>
+      </footer>
+   </body>
+</html>

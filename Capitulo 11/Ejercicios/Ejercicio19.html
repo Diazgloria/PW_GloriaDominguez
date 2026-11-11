@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 11.19: MiIndexOf.html
+     Implementación propia del método indexOf mediante ciclos en JavaScript -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Mi propia versión de indexOf</title>
+        <style type="text/css">
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f4f7f6;
+                color: #333;
+                margin: 0;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            main {
+                background-color: #ffffff;
+                padding: 25px 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                max-width: 600px;
+                width: 100%;
+            }
+
+            h2 {
+                color: #2c3e50;
+                margin-top: 0;
+                border-bottom: 2px solid #27ae60;
+                padding-bottom: 8px;
+            }
+
+            p {
+                color: #666;
+                font-size: 0.95em;
+            }
+
+            .grupo-campo {
+                margin-bottom: 15px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            label {
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: #34495e;
+            }
+
+            input[type="text"], input[type="number"] {
+                padding: 10px;
+                border: 1px solid #cccccc;
+                border-radius: 5px;
+                font-size: 1em;
+                outline: none;
+            }
+
+            input[type="text"]:focus, input[type="number"]:focus {
+                border-color: #27ae60;
+            }
+
+            input[type="button"] {
+                width: 100%;
+                padding: 12px;
+                background-color: #27ae60;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 1em;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.2s;
+                margin-top: 10px;
+            }
+
+            input[type="button"]:hover {
+                background-color: #219653;
+            }
+
+            .resultado-caja {
+                margin-top: 20px;
+                padding: 15px;
+                background-color: #f8f9fa;
+                border-radius: 6px;
+                border-left: 5px solid #27ae60;
+            }
+
+            footer {
+                margin-top: 20px;
+            }
+
+            footer a {
+                color: #27ae60;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            footer a:hover {
+                text-decoration: underline;
+            }
+        </style>
+        <script>
+            // Implementación propia del método indexOf
+            function miIndexOf(cadena, subcadena, inicio) {
+                if (inicio === undefined || inicio < 0) {
+                    inicio = 0;
+                }
+
+                var lenCadena = cadena.length;
+                var lenSub = subcadena.length;
+
+                if (lenSub === 0) return inicio <= lenCadena ? inicio : lenCadena;
+
+                for (var i = inicio; i <= lenCadena - lenSub; i++) {
+                    var coincidencia = true;
+
+                    for (var j = 0; j < lenSub; j++) {
+                        if (cadena.charAt(i + j) !== subcadena.charAt(j)) {
+                            coincidencia = false;
+                            break;
+                        }
+                    }
+
+                    if (coincidencia) {
+                        return i; // Se encontró la subcadena en el índice i
+                    }
+                }
+
+                return -1; // No se encontró
+            }
+
+            function probarMiIndexOf() {
+                var texto = document.getElementById("textoInput").value;
+                var subcadena = document.getElementById("subcadenaInput").value;
+                var inicioPos = parseInt(document.getElementById("inicioInput").value, 10) || 0;
+
+                if (texto === "" || subcadena === "") {
+                    alert("Por favor, llene los campos de texto y subcadena.");
+                    return;
+                }
+
+                var resultadoPropio = miIndexOf(texto, subcadena, inicioPos);
+                var resultadoNativo = texto.indexOf(subcadena, inicioPos);
+
+                var html = "<div class='resultado-caja'>" +
+                    "<p><strong>Resultado con miIndexOf():</strong> " + resultadoPropio + "</p>" +
+                    "<p><strong>Resultado con String.indexOf() nativo:</strong> " + resultadoNativo + "</p>" +
+                    "<p><em>" + (resultadoPropio === resultadoNativo ? "✔ ¡Ambos métodos coinciden!" : "✘ Los métodos difieren.") + "</em></p>" +
+                    "</div>";
+
+                document.getElementById("contenedorResultado").innerHTML = html;
+            }
+
+            function iniciar() {
+                document.getElementById("btnBuscar").addEventListener("click", probarMiIndexOf, false);
+            }
+
+            window.addEventListener("load", iniciar, false);
+        </script>
+    </head>
+    <body>
+        <main>
+            <h2>Búsqueda Personalizada: <code>miIndexOf()</code></h2>
+            <p>Pruebe la implementación propia del método de búsqueda en cadenas:</p>
+
+            <form action="#" onsubmit="probarMiIndexOf(); return false;">
+                <div class="grupo-campo">
+                    <label for="textoInput">Texto completo:</label>
+                    <input type="text" id="textoInput" placeholder="Ej: Programación en JavaScript" required>
+                </div>
+
+                <div class="grupo-campo">
+                    <label for="subcadenaInput">Subcadena a buscar:</label>
+                    <input type="text" id="subcadenaInput" placeholder="Ej: cion" required>
+                </div>
+
+                <div class="grupo-campo">
+                    <label for="inicioInput">Posición de inicio (opcional):</label>
+                    <input type="number" id="inicioInput" value="0" min="0">
+                </div>
+
+                <input type="button" id="btnBuscar" value="Buscar Posición">
+            </form>
+
+            <div id="contenedorResultado"></div>
+        </main>
+
+        <footer>
+            <p><a href="lista_ejemplos.html">Regresar a la lista de ejemplos</a></p>
+        </footer>
+    </body>
+</html>

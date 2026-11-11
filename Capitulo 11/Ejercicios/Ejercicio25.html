@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 11.25: Ejercicio25.html
+     Conversión de un monto numérico de cheque a su equivalente en palabras en español -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Monto de Cheque en Palabras</title>
+        <style type="text/css">
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f4f7f6;
+                color: #333;
+                margin: 0;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            main {
+                background-color: #ffffff;
+                padding: 25px 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                max-width: 600px;
+                width: 100%;
+            }
+
+            h2 {
+                color: #2c3e50;
+                margin-top: 0;
+                border-bottom: 2px solid #2980b9;
+                padding-bottom: 8px;
+            }
+
+            p {
+                color: #666;
+                font-size: 0.95em;
+            }
+
+            .grupo-campo {
+                margin: 15px 0;
+                display: flex;
+                flex-direction: column;
+            }
+
+            label {
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: #34495e;
+            }
+
+            input[type="number"] {
+                padding: 10px;
+                border: 1px solid #cccccc;
+                border-radius: 5px;
+                font-size: 1em;
+                outline: none;
+            }
+
+            input[type="number"]:focus {
+                border-color: #2980b9;
+            }
+
+            input[type="button"] {
+                width: 100%;
+                padding: 12px;
+                background-color: #2980b9;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 1em;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.2s;
+                margin-top: 10px;
+            }
+
+            input[type="button"]:hover {
+                background-color: #1f618d;
+            }
+
+            .cheque-resultado {
+                background-color: #f8f9fa;
+                border: 2px dashed #2980b9;
+                border-radius: 8px;
+                padding: 20px;
+                margin-top: 20px;
+            }
+
+            .monto-numerico {
+                font-size: 1.1em;
+                font-weight: bold;
+                color: #2c3e50;
+                margin-bottom: 10px;
+            }
+
+            .monto-letras {
+                font-family: 'Georgia', serif;
+                font-size: 1.15em;
+                font-weight: bold;
+                color: #16a085;
+                background-color: #ffffff;
+                padding: 12px;
+                border: 1px solid #bdc3c7;
+                border-radius: 4px;
+                word-break: break-word;
+            }
+
+            footer {
+                margin-top: 20px;
+            }
+
+            footer a {
+                color: #2980b9;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            footer a:hover {
+                text-decoration: underline;
+            }
+        </style>
+        <script>
+            var unidades = ["", "UN", "DOS", "TRES", "CUATRO", "CINCO", "SEIS", "SIETE", "OCHO", "NUEVE"];
+            var decenas = ["", "DIEZ", "VEINTE", "TREINTA", "CUARENTA", "CINCUENTA", "SESENTA", "SETENTA", "OCHENTA", "NOVENTA"];
+            var especiales = {
+                11: "ONCE", 12: "DOCE", 13: "TRECE", 14: "CATORCE", 15: "QUINCE",
+                16: "DIECISEIS", 17: "DIECISIETE", 18: "DIECIOCHO", 19: "DIECINUEVE",
+                21: "VEINTIUNO", 22: "VEINTIDÓS", 23: "VEINTITRÉS", 24: "VEINTICUATRO",
+                25: "VEINTICINCO", 26: "VEINTISÉIS", 27: "VEINTISIETE", 28: "VEINTIOCHO", 29: "VEINTINUEVE"
+            };
+            var centenas = ["", "CIENTO", "DOSCIENTOS", "TRESCIENTOS", "CUATROCIENTOS", "QUINIENTOS", "SEISCIENTOS", "SETECIENTOS", "OCHOIENTOS", "NOVECIENTOS"];
+
+            function convertirGrupoTresDigitos(n) {
+                if (n === 0) return "";
+                if (n === 100) return "CIEN";
+
+                var c = Math.floor(n / 100);
+                var r = n % 100;
+                var d = Math.floor(r / 10);
+                var u = r % 10;
+
+                var textoCentena = centenas[c];
+                var textoDecena = "";
+
+                if (r > 0) {
+                    if (especiales[r]) {
+                        textoDecena = especiales[r];
+                    } else if (r === 10) {
+                        textoDecena = "DIEZ";
+                    } else if (r === 20) {
+                        textoDecena = "VEINTE";
+                    } else if (d > 2) {
+                        textoDecena = decenas[d] + (u > 0 ? " Y " + unidades[u] : "");
+                    } else if (d === 0) {
+                        textoDecena = unidades[u];
+                    }
+                }
+
+                return (textoCentena + " " + textoDecena).trim();
+            }
+
+            function numeroALetras(monto) {
+                var partes = monto.toFixed(2).split(".");
+                var entero = parseInt(partes[0], 10);
+                var centavos = partes[1];
+
+                if (entero === 0) {
+                    return "CERO CON " + centavos + "/100";
+                }
+
+                var miles = Math.floor(entero / 1000);
+                var unidadesRestantes = entero % 1000;
+
+                var resultado = "";
+
+                if (miles > 0) {
+                    if (miles === 1) {
+                        resultado += "UN MIL ";
+                    } else {
+                        resultado += convertirGrupoTresDigitos(miles) + " MIL ";
+                    }
+                }
+
+                if (unidadesRestantes > 0) {
+                    resultado += convertirGrupoTresDigitos(unidadesRestantes);
+                }
+
+                resultado = resultado.trim();
+
+                return resultado + " CON " + centavos + "/100";
+            }
+
+            function procesarMonto() {
+                var montoInput = document.getElementById("montoInput").value;
+
+                if (montoInput === "" || isNaN(montoInput) || parseFloat(montoInput) < 0) {
+                    alert("Por favor, ingrese un monto numérico válido.");
+                    return;
+                }
+
+                var monto = parseFloat(montoInput);
+
+                if (monto >= 1000000) {
+                    alert("Por favor, ingrese un monto menor a $1,000,000.00.");
+                    return;
+                }
+
+                var textoEnLetras = numeroALetras(monto);
+
+                var htmlResultado = "<div class='cheque-resultado'>" +
+                    "<div class='monto-numerico'>Monto en número: $" + monto.toFixed(2) + "</div>" +
+                    "<div class='monto-letras'>" + textoEnLetras + "</div>" +
+                    "</div>";
+
+                document.getElementById("contenedorResultado").innerHTML = htmlResultado;
+            }
+
+            function iniciar() {
+                document.getElementById("btnConvertir").addEventListener("click", procesarMonto, false);
+            }
+
+            window.addEventListener("load", iniciar, false);
+        </script>
+    </head>
+    <body>
+        <main>
+            <h2>Monto de Cheque en Letras</h2>
+            <p>Ingrese un monto numérico para obtener su representación formal en letras:</p>
+
+            <form action="#" onsubmit="procesarMonto(); return false;">
+                <div class="grupo-campo">
+                    <label for="montoInput">Monto del cheque ($):</label>
+                    <input type="number" id="montoInput" step="0.01" min="0" max="999999.99" placeholder="Ej: 112.43" required>
+                </div>
+
+                <input type="button" id="btnConvertir" value="Convertir a Palabras">
+            </form>
+
+            <div id="contenedorResultado"></div>
+        </main>
+
+        <footer>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

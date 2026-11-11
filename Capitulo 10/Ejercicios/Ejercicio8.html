@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 10.8 - Capítulo 10 -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 10.8 - Capítulo 10</title>
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f9;
+                color: #333333;
+                margin: 20px;
+            }
+
+            h1 {
+                color: #2c3e50;
+                border-bottom: 2px solid #3498db;
+                padding-bottom: 10px;
+            }
+
+            .tarjeta {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            ol {
+                line-height: 1.8;
+            }
+
+            .respuesta {
+                color: #d9534f;
+                font-weight: bold;
+                font-family: monospace;
+            }
+
+            .detalle {
+                margin: 5px 0 10px 0;
+                color: #555555;
+                font-size: 14px;
+            }
+
+            pre {
+                background-color: #f8f9fa;
+                padding: 10px;
+                border-radius: 4px;
+                border-left: 3px solid #3498db;
+                margin: 5px 0;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Ejercicios: Capítulo 10</h1>
+
+        <div class="tarjeta">
+            <h2>10.8 Escriba instrucciones de JavaScript para realizar cada una de las siguientes tareas:</h2>
+
+            <ol type="a">
+                <li>
+                    Mostrar el valor del séptimo elemento del arreglo <code>f</code>.
+                    <div class="detalle">
+                        Respuesta: <span class="respuesta">console.log( f[ 6 ] );</span>
+                    </div>
+                </li>
+                <li>
+                    Inicializar cada uno de los cinco elementos del arreglo unidimensional <code>g</code> en 8.
+                    <div class="detalle">
+                        Respuesta:
+<pre><code>var g = [ 8, 8, 8, 8, 8 ];</code></pre>
+                    </div>
+                </li>
+                <li>
+                    Calcular el total de los elementos del arreglo <code>c</code>, que contiene 100 elementos numéricos.
+                    <div class="detalle">
+                        Respuesta:
+<pre><code>var total = 0;
+for ( var i = 0; i &lt; c.length; ++i )
+{
+   total += c[ i ];
+}</code></pre>
+                    </div>
+                </li>
+                <li>
+                    Copiar el arreglo <code>a</code> de 11 elementos en la primera porción del arreglo <code>b</code>, que contiene 34 elementos.
+                    <div class="detalle">
+                        Respuesta:
+<pre><code>for ( var i = 0; i &lt; a.length; ++i )
+{
+   b[ i ] = a[ i ];
+}</code></pre>
+                    </div>
+                </li>
+                <li>
+                    Determinar e imprimir el valor más pequeño y el más grande contenido en el arreglo <code>w</code> de 99 elementos de punto flotante.
+                    <div class="detalle">
+                        Respuesta:
+<pre><code>var menor = w[ 0 ];
+var mayor = w[ 0 ];
+
+for ( var i = 1; i &lt; w.length; ++i )
+{
+   if ( w[ i ] &lt; menor )
+      menor = w[ i ];
+
+   if ( w[ i ] &gt; mayor )
+      mayor = w[ i ];
+}
+
+console.log( "El valor menor es: " + menor );
+console.log( "El valor mayor es: " + mayor );</code></pre>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <hr style="margin-top: 20px; border: none; border-top: 1px solid #ccc;">
+        <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+
+    </body>
+</html>

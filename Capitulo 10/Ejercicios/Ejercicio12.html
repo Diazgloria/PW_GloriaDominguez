@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 10.12 - Capítulo 10 -->
+<!-- Programa para eliminar duplicados en la entrada de números -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 10.12 - Eliminación de Duplicados</title>
+        
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f9;
+                color: #333333;
+                margin: 20px;
+            }
+
+            h1 {
+                color: #2c3e50;
+                border-bottom: 2px solid #3498db;
+                padding-bottom: 10px;
+            }
+
+            .tarjeta {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                max-width: 600px;
+            }
+
+            form {
+                margin-bottom: 15px;
+            }
+
+            label {
+                font-weight: bold;
+                display: block;
+                margin-bottom: 8px;
+            }
+
+            input[type="number"] {
+                padding: 8px;
+                width: 150px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                margin-right: 10px;
+            }
+
+            input[type="button"] {
+                padding: 8px 16px;
+                background-color: #3498db;
+                color: #ffffff;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            input[type="button"]:hover {
+                background-color: #2980b9;
+            }
+
+            .info {
+                color: #7f8c8d;
+                font-size: 14px;
+                margin-bottom: 15px;
+            }
+
+            .salida {
+                background-color: #eef2f7;
+                padding: 12px;
+                border-radius: 4px;
+                border-left: 4px solid #3498db;
+                font-weight: bold;
+            }
+        </style>
+
+        <script src="Ejercicio12.js"></script>
+    </head>
+    <body>
+
+        <h1>Ejercicios: Capítulo 10</h1>
+
+        <div class="tarjeta">
+            <h2>10.12 Eliminación de Números Duplicados</h2>
+            <div class="info" id="contadorEntradas">Ingreso 0 de 10</div>
+
+            <form action="#">
+                <label for="numero">Ingrese un número entre 10 y 100:</label>
+                <input id="numero" type="number" min="10" max="100" placeholder="10 - 100">
+                <input id="botonIngresar" type="button" value="Ingresar Número">
+            </form>
+
+            <div id="resultado" class="salida">Números únicos ingresados: (ninguno)</div>
+        </div>
+
+        <hr style="margin-top: 20px; border: none; border-top: 1px solid #ccc;">
+        <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+
+    </body>
+</html>

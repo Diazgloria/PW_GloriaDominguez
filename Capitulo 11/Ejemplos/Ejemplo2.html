@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<!-- Fig. 11.6: BuscarCadenas.html -->
+<!-- Documento de HTML para demostrar los métodos indexOf y lastIndexOf. -->
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title>Buscar en cadenas</title>
+        
+        <!-- CSS mínimo para obtener la apariencia exacta del libro -->
+        <style type = "text/css">
+            body {
+                font-family: Times New Roman, serif;
+                margin: 20px;
+                background-color: #ffffff;
+                color: #000000;
+            }
+
+            h1 {
+                font-size: 20px;
+                font-weight: bold;
+                margin-bottom: 15px;
+            }
+
+            p {
+                font-size: 14px;
+                margin: 5px 0;
+            }
+
+            input[type="search"] {
+                padding: 2px 4px;
+                font-size: 13px;
+            }
+
+            input[type="button"] {
+                padding: 2px 8px;
+                font-size: 13px;
+                cursor: pointer;
+            }
+
+            #resultados p {
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+        </style>
+
+        <script src = "Ejemplo2.js"></script>
+    </head>
+    <body>
+        <form id = "formBusqueda" action = "#">
+            <h1>La cadena en donde se va a realizar la b&uacute;squeda es:
+                abcdefghijklmnopqrstuvwxyzabcdefghijklm</h1>
+            <p>Introduzca la subcadena que desea buscar
+            <input id = "campoEntrada" type = "search">
+            <input id = "botonBuscar" type = "button" value = "Buscar"></p>
+            <div id = "resultados"></div>
+        </form>
+
+        <footer>
+            <p><a href="lista_ejemplos.html">Regresar a la lista de ejemplos</a></p>
+        </footer>
+    </body>
+</html>

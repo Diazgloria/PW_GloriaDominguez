@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 11.4: RedondeoMath.html
+     Redondeo de números a enteros, décimas, centésimas y milésimas usando Math.floor -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Redondeo de Números</title>
+        <style type="text/css">
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f4f7f6;
+                color: #333;
+                margin: 0;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            main {
+                background-color: #ffffff;
+                padding: 25px 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                max-width: 650px;
+                width: 100%;
+            }
+
+            h2 {
+                color: #2c3e50;
+                margin-top: 0;
+                border-bottom: 2px solid #3498db;
+                padding-bottom: 8px;
+            }
+
+            p {
+                color: #666;
+                font-size: 0.95em;
+            }
+
+            .campo-input {
+                margin: 20px 0;
+                display: flex;
+                gap: 10px;
+            }
+
+            input[type="number"] {
+                flex: 1;
+                padding: 10px;
+                border: 1px solid #cccccc;
+                border-radius: 5px;
+                font-size: 1em;
+                outline: none;
+            }
+
+            input[type="number"]:focus {
+                border-color: #3498db;
+            }
+
+            input[type="button"] {
+                padding: 10px 20px;
+                background-color: #3498db;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 1em;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.2s;
+            }
+
+            input[type="button"]:hover {
+                background-color: #2980b9;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 15px;
+            }
+
+            th, td {
+                padding: 10px;
+                text-align: left;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            th {
+                background-color: #2c3e50;
+                color: white;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f8f9fa;
+            }
+
+            footer {
+                margin-top: 20px;
+            }
+
+            footer a {
+                color: #3498db;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            footer a:hover {
+                text-decoration: underline;
+            }
+        </style>
+        <script>
+            // a) Redondear al entero más cercano
+            function redondearAEntero(numero) {
+                return Math.floor(numero + 0.5);
+            }
+
+            // b) Redondear a la décima más cercana (1 lugar decimal)
+            function redondearADecimas(numero) {
+                return Math.floor(numero * 10 + 0.5) / 10;
+            }
+
+            // c) Redondear a la centésima más cercana (2 lugares decimales)
+            function redondearACentesimas(numero) {
+                return Math.floor(numero * 100 + 0.5) / 100;
+            }
+
+            // d) Redondear a la milésima más cercana (3 lugares decimales)
+            function redondearAMilesimas(numero) {
+                return Math.floor(numero * 1000 + 0.5) / 1000;
+            }
+
+            // Función principal que procesa la entrada y genera los resultados
+            function procesarRedondeo() {
+                var campoEntrada = document.getElementById("numeroInput");
+                var valor = parseFloat(campoEntrada.value);
+
+                if (isNaN(valor)) {
+                    alert("Por favor, ingrese un número válido.");
+                    return;
+                }
+
+                var entero = redondearAEntero(valor);
+                var decimas = redondearADecimas(valor);
+                var centesimas = redondearACentesimas(valor);
+                var milesimas = redondearAMilesimas(valor);
+
+                var resultadoHTML = "<table>" +
+                    "<thead><tr><th>Tipo de Redondeo</th><th>Valor Resultante</th></tr></thead>" +
+                    "<tbody>" +
+                        "<tr><td><strong>Valor Original</strong></td><td>" + valor + "</td></tr>" +
+                        "<tr><td>Entero más cercano</td><td>" + entero + "</td></tr>" +
+                        "<tr><td>Décima más cercana</td><td>" + decimas + "</td></tr>" +
+                        "<tr><td>Centésima más cercana</td><td>" + centesimas + "</td></tr>" +
+                        "<tr><td>Milésima más cercana</td><td>" + milesimas + "</td></tr>" +
+                    "</tbody>" +
+                    "</table>";
+
+                document.getElementById("contenedorResultado").innerHTML = resultadoHTML;
+            }
+
+            function iniciar() {
+                document.getElementById("btnCalcular").addEventListener("click", procesarRedondeo, false);
+            }
+
+            window.addEventListener("load", iniciar, false);
+        </script>
+    </head>
+    <body>
+        <main>
+            <h2>Demostración de Funciones de Redondeo</h2>
+            <p>Ingrese un número flotante para ver cómo se redondea a diferentes niveles de precisión usando <code>Math.floor()</code>:</p>
+
+            <form action="#" onsubmit="return false;">
+                <div class="campo-input">
+                    <input type="number" id="numeroInput" step="any" placeholder="Ej: 45.6784" required>
+                    <input type="button" id="btnCalcular" value="Redondear">
+                </div>
+            </form>
+
+            <div id="contenedorResultado"></div>
+        </main>
+
+        <footer>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de Ejercicios</a></p>
+        </footer>
+    </body>
+</html>

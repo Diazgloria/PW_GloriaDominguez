@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<!-- Fig. 10.13: PasoArreglo.html -->
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Arreglos como argumentos</title>
+      
+      <!-- Estilos CSS -->
+      <style>
+         body {
+            font-family: Arial, sans-serif;
+         }
+         h2 {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+         }
+         p {
+            margin: 4px 0;
+         }
+      </style>
+
+      <!-- Código JavaScript -->
+      <script>
+         function iniciar()
+         {
+            var a = [ 1, 2, 3, 4, 5 ];
+
+            // pasar todo un arreglo
+            imprimirArreglo( "Arreglo original: ", a,
+               document.getElementById( "arregloOriginal" ) );
+            modificarArreglo( a ); // el arreglo a pasado por referencia
+            imprimirArreglo( "Arreglo modificado: ", a,
+               document.getElementById( "arregloModificado" ) );
+
+            // pasar un elemento individual del arreglo
+            document.getElementById( "elementoOriginal" ).innerHTML =
+               "a[3] antes de modificarElemento: " + a[ 3 ];
+            modificarElemento( a[ 3 ] ); // elemento del arreglo a[3] pasado por valor
+            document.getElementById( "elementoModificado" ).innerHTML =
+               "a[3] despu&eacute;s de modificarElemento: " + a[ 3 ];
+         } // fin de la función iniciar()
+
+         function imprimirArreglo( encabezado, elArreglo, salida )
+         {
+            salida.innerHTML = encabezado + elArreglo.join( " " );
+         } // fin de la función imprimirArreglo
+
+         function modificarArreglo( elArreglo )
+         {
+            for ( var j in elArreglo )
+            {
+               elArreglo[ j ] *= 2;
+            } // fin de for
+         } // fin de la función modificarArreglo
+
+         function modificarElemento( e )
+         {
+            e *= 2; // escala el elemento e sólo mientras dure la función
+            document.getElementById( "enModificarElemento" ).innerHTML =
+               "Valor en modificarElemento: " + e;
+         } // fin de la función modificarElemento
+
+         window.addEventListener( "load", iniciar, false );
+      </script>
+   </head>
+   <body>
+      <h2>Efectos de pasar un arreglo completo por referencia</h2>
+      <p id="arregloOriginal"></p>
+      <p id="arregloModificado"></p>
+      <h2>Efectos de pasar el elemento de un arreglo por valor</h2>
+      <p id="elementoOriginal"></p>
+      <p id="enModificarElemento"></p>
+      <p id="elementoModificado"></p>
+
+      <footer>
+        <p><a href="lista_ejemplos.html">Regresar a la lista de ejemplos</a></p>
+      </footer>
+   </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 10.4 - Autoevaluación Capítulo 10 -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 10.4 - Capítulo 10</title>
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f9;
+                color: #333333;
+                margin: 20px;
+            }
+
+            h1 {
+                color: #2c3e50;
+                border-bottom: 2px solid #3498db;
+                padding-bottom: 10px;
+            }
+
+            .tarjeta {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            ol {
+                line-height: 1.8;
+            }
+
+            .respuesta {
+                color: #d9534f;
+                font-weight: bold;
+                font-family: monospace;
+            }
+
+            .detalle {
+                margin: 5px 0 10px 0;
+                color: #555555;
+                font-size: 14px;
+            }
+
+            pre {
+                background-color: #f8f9fa;
+                padding: 10px;
+                border-radius: 4px;
+                border-left: 3px solid #3498db;
+                margin: 5px 0;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Ejercicios de autoevaluación: Capítulo 10</h1>
+
+        <div class="tarjeta">
+            <h2>10.4 Escribir instrucciones de JavaScript (con respecto al arreglo tabla) para realizar cada una de las siguientes tareas:</h2>
+
+            <ol type="a">
+                <li>
+                    Declarar y crear el arreglo con tres filas y tres columnas.
+                    <div class="detalle">
+                        Respuesta:
+                        <pre><code>var tabla = new Array( new Array( 3 ), new Array( 3 ), new Array( 3 ) );</code></pre>
+                    </div>
+                </li>
+                <li>
+                    Almacenar el número total de elementos en la variable <code>totalElementos</code>.
+                    <div class="detalle">
+                        Respuesta: <span class="respuesta">var totalElementos = tabla.length * tabla[ 0 ].length;</span>
+                    </div>
+                </li>
+                <li>
+                    Usar una instrucción <code>for...in</code> para inicializar cada elemento del arreglo con la suma de sus índices de fila y de columna. Suponga que las variables <code>x</code> y <code>y</code> se declaran como variables de control.
+                    <div class="detalle">
+                        Respuesta:
+<pre><code>for ( var x in tabla )
+{
+   for ( var y in tabla[ x ] )
+   {
+      tabla[ x ][ y ] = parseInt(x) + parseInt(y);
+   }
+}</code></pre>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <hr style="margin-top: 20px; border: none; border-top: 1px solid #ccc;">
+        <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+
+    </body>
+</html>

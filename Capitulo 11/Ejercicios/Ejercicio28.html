@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 11.28: GeneradorCrucigramas.html
+     Proyecto: Generador de crucigramas con cuadrícula matricial, algoritmo de intersecciones y sección de pistas -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Generador de Crucigramas</title>
+        <style type="text/css">
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f4f7f6;
+                color: #333;
+                margin: 0;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            main {
+                background-color: #ffffff;
+                padding: 25px 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                max-width: 800px;
+                width: 100%;
+            }
+
+            h2 {
+                color: #2c3e50;
+                margin-top: 0;
+                border-bottom: 2px solid #2980b9;
+                padding-bottom: 8px;
+            }
+
+            p {
+                color: #666;
+                font-size: 0.95em;
+            }
+
+            .panel-controles {
+                margin: 15px 0;
+                display: flex;
+                gap: 10px;
+            }
+
+            input[type="button"] {
+                flex: 1;
+                padding: 12px;
+                background-color: #2980b9;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 1em;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.2s;
+            }
+
+            input[type="button"]:hover {
+                background-color: #1f618d;
+            }
+
+            input[type="button"].secundario {
+                background-color: #7f8c8d;
+            }
+
+            input[type="button"].secundario:hover {
+                background-color: #626567;
+            }
+
+            .contenedor-crucigrama {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 20px;
+            }
+
+            table.crucigrama-grid {
+                border-collapse: collapse;
+                background-color: #000000;
+                margin-bottom: 20px;
+            }
+
+            table.crucigrama-grid td {
+                width: 34px;
+                height: 34px;
+                border: 1px solid #333;
+                text-align: center;
+                vertical-align: middle;
+                position: relative;
+                font-family: 'Consolas', monospace;
+                font-weight: bold;
+                font-size: 1.1em;
+            }
+
+            td.celda-negra {
+                background-color: #111111;
+            }
+
+            td.celda-blanca {
+                background-color: #ffffff;
+                color: #2c3e50;
+            }
+
+            .numero-pista {
+                position: absolute;
+                top: 2px;
+                left: 3px;
+                font-size: 0.65em;
+                color: #7f8c8d;
+                font-weight: normal;
+            }
+
+            .seccion-pistas {
+                display: flex;
+                gap: 20px;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .columna-pistas {
+                flex: 1;
+                background-color: #f8f9fa;
+                padding: 15px;
+                border-radius: 6px;
+                border: 1px solid #e0e0e0;
+            }
+
+            .columna-pistas h3 {
+                margin-top: 0;
+                color: #2c3e50;
+                border-bottom: 2px solid #2980b9;
+                padding-bottom: 5px;
+                font-size: 1.1em;
+            }
+
+            .columna-pistas ul {
+                padding-left: 20px;
+                margin: 0;
+                font-size: 0.9em;
+                line-height: 1.5;
+            }
+
+            footer {
+                margin-top: 25px;
+            }
+
+            footer a {
+                color: #2980b9;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            footer a:hover {
+                text-decoration: underline;
+            }
+        </style>
+        <script>
+            const TAMANIO = 12;
+
+            // Banco de palabras y pistas (Diccionario computarizado)
+            var diccionario = [
+                { palabra: "JAVASCRIPT", pista: "Lenguaje de programación para la web" },
+                { palabra: "CADENA", pista: "Secuencia de caracteres o texto" },
+                { palabra: "MATRIZ", pista: "Arreglo con doble subíndice" },
+                { palabra: "CODIGO", pista: "Instrucciones escritas en un lenguaje de programación" },
+                { palabra: "OBJETO", pista: "Entidad con propiedades y métodos" },
+                { palabra: "METODO", pista: "Función asociada a un objeto" },
+                { palabra: "INDICE", pista: "Posición numérica de un elemento en un arreglo" },
+                { palabra: "BUCLE", pista: "Estructura de control repetitiva" },
+                { palabra: "TEXTO", pista: "Conjunto de palabras e instrucciones escritas" },
+                { palabra: "LOGICA", pista: "Razonamiento detrás de la solución de un problema" }
+            ];
+
+            var cuadricula = [];
+            var palabrasColocadas = [];
+            var mostrarSolucion = false;
+
+            function inicializarCuadricula() {
+                cuadricula = new Array(TAMANIO);
+                for (var r = 0; r < TAMANIO; r++) {
+                    cuadricula[r] = new Array(TAMANIO);
+                    for (var c = 0; c < TAMANIO; c++) {
+                        cuadricula[r][c] = { letra: "", numero: null };
+                    }
+                }
+                palabrasColocadas = [];
+            }
+
+            function generarCrucigrama() {
+                inicializarCuadricula();
+
+                // Mezclar diccionario para generar variaciones
+                var listaPrueba = diccionario.slice().sort(() => Math.random() - 0.5);
+
+                // Colocar la primera palabra en el centro horizontalmente
+                var primera = listaPrueba[0];
+                var filaInicio = Math.floor(TAMANIO / 2);
+                var colInicio = Math.floor((TAMANIO - primera.palabra.length) / 2);
+
+                for (var i = 0; i < primera.palabra.length; i++) {
+                    cuadricula[filaInicio][colInicio + i].letra = primera.palabra.charAt(i);
+                }
+
+                palabrasColocadas.push({
+                    palabra: primera.palabra,
+                    pista: primera.pista,
+                    fila: filaInicio,
+                    col: colInicio,
+                    orientacion: "H"
+                });
+
+                // Intentar colocar el resto de las palabras buscando intersecciones
+                for (var p = 1; p < listaPrueba.length; p++) {
+                    var item = listaPrueba[p];
+                    intentarColocarPalabra(item.palabra, item.pista);
+                }
+
+                asignarNumeracion();
+                renderizar();
+            }
+
+            function intentarColocarPalabra(palabra, pista) {
+                for (var i = 0; i < palabra.length; i++) {
+                    var charActual = palabra.charAt(i);
+
+                    // Buscar coincidencias con palabras ya colocadas
+                    for (var r = 0; r < TAMANIO; r++) {
+                        for (var c = 0; c < TAMANIO; c++) {
+                            if (cuadricula[r][c].letra === charActual) {
+                                // Probar orientación opuesta a la letra encontrada
+                                if (evaluarColocacion(palabra, i, r, c, "V")) {
+                                    colocarPalabraEnMatriz(palabra, pista, r - i, c, "V");
+                                    return true;
+                                } else if (evaluarColocacion(palabra, i, r, c, "H")) {
+                                    colocarPalabraEnMatriz(palabra, pista, r, c - i, "H");
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+                return false;
+            }
+
+            function evaluarColocacion(palabra, idxChar, filaInter, colInter, orientacion) {
+                var fInicio = orientacion === "V" ? filaInter - idxChar : filaInter;
+                var cInicio = orientacion === "H" ? colInter - idxChar : colInter;
+
+                if (fInicio < 0 || cInicio < 0) return false;
+                if (orientacion === "V" && fInicio + palabra.length > TAMANIO) return false;
+                if (orientacion === "H" && cInicio + palabra.length > TAMANIO) return false;
+
+                for (var k = 0; k < palabra.length; k++) {
+                    var r = orientacion === "V" ? fInicio + k : fInicio;
+                    var c = orientacion === "H" ? cInicio + k : cInicio;
+
+                    var letraExistente = cuadricula[r][c].letra;
+
+                    if (letraExistente !== "" && letraExistente !== palabra.charAt(k)) {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            function colocarPalabraEnMatriz(palabra, pista, fInicio, cInicio, orientacion) {
+                for (var k = 0; k < palabra.length; k++) {
+                    var r = orientacion === "V" ? fInicio + k : fInicio;
+                    var c = orientacion === "H" ? cInicio + k : cInicio;
+                    cuadricula[r][c].letra = palabra.charAt(k);
+                }
+
+                palabrasColocadas.push({
+                    palabra: palabra,
+                    pista: pista,
+                    fila: fInicio,
+                    col: cInicio,
+                    orientacion: orientacion
+                });
+            }
+
+            function asignarNumeracion() {
+                var contadorPistas = 1;
+
+                // Resetear números
+                for (var r = 0; r < TAMANIO; r++) {
+                    for (var c = 0; c < TAMANIO; c++) {
+                        cuadricula[r][c].numero = null;
+                    }
+                }
+
+                for (var r = 0; r < TAMANIO; r++) {
+                    for (var c = 0; c < TAMANIO; c++) {
+                        var esInicio = palabrasColocadas.filter(p => p.fila === r && p.col === c);
+                        if (esInicio.length > 0) {
+                            cuadricula[r][c].numero = contadorPistas;
+                            esInicio.forEach(p => p.numeroPista = contadorPistas);
+                            contadorPistas++;
+                        }
+                    }
+                }
+            }
+
+            function renderizar() {
+                var htmlTabla = "<table class='crucigrama-grid'>";
+
+                for (var r = 0; r < TAMANIO; r++) {
+                    htmlTabla += "<tr>";
+                    for (var c = 0; c < TAMANIO; c++) {
+                        var celda = cuadricula[r][c];
+                        if (celda.letra === "") {
+                            htmlTabla += "<td class='celda-negra'></td>";
+                        } else {
+                            var numStr = celda.numero ? "<span class='numero-pista'>" + celda.numero + "</span>" : "";
+                            var letraVis = mostrarSolucion ? celda.letra : "";
+                            htmlTabla += "<td class='celda-blanca'>" + numStr + letraVis + "</td>";
+                        }
+                    }
+                    htmlTabla += "</tr>";
+                }
+
+                htmlTabla += "</table>";
+                document.getElementById("contenedorGrid").innerHTML = htmlTabla;
+
+                // Renderizar Pistas Horizontales y Verticales
+                var htmlHoriz = "<ul>";
+                var htmlVert = "<ul>";
+
+                palabrasColocadas.forEach(p => {
+                    var itemHtml = "<li><strong>" + p.numeroPista + ".</strong> " + p.pista + "</li>";
+                    if (p.orientacion === "H") {
+                        htmlHoriz += itemHtml;
+                    } else {
+                        htmlVert += itemHtml;
+                    }
+                });
+
+                htmlHoriz += "</ul>";
+                htmlVert += "</ul>";
+
+                document.getElementById("pistasHorizontales").innerHTML = htmlHoriz;
+                document.getElementById("pistasVerticales").innerHTML = htmlVert;
+            }
+
+            function alternarSolucion() {
+                mostrarSolucion = !mostrarSolucion;
+                var btn = document.getElementById("btnSolucion");
+                btn.value = mostrarSolucion ? "Ocultar Solución" : "Ver Solución";
+                renderizar();
+            }
+
+            function iniciar() {
+                document.getElementById("btnGenerar").addEventListener("click", generarCrucigrama, false);
+                document.getElementById("btnSolucion").addEventListener("click", alternarSolucion, false);
+                generarCrucigrama();
+            }
+
+            window.addEventListener("load", iniciar, false);
+        </script>
+    </head>
+    <body>
+        <main>
+            <h2>Proyecto 11.28: Generador de Crucigramas</h2>
+            <p>Presione el botón para construir dinámicamente un crucigrama a partir de un banco de palabras y sus claves:</p>
+
+            <div class="panel-controles">
+                <input type="button" id="btnGenerar" value="Generar Nuevo Crucigrama">
+                <input type="button" id="btnSolucion" class="secundario" value="Ver Solución">
+            </div>
+
+            <div class="contenedor-crucigrama">
+                <div id="contenedorGrid"></div>
+
+                <div class="seccion-pistas">
+                    <div class="columna-pistas">
+                        <h3>Horizontales</h3>
+                        <div id="pistasHorizontales"></div>
+                    </div>
+                    <div class="columna-pistas">
+                        <h3>Verticales</h3>
+                        <div id="pistasVerticales"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>

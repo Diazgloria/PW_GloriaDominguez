@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 10.3 - Autoevaluación Capítulo 10 -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 10.3 - Capítulo 10</title>
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f9;
+                color: #333333;
+                margin: 20px;
+            }
+
+            h1 {
+                color: #2c3e50;
+                border-bottom: 2px solid #3498db;
+                padding-bottom: 10px;
+            }
+
+            .tarjeta {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            ol {
+                line-height: 1.8;
+            }
+
+            .respuesta {
+                color: #d9534f;
+                font-weight: bold;
+                font-family: monospace;
+            }
+
+            .detalle {
+                margin: 5px 0 10px 0;
+                color: #555555;
+                font-size: 14px;
+            }
+
+            pre {
+                background-color: #f8f9fa;
+                padding: 10px;
+                border-radius: 4px;
+                border-left: 3px solid #3498db;
+                margin: 5px 0;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Ejercicios de autoevaluación: Capítulo 10</h1>
+
+        <div class="tarjeta">
+            <h2>10.3 Escriba instrucciones de JavaScript (con respecto al arreglo fracciones) para realizar cada una de las siguientes tareas:</h2>
+
+            <ol type="a">
+                <li>
+                    Declarar un arreglo con 10 elementos e inicializar los elementos del arreglo en 0.
+                    <div class="detalle">
+                        Respuesta:
+                        <pre><code>var fracciones = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];</code></pre>
+                    </div>
+                </li>
+                <li>
+                    Hacer referencia al elemento 3 del arreglo.
+                    <div class="detalle">
+                        Respuesta: <span class="respuesta">fracciones[ 3 ]</span>
+                    </div>
+                </li>
+                <li>
+                    Hacer referencia al elemento 4 del arreglo.
+                    <div class="detalle">
+                        Respuesta: <span class="respuesta">fracciones[ 4 ]</span>
+                    </div>
+                </li>
+                <li>
+                    Asignar el valor 1.667 al elemento 9 del arreglo.
+                    <div class="detalle">
+                        Respuesta: <span class="respuesta">fracciones[ 9 ] = 1.667;</span>
+                    </div>
+                </li>
+                <li>
+                    Asignar el valor 3.333 al elemento de menor numeración del arreglo.
+                    <div class="detalle">
+                        Respuesta: <span class="respuesta">fracciones[ 0 ] = 3.333;</span>
+                    </div>
+                </li>
+                <li>
+                    Sumar todos los elementos del arreglo mediante una instrucción <code>for...in</code>. Definir la variable <code>x</code> como variable de control para el ciclo.
+                    <div class="detalle">
+                        Respuesta:
+<pre><code>var total = 0;
+for ( var x in fracciones )
+{
+   total += fracciones[ x ];
+}</code></pre>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <hr style="margin-top: 20px; border: none; border-top: 1px solid #ccc;">
+        <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+
+    </body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 11.17: CodigoACaracter.html
+     Conversión de un código entero al carácter correspondiente utilizando String.fromCharCode -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Código Entero a Carácter</title>
+        <style type="text/css">
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f4f7f6;
+                color: #333;
+                margin: 0;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            main {
+                background-color: #ffffff;
+                padding: 25px 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                max-width: 550px;
+                width: 100%;
+            }
+
+            h2 {
+                color: #2c3e50;
+                margin-top: 0;
+                border-bottom: 2px solid #2980b9;
+                padding-bottom: 8px;
+            }
+
+            p {
+                color: #666;
+                font-size: 0.95em;
+            }
+
+            .grupo-campo {
+                margin: 15px 0;
+                display: flex;
+                flex-direction: column;
+            }
+
+            label {
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: #34495e;
+            }
+
+            input[type="number"] {
+                padding: 10px;
+                border: 1px solid #cccccc;
+                border-radius: 5px;
+                font-size: 1em;
+                outline: none;
+            }
+
+            input[type="number"]:focus {
+                border-color: #2980b9;
+            }
+
+            input[type="button"] {
+                width: 100%;
+                padding: 12px;
+                background-color: #2980b9;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 1em;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.2s;
+                margin-top: 10px;
+            }
+
+            input[type="button"]:hover {
+                background-color: #1f618d;
+            }
+
+            .resultado-caja {
+                margin-top: 20px;
+                padding: 15px;
+                background-color: #ebf5fb;
+                border-radius: 6px;
+                border-left: 5px solid #2980b9;
+                font-size: 1.1em;
+            }
+
+            footer {
+                margin-top: 20px;
+            }
+
+            footer a {
+                color: #2980b9;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            footer a:hover {
+                text-decoration: underline;
+            }
+        </style>
+        <script>
+            function convertirCodigo() {
+                var inputVal = document.getElementById("codigoInput").value;
+                var codigo = parseInt(inputVal, 10);
+
+                if (isNaN(codigo) || codigo < 0) {
+                    alert("Por favor, ingrese un código entero válido mayor o igual a 0.");
+                    return;
+                }
+
+                // Obtener el carácter correspondiente al número
+                var caracter = String.fromCharCode(codigo);
+
+                var html = "<div class='resultado-caja'>" +
+                    "<p><strong>Código entero:</strong> " + codigo + "</p>" +
+                    "<p><strong>Carácter resultante:</strong> <span style='font-size: 1.5em; font-weight: bold; color: #2980b9;'>" + caracter + "</span></p>" +
+                    "</div>";
+
+                document.getElementById("contenedorResultado").innerHTML = html;
+            }
+
+            function iniciar() {
+                document.getElementById("btnConvertir").addEventListener("click", convertirCodigo, false);
+            }
+
+            window.addEventListener("load", iniciar, false);
+        </script>
+    </head>
+    <body>
+        <main>
+            <h2>Convertidor de Código a Carácter</h2>
+            <p>Ingrese un número entero (ej: 65 para 'A', 97 para 'a') para obtener su carácter correspondiente:</p>
+
+            <form action="#" onsubmit="convertirCodigo(); return false;">
+                <div class="grupo-campo">
+                    <label for="codigoInput">Código entero:</label>
+                    <input type="number" id="codigoInput" min="0" placeholder="Ej: 65" required>
+                </div>
+
+                <input type="button" id="btnConvertir" value="Obtener Carácter">
+            </form>
+
+            <div id="contenedorResultado"></div>
+        </main>
+
+        <footer>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejemplos</a></p>
+        </footer>
+    </body>
+</html>

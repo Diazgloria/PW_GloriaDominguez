@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 10.15 - Capítulo 10 -->
+<!-- Simulación de Gráficos de Tortuga con script por defecto (Cuadrado 12x12) -->
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 10.15 - Gráficos de Tortuga</title>
+        
+        <!-- Estilos CSS integrados -->
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f6f9;
+                color: #333333;
+                margin: 20px;
+            }
+
+            h1 {
+                color: #2c3e50;
+                border-bottom: 2px solid #3498db;
+                padding-bottom: 10px;
+            }
+
+            .tarjeta {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                max-width: 750px;
+            }
+
+            label {
+                font-weight: bold;
+                display: block;
+                margin-bottom: 8px;
+            }
+
+            textarea {
+                width: 100%;
+                height: 120px;
+                padding: 8px;
+                font-family: monospace;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                margin-bottom: 12px;
+            }
+
+            input[type="button"] {
+                padding: 10px 18px;
+                background-color: #3498db;
+                color: #ffffff;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 14px;
+                margin-right: 8px;
+            }
+
+            input[type="button"]:hover {
+                background-color: #2980b9;
+            }
+
+            .tabla-piso {
+                border-collapse: collapse;
+                margin-top: 15px;
+            }
+
+            .tabla-piso td {
+                width: 22px;
+                height: 22px;
+                border: 1px solid #e0e0e0;
+                text-align: center;
+                font-size: 12px;
+                font-family: monospace;
+            }
+
+            .trazo {
+                background-color: #2c3e50;
+                color: #ffffff;
+                font-weight: bold;
+            }
+
+            .tortuga {
+                background-color: #e74c3c !important;
+                color: #ffffff;
+                font-weight: bold;
+            }
+
+            .instrucciones {
+                background-color: #eef2f7;
+                padding: 12px;
+                border-left: 4px solid #3498db;
+                margin-bottom: 15px;
+                font-size: 13px;
+                line-height: 1.5;
+            }
+        </style>
+
+        <!-- Script de JavaScript independiente -->
+        <script src="Ejercicio15.js"></script>
+    </head>
+    <body>
+
+        <h1>Ejercicios: Capítulo 10</h1>
+
+        <div class="tarjeta">
+            <h2>10.15 Gráficos de Tortuga</h2>
+
+            <div class="instrucciones">
+                <b>Comandos disponibles:</b><br>
+                <b>1:</b> Pluma arriba | <b>2:</b> Pluma abajo | <b>3:</b> Girar a la derecha | <b>4:</b> Girar a la izquierda<br>
+                <b>5,n:</b> Avanzar <i>n</i> espacios | <b>6:</b> Imprimir tablero de 20x20 | <b>9:</b> Fin de datos
+            </div>
+
+            <form action="#">
+                <label for="comandos">Secuencia de comandos (separados por coma):</label>
+                <!-- Carga la secuencia del libro para dibujar un cuadrado de 12 por 12 -->
+                <textarea id="comandos">2, 5,12, 3, 5,12, 3, 5,12, 3, 5,12, 1, 6, 9</textarea>
+                
+                <input id="botonEjecutar" type="button" value="Ejecutar Comandos">
+                <input id="botonReiniciar" type="button" value="Reiniciar Piso" style="background-color: #e74c3c;">
+            </form>
+
+            <div id="contenedorPiso"></div>
+        </div>
+
+        <hr style="margin-top: 20px; border: none; border-top: 1px solid #ccc;">
+        <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+
+    </body>
+</html>

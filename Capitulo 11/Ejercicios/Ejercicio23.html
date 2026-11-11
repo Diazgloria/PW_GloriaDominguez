@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<!-- Ejercicio 11.23: AnalisisTextoCompleto.html
+     Análisis integral de textos: Frecuencia de letras (a), Longitud de palabras (b) y Palabras distintas (c) -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Proyecto Desafiante: Análisis de Texto</title>
+        <style type="text/css">
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f4f7f6;
+                color: #333;
+                margin: 0;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            main {
+                background-color: #ffffff;
+                padding: 25px 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                max-width: 750px;
+                width: 100%;
+            }
+
+            h2 {
+                color: #2c3e50;
+                margin-top: 0;
+                border-bottom: 2px solid #2980b9;
+                padding-bottom: 8px;
+            }
+
+            p {
+                color: #666;
+                font-size: 0.95em;
+            }
+
+            .grupo-campo {
+                margin: 15px 0;
+                display: flex;
+                flex-direction: column;
+            }
+
+            label {
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: #34495e;
+            }
+
+            textarea {
+                width: 100%;
+                height: 110px;
+                padding: 10px;
+                border: 1px solid #cccccc;
+                border-radius: 5px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 0.95em;
+                outline: none;
+                resize: vertical;
+                box-sizing: border-box;
+            }
+
+            textarea:focus {
+                border-color: #2980b9;
+            }
+
+            .panel-botones {
+                display: flex;
+                gap: 8px;
+                margin: 15px 0;
+                flex-wrap: wrap;
+            }
+
+            input[type="button"] {
+                flex: 1;
+                min-width: 180px;
+                padding: 12px 10px;
+                background-color: #2980b9;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 0.9em;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.2s;
+            }
+
+            input[type="button"]:hover {
+                background-color: #1f618d;
+            }
+
+            input[type="button"].secundario {
+                background-color: #8e44ad;
+            }
+
+            input[type="button"].secundario:hover {
+                background-color: #712b8d;
+            }
+
+            input[type="button"].terciario {
+                background-color: #27ae60;
+            }
+
+            input[type="button"].terciario:hover {
+                background-color: #219653;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 15px;
+            }
+
+            th, td {
+                padding: 10px;
+                text-align: center;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            th {
+                background-color: #2c3e50;
+                color: white;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f8f9fa;
+            }
+
+            .subtitulo-resultado {
+                color: #2c3e50;
+                margin-top: 20px;
+                border-left: 4px solid #2980b9;
+                padding-left: 10px;
+            }
+
+            footer {
+                margin-top: 20px;
+            }
+
+            footer a {
+                color: #2980b9;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            footer a:hover {
+                text-decoration: underline;
+            }
+        </style>
+        <script>
+            // Obtiene y valida el texto de entrada
+            function obtenerTextoEntrada() {
+                var texto = document.getElementById("textoEntrada").value;
+                if (texto.trim() === "") {
+                    alert("Por favor, ingrese un texto de varias líneas para realizar el análisis.");
+                    return null;
+                }
+                return texto;
+            }
+
+            // a) Ocurrencias de cada letra del alfabeto
+            function ejecutarIncisOA() {
+                var texto = obtenerTextoEntrada();
+                if (!texto) return;
+
+                var textoMinusculas = texto.toLowerCase();
+                var alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", 
+                                "n", "ñ", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+                var frecuencias = new Array(alfabeto.length).fill(0);
+
+                for (var i = 0; i < textoMinusculas.length; i++) {
+                    var car = textoMinusculas.charAt(i);
+                    var idx = alfabeto.indexOf(car);
+                    if (idx !== -1) {
+                        frecuencias[idx]++;
+                    }
+                }
+
+                var html = "<h3 class='subtitulo-resultado'>Inciso A: Ocurrencias por Letra del Alfabeto</h3>" +
+                    "<table><thead><tr><th>Letra</th><th>Ocurrencias</th></tr></thead><tbody>";
+
+                for (var j = 0; j < alfabeto.length; j++) {
+                    html += "<tr><td><strong>" + alfabeto[j].toUpperCase() + " / " + alfabeto[j] + "</strong></td><td>" + frecuencias[j] + "</td></tr>";
+                }
+
+                html += "</tbody></table>";
+                document.getElementById("contenedorResultado").innerHTML = html;
+            }
+
+            // b) Tabla de longitud de palabras (1 letra, 2 letras, etc.)
+            function ejecutarIncisOB() {
+                var texto = obtenerTextoEntrada();
+                if (!texto) return;
+
+                var textoLimpio = texto.replace(/[¿?¡!.,:;()"]/g, " ");
+                var palabras = textoLimpio.trim().split(/\s+/);
+                var mapaLongidades = {};
+                var maxLongitud = 0;
+
+                for (var i = 0; i < palabras.length; i++) {
+                    var len = palabras[i].length;
+                    if (len > 0) {
+                        if (!mapaLongidades[len]) mapaLongidades[len] = 0;
+                        mapaLongidades[len]++;
+                        if (len > maxLongitud) maxLongitud = len;
+                    }
+                }
+
+                var html = "<h3 class='subtitulo-resultado'>Inciso B: Palabras por Longitud de Letras</h3>" +
+                    "<table><thead><tr><th>Longitud de palabra</th><th>Ocurrencias</th></tr></thead><tbody>";
+
+                for (var n = 1; n <= maxLongitud; n++) {
+                    var ocurrencias = mapaLongidades[n] || 0;
+                    html += "<tr><td>" + n + "</td><td>" + ocurrencias + "</td></tr>";
+                }
+
+                html += "</tbody></table>";
+                document.getElementById("contenedorResultado").innerHTML = html;
+            }
+
+            // Helper para procesar palabras distintas para el inciso C
+            function obtenerMapaPalabrasDistintas(texto) {
+                var textoLimpio = texto.toLowerCase().replace(/[¿?¡!.,:;()"]/g, " ");
+                var palabras = textoLimpio.trim().split(/\s+/);
+
+                var listaOrdenAparicion = [];
+                var mapaConteo = {};
+
+                for (var i = 0; i < palabras.length; i++) {
+                    var p = palabras[i];
+                    if (p.length > 0) {
+                        if (!mapaConteo[p]) {
+                            mapaConteo[p] = 0;
+                            listaOrdenAparicion.push(p);
+                        }
+                        mapaConteo[p]++;
+                    }
+                }
+
+                return { ordenAparicion: listaOrdenAparicion, mapa: mapaConteo };
+            }
+
+            // c1) Palabras distintas en orden de aparición
+            function ejecutarIncisOC1() {
+                var texto = obtenerTextoEntrada();
+                if (!texto) return;
+
+                var datos = obtenerMapaPalabrasDistintas(texto);
+                renderizarIncisOC(datos.ordenAparicion, datos.mapa, "Inciso C: Palabras Distintas (Orden de Aparición)");
+            }
+
+            // c2) Palabras distintas en orden alfabético
+            function ejecutarIncisOC2() {
+                var texto = obtenerTextoEntrada();
+                if (!texto) return;
+
+                var datos = obtenerMapaPalabrasDistintas(texto);
+                var listaAlfabetica = datos.ordenAparicion.slice().sort(function(a, b) {
+                    return a.localeCompare(b, 'es', { sensitivity: 'base' });
+                });
+
+                renderizarIncisOC(listaAlfabetica, datos.mapa, "Inciso C: Palabras Distintas (Orden Alfabético)");
+            }
+
+            function renderizarIncisOC(lista, mapa, titulo) {
+                var html = "<h3 class='subtitulo-resultado'>" + titulo + "</h3>" +
+                    "<table><thead><tr><th>Palabra Distinta</th><th>Ocurrencias</th></tr></thead><tbody>";
+
+                for (var i = 0; i < lista.length; i++) {
+                    var pal = lista[i];
+                    html += "<tr><td style='text-align: left;'><strong>" + pal + "</strong></td><td>" + mapa[pal] + "</td></tr>";
+                }
+
+                html += "</tbody></table>";
+                document.getElementById("contenedorResultado").innerHTML = html;
+            }
+
+            function iniciar() {
+                document.getElementById("btnIncisOA").addEventListener("click", ejecutarIncisOA, false);
+                document.getElementById("btnIncisOB").addEventListener("click", ejecutarIncisOB, false);
+                document.getElementById("btnIncisOC1").addEventListener("click", ejecutarIncisOC1, false);
+                document.getElementById("btnIncisOC2").addEventListener("click", ejecutarIncisOC2, false);
+            }
+
+            window.addEventListener("load", iniciar, false);
+        </script>
+    </head>
+    <body>
+        <main>
+            <h2>Proyecto 11.23: Análisis de Textos</h2>
+            <p>Ingrese un bloque de texto y seleccione la herramienta de análisis que desea ejecutar:</p>
+
+            <form action="#" onsubmit="return false;">
+                <div class="grupo-campo">
+                    <label for="textoEntrada">Texto a analizar:</label>
+                    <textarea id="textoEntrada" placeholder="Ejemplo:&#10;Ser o no ser: ese es el dilema:&#10;¿Qué es más noble para el espíritu?" required></textarea>
+                </div>
+
+                <div class="panel-botones">
+                    <input type="button" id="btnIncisOA" value="a) Frecuencia de Letras">
+                    <input type="button" id="btnIncisOB" class="secundario" value="b) Longitud de Palabras">
+                    <input type="button" id="btnIncisOC1" class="terciario" value="c1) Palabras (Aparición)">
+                    <input type="button" id="btnIncisOC2" class="terciario" value="c2) Palabras (Alfabético)">
+                </div>
+            </form>
+
+            <div id="contenedorResultado"></div>
+        </main>
+
+        <footer>
+            <p><a href="lista_ejercicios.html">Regresar a la lista de ejercicios</a></p>
+        </footer>
+    </body>
+</html>
